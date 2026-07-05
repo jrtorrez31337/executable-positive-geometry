@@ -149,3 +149,25 @@ that generated the predictions. Next upgrade requires a sighting or
 confirmation from a formalism not already in the pattern's ancestry —
 or a hardware realization of the P-B arrow (Door 5/6 hybrid: the
 record-conditioned entropy rise measured on transmons).
+
+## Results round 2 (2026-07-05, hardware: `labs/track-c-time/arrow_hardware.py`)
+
+**P-B measured on physical qubits** (ibm_kingston, job d959d86vtlqs73fv5atg,
+16 circuits, 4 transmons, full single-qubit tomography per tick):
+
+    tick        0     1     2     3     4     5     6     7
+    predicted 0.00  0.23  0.38  0.49  0.72  0.84  0.91  0.97
+    arrow     0.00  0.30  0.44  0.54  0.76  0.85  0.91  0.97
+    control   0.03  0.01  0.00  0.02  0.00  0.00  0.00  0.00
+
+Monotone 7/7; mean arrow-control gap 0.679 bits; late ticks agree with
+prediction to three decimals (0.974 vs 0.973). The control isolates the
+device noise floor (flat, <= 0.026): everything the arrow family climbs
+above it is entropy manufactured by record-writing.
+
+**Status per stated criteria:** the named upgrade trigger ("hardware
+realization of the P-B arrow") is met -> *suggestive, twice-tested, once
+on hardware*. Standing caveat unchanged: hardware instantiates the same
+theory that generated the prediction; this round adds survival under
+real decoherence with an internal control, not theory-independence.
+The remaining upgrade path is an out-of-ancestry sighting.
