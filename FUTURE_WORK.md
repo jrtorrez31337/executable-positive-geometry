@@ -30,3 +30,16 @@ Flower network with hand-optimized qubit layout (reduce the 553-gate
 routing cost); the self-extraction ledger of `self_wedge.py` on real
 transmons (6 qubits: watch self-knowledge destroy its own protection on
 hardware); error-corrected reruns when heavier codes become practical.
+
+## Door 6 — The frame-rate experiment (Page–Wootters emergent time)
+The one subsystem never built: a clock. Wheeler–DeWitt-style frozen
+global state (H|Psi> = 0) with entanglement between a small clock
+register and a system register; verify the Page–Wootters mechanism —
+the system evolves Schrödinger-correctly relative to clock readings
+while the total state is stationary. Time as entanglement structure,
+completing the space-from-entanglement labs. Few qubits, exact
+statevectors, hardware-portable on the same free tier. Context: the
+three independent "arrow of time as the currency of self-containment"
+sightings (elliptic dS/Z2 non-time-orientability; det=+1-only holonomy
+with the missing mirror = antiunitary time reversal; the conditional-
+entropy arrow lemma in Fusions of Consciousness p. 24).
