@@ -1,0 +1,189 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage{microtype}
+
+\newcommand{\br}[1]{\langle #1 \rangle}
+
+\title{Assembly of the two-loop MHV integrand from maximally positive
+mutual numerators at five and six points}
+
+\author{Jon Torrez\thanks{gmail@jontorrez.com. Computations performed in
+collaboration with an AI research assistant (Claude, Anthropic); all
+code at \url{https://github.com/jrtorrez31337/executable-positive-geometry}.}}
+
+\date{July 5, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For the two-loop four-point MHV amplituhedron, the canonical form on
+each positive chart is known to be a pure dlog form times the ratio
+$D^{+}/D$, where $D = \br{ABCD}$ is the mutual positivity condition and
+$D^{+}$ is the sum of its positive monomials
+\citep{Kojima:2020gxs}. We test, by exact computation, whether this
+``maximally positive numerator'' structure \emph{assembles} at higher
+multiplicity: whether the full two-loop MHV integrand at $n=5,6$ equals
+the sum over all composite cells (ordered pairs of one-loop sign-flip
+cells) of Kermit $\times$ Kermit $\times\, D^{+}/D$, with no
+corrections. It does. At $n=5$ (9 composite cells) and $n=6$ (36
+composite cells) the assembly reproduces the local double-pentagon
+representation of the integrand \citep{ArkaniHamed:2010gh} with ratio
+exactly $1$ in rational arithmetic at independent generic kinematic
+points; interior seams cancel pairwise; and all well-defined transverse
+octa-cut residues at $n=5$ are quantized as required. Two structural
+observations explain why the preconditions cannot fail at any $n$: in
+the sign-flip charts, $\br{ABCD}$ is automatically multilinear in the
+eight chart variables, and every monomial coefficient is a single
+Pl\"ucker bracket, so the sign split defining $D^{+}$ is independent of
+the choice of positive kinematics. In particular the quasi-linear
+complication anticipated in \citep{Kojima:2020gxs} does not arise for
+two-loop MHV in these raw charts at $n \le 6$, suggesting the naive
+assembly may hold for all $n$. All computations are exact and
+reproducible from the public repository.
+\end{abstract}
+
+\section{Setup}
+
+We use momentum twistors $Z_1,\dots,Z_n$ on a moment curve (all ordered
+Pl\"ucker brackets positive) and the one-loop MHV amplituhedron in its
+sign-flip description \citep{ArkaniHamed:2013jha,ArkaniHamed:2013kca,
+Kojima:2020gxs}: a loop line $AB$ with $\br{AB\,i\,i{+}1} > 0$ (twisted
+cyclic) and exactly two sign flips in the sequence $\br{AB1i}$,
+$i = 2,\dots,n$. The flip positions $(i,j)$, $2 \le i < j \le n-1$,
+label $(n-2)(n-3)/2$ cells, each with the positive chart
+\begin{equation}
+A = Z_1 + x\,Z_i + w\,Z_{i+1}, \qquad B = -Z_1 + y\,Z_j + z\,Z_{j+1},
+\qquad x,w,y,z > 0 .
+\end{equation}
+On each cell the canonical form is the corresponding ``Kermit'' term
+\citep{ArkaniHamed:2010gh},
+\begin{equation}
+K_{ij}(A,B) \;=\;
+\frac{\br{AB\,(1\,i\,i{+}1)\cap(1\,j\,j{+}1)}^{2}}
+{\br{AB1i}\br{AB\,i\,i{+}1}\br{AB\,1\,i{+}1}\,
+ \br{AB1j}\br{AB\,j\,j{+}1}\br{AB\,1\,j{+}1}},
+\end{equation}
+which we verify to be an exact dlog form on its chart
+($K_{ij}\,\br{AB\,i\,i{+}1}\br{AB\,j\,j{+}1}\,xwyz = 1$ identically)
+for all cells at $n = 5, 6$.
+
+At two loops, the geometry is the set of ordered pairs of lines
+$(AB, CD)$, each in the one-loop region, with the single mutual
+condition $\br{ABCD} > 0$ \citep{ArkaniHamed:2013kca,Kojima:2020gxs,
+Dian:2024tvi}. Composite cells are ordered pairs of one-loop cells;
+in each composite chart write $D = \br{ABCD}$ as a polynomial in the
+eight chart variables and let $D^{+}$ denote the sum of its
+positive-coefficient monomials.
+
+\paragraph{Two structural facts.} (i) $D$ is automatically multilinear:
+each chart variable enters exactly one column of the $4\times4$
+determinant. (ii) Each monomial coefficient is a single Pl\"ucker
+bracket $\pm\br{Z_aZ_bZ_cZ_d}$ (one basis vector chosen per column), so
+its sign is fixed by the ordering of the moment curve alone: the split
+$D = D^{+} - D^{-}$ is independent of the choice of positive $Z$'s. We
+verified both facts computationally for all $9$ composite cells at
+$n=5$ and all $36$ at $n=6$ (monomial counts ranging from 8 to 26), in
+addition to their one-line proofs. Consequently the ``maximally
+positive numerator'' is well defined at every $n$, and the only
+question is whether the assembly reproduces the integrand.
+
+\section{The assembly and its tests}
+
+\paragraph{Postulate.} With all quantities evaluated at common
+representatives of the loop lines,
+\begin{equation}
+\label{eq:P1}
+M_2^{(n)} \;=\; \sum_{\text{composite cells}}
+K_{c_1}(A,B)\; K_{c_2}(C,D)\; \frac{D^{+}_{c_1c_2}}{D_{c_1c_2}},
+\end{equation}
+where $D_{c_1c_2}$, $D^{+}_{c_1c_2}$ are evaluated by canonically
+extracting each pair's chart coordinates from the lines, and the sum is
+over \emph{ordered} pairs (so $M_2 = 2\,\mathcal{A}^{2\text{-loop}}$ in
+the convention where the physical amplitude carries $1/2$ for
+indistinguishable loops). At $n=4$ this is the known result
+\citep{Kojima:2020gxs}, which our implementation reproduces exactly.
+
+\paragraph{Gold standard.} We compare \eqref{eq:P1} against the local
+double-pentagon representation \citep{ArkaniHamed:2010gh},
+$\mathcal{A}^{2\text{-loop}}_{\rm MHV} = \tfrac12\sum_{i<j<k<l<i} I_{ijkl}$,
+with the chiral numerators
+$\br{AB\,(i{-}1\,i\,i{+}1)\cap(j{-}1\,j\,j{+}1)}\br{ijkl}
+\br{CD\,(k{-}1\,k\,k{+}1)\cap(l{-}1\,l\,l{+}1)}$, implemented verbatim
+from the reference. In exact rational arithmetic at independent generic
+kinematic points:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+$n$ & composite cells & double pentagons & ratio
+$M_2 / \sum I$ \\
+\midrule
+$5$ & $9$  & $20$ & $1$ (three points) \\
+$6$ & $36$ & $60$ & $1$ (two points) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The ratios are exact rational numbers, not floating-point agreements.
+
+\paragraph{Seams.} Individual composite-cell terms have poles on the
+spurious hyperplanes $\br{AB1i}$ ($i$ non-adjacent). Along exact
+one-parameter rational paths onto each seam at $n=5$, individual terms
+diverge as $1/\varepsilon$ while the assembled sum is constant to six
+digits across four orders of magnitude in $\varepsilon$, and the sum
+diverges as required on the physical mutual pole $\br{ABCD}\to 0$.
+
+\paragraph{Leading singularities ($n=5$).} On the two standard
+octa-cut families with rational Schubert solutions, all well-defined
+transverse residues of the assembly are exactly $0$, in the two ways
+the physics demands: $50/50$ zeros on kissing-pentagon cuts (at $n=5$
+all disjoint non-adjacent chords cross, so every transverse kissing cut
+is non-planar), and $20/20$ zeros on the plane-intersection branches of
+pentagon-box cuts (where the chiral numerators are designed to vanish).
+The remaining chord-branch pentagon-box configurations at $n=5$ are
+composite strata (cut solutions pass through polygon vertices; naive
+transverse residues are ray-dependent, which our procedure detects
+automatically); their iterated-residue census is left open. The residue
+machinery is calibrated in-code on the one-loop box quadruple cut
+(residues exactly $\mp 1$, invariant under representative changes).
+
+\section{Discussion}
+
+Three comments. First, the result is a verification with an unexpected
+edge: the quasi-linear machinery of \citep{Kojima:2020gxs}, developed
+because ``the tedious triangulation is inevitable'' in general, is
+never needed for two-loop MHV in the raw sign-flip charts at
+$n \le 6$ --- the naive term-by-term positive part assembles into the
+exact integrand. Given the structural facts (i)--(ii), which hold at
+every $n$, it is natural to conjecture that \eqref{eq:P1} holds for all
+$n$ at two loops MHV; we have no proof, and the composite
+leading-singularity sector remains unchecked beyond the families
+listed. Second, two predictions made during this work were refuted by
+its own tests and are recorded in the repository alongside the
+confirmations: an expectation of unit transverse residues on $n=5$
+kissing cuts (planarity forces zeros instead), and the expectation
+that quasi-linearity would first appear at $n=5$ or $6$ (it does not).
+Third, everything here is exact, small, and reproducible: the
+computations run in minutes on a laptop from the public repository, and
+we would welcome correction or extension by practitioners --- in
+particular a proof or counterexample for the all-$n$ conjecture, and
+the composite-residue census.
+
+\section*{Acknowledgments}
+Computations and drafting were carried out in collaboration with an AI
+research assistant (Claude, Anthropic) under the author's direction.
+The debt to
+refs.~\citep{ArkaniHamed:2013jha,ArkaniHamed:2013kca,ArkaniHamed:2010gh,
+Kojima:2020gxs,ArkaniHamed:2017tmz,Dian:2024tvi} is evident throughout.
+
+\bibliographystyle{unsrtnat}
+\bibliography{refs}
+
+\end{document}
