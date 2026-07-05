@@ -1,7 +1,10 @@
-# Lab 6 (SKETCH) — Load-testing the Hoffman bridge:
+# Lab 6 — Load-testing the Hoffman bridge:
 # conscious-agent Markov chains → decorated permutations → positroid cells
 
-**Status: design + first-pass skeleton.** The map under test is Definition 2
+**Status: COMPLETE at n=4.** Conventions verified against the full text
+(Definitions 1–3, pp. 17–21) and the implementation validated by
+reproducing the paper's own 9-state worked example exactly, in both its
+all-recurrent and transient variants. The map under test is Definition 2
 of Hoffman–Prakash–Prentner, *Fusions of Consciousness* (Entropy 2023;
 `corpus/6-perception-interface/`): a Markov chain's decorated permutation is
 built from its communicating-class structure (transient states become fixed
@@ -53,60 +56,60 @@ The bridge earns 🟡 only if H1–H3 all pass and H4's compression is shown
 to preserve at least the data the amplituhedron actually uses. Any
 failure leaves it 🔴 with a precise, citable reason.
 
-## Interpretive repairs made (to be verified against the full text)
+## Conventions (verified against the full text)
 
-The extracted Definition 2 ("first b > a ...") makes singleton recurrent
-classes collide with transient fixed points and can break bijectivity.
-The skeleton therefore adopts the natural repair consistent with positroid
-conventions: transient state → fixed point decorated as *loop*; singleton
-recurrent class → fixed point decorated as *coloop*; multi-state recurrent
-class → minimal-cyclic-window rule. The skeleton asserts bijectivity over
-the full enumeration and reports any violations. If the full text resolves
-the convention differently, only `def2_map()` changes.
+Definition 2, exactly as published: transient state → σ(a) = a;
+**absorbing state (singleton recurrent class) → σ(a) = a + n** (stated
+explicitly in the paper); multi-state recurrent class → minimal inclusive
+cyclic window rule. The k-statistic counts anti-exceedances
+(σ(a) > n). Validation: the paper's 9-state example
+(cycles (158)(2)(34)(6)(79) → [8,11,4,12,10,15,9,14,16], and its
+transient-2 variant) is reproduced exactly by `def2_affine()`.
 
-## What the skeleton already runs (n = 4)
+**Correction from the first-pass sketch:** the sketch (commit dc36e95)
+had the fixed-point decorations inverted (transient counted toward k,
+absorbing not). Under the verified conventions the unreachable sector is
+**k = 0, not k = 4**: every chain has at least one recurrent class and
+each recurrent class contributes ≥ 1 anti-exceedance, so k ≥ 1 always;
+meanwhile the identity chain (all states absorbing) reaches the top cell
+k = 4. All other findings survived the correction unchanged. We record
+this deliberately: reading the primary source flipped a finding.
 
-1. Census: enumerate all 65 decorated permutations of [4]; verify the
-   positroid split (1, 15, 33, 15, 1) across k = 0..4 from first
-   principles (Gr(0,4) = point; Gr≥0(1,4) cells = 15 nonempty coordinate
-   subsets; duality).
-2. Exhaustive image: all 50,625 support digraphs with no dead states →
-   class partitions → Def.-2 labels. Reports H1 coverage and H2 tables.
-3. H3 head-to-head on all 81 pairs of 2-state chains.
-4. H4 compression statistics.
+## Results (exhaustive, n = 4; implementation validated against the paper)
 
-## First-pass results (exhaustive, n=4; subject to the convention caveat)
+- **H1 partial fail.** Image = 51/65 labels; the k = 0 bottom cell is
+  provably unreachable; 5 of 15 k=1 labels and 8 of 33 k=2 labels are
+  never attained. Coverage by k: image {1: 10, 2: 25, 3: 15, 4: 1}
+  vs census {0: 1, 1: 15, 2: 33, 3: 15, 4: 1}.
+- **H2 exact, and exactly class-counting.** In all 50,625 cases,
+  k = (#recurrent states) − (#multi-state recurrent classes). The
+  statistic that selects the Grassmannian is pure class arithmetic — no
+  spectral, metric, or probabilistic content.
+- **H3 fail: 1/81.** Kernel tensor products do not correspond to
+  positroid direct sums (sole match: the doubly-degenerate absorbing
+  pair). Example: two copies of the "everything falls into state 0"
+  2-chain compose to upper set {0} where the direct sum requires {0, 2}.
+- **H4 fail, quantified.** The 4-cycle label absorbs 25,696 of 50,625
+  supports (>50% of all dynamics), each with a continuum of probability
+  assignments. Def. 2 reads no transition probability: spectra, mixing
+  times, and stationary measures are invisible to the label.
 
-- **H1 partial fail.** Image = 51/65 labels. The entire k=4 sector is
-  unreachable — provably: every finite chain has at least one recurrent
-  class, and the map forces k = n − R (see H2). The top Grassmannian is
-  invisible to conscious agents.
-- **H2 trivially true, therefore damning.** k + R = 4 in every one of
-  50,625 cases: the "Grassmannian statistic" is exactly (n − number of
-  recurrent classes) and nothing more. The label's k carries one integer
-  of dynamical content.
-- **H3 fail: 1/81.** Kernel tensor products do not correspond to positroid
-  direct sums; the single match is the trivial all-fixed-point pair.
-- **H4 fail, quantified.** One label (the 4-cycle) absorbs 25,696 of
-  50,625 supports — over half of all dynamics — each with a continuum of
-  probability assignments. Spectra, mixing times, stationary
-  distributions: all invisible.
+**Verdict: the bridge stays 🔴, now without convention caveats.** The
+published map is a coarse invariant of the communicating-class partition
+wearing a positroid costume: it borrows the labels and inherits none of
+the structure the amplituhedron uses (cell dimensions, boundary poset,
+canonical forms, BCFW composition). To upgrade, the program needs a map
+that reads the kernel itself — the paper's own Markov-polytope cell
+decomposition (its Figure 11) is richer than Def. 2 and would be the
+natural place to start — and a demonstrated intertwining of a dynamical
+operation with a positroid one.
 
-**Verdict (first pass): the bridge stays 🔴.** As extracted, the Def.-2
-map is a coarse invariant of the communicating-class partition wearing a
-positroid costume: it borrows the labels and inherits none of the
-structure the amplituhedron actually uses (cell dimensions, boundary
-poset, canonical forms, BCFW composition). To upgrade, the program would
-need a map that reads the kernel itself (not just its support pattern)
-and demonstrably intertwines a dynamical operation with a positroid one.
+## Possible extensions
 
-## Not yet done (full lab, if the sketch warrants it)
-
-- Verify Def.-2 conventions against the full paper text (the {1..2n}
-  embedding and fusion-simplex construction).
-- Dimension refinement of H1: implement cell dimension from the decorated
-  permutation (via Le-diagrams or alignment count) and check whether the
-  image sees anything beyond a few dimensions.
-- The "fusion" (rank-collapse) operation, distinct from combination, and
-  its image under the map.
-- Write-up as an addendum to the paper if results are crisp either way.
+- Cell-dimension refinement of H1 (Le-diagram / alignment count): which
+  dimensions does the image see within each k-sector?
+- The fusion operation proper (flow to idempotent kernels, rank
+  collapse) as a map on labels, distinct from combination.
+- The paper's Definition 3 (decorated permutations of arbitrary graphs)
+  faces the same H2–H4 objections; a one-page addendum could state this.
+- n = 5, 6 scaling of coverage fractions.
