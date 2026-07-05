@@ -20,3 +20,6 @@ paper/*.out
 # IBM Quantum credentials must never be committed
 .qiskit/
 *credentials*
+
+# Private correspondence drafts — never commit
+drafts/
