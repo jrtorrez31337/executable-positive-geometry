@@ -31,7 +31,7 @@ routing cost); the self-extraction ledger of `self_wedge.py` on real
 transmons (6 qubits: watch self-knowledge destroy its own protection on
 hardware); error-corrected reruns when heavier codes become practical.
 
-## Door 6 — The frame-rate experiment (Page–Wootters emergent time)
+## Door 6 — The frame-rate experiment (Page–Wootters emergent time) [OPENED 2026-07-05 — see labs/track-c-time/ and the tracker results]
 The one subsystem never built: a clock. Wheeler–DeWitt-style frozen
 global state (H|Psi> = 0) with entanglement between a small clock
 register and a system register; verify the Page–Wootters mechanism —

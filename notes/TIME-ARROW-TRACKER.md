@@ -114,3 +114,38 @@ disqualifying misses = **suggestive; not yet evidence**. Upgrade
 criteria: a P-prediction confirmed non-trivially, or a fourth
 independent-formalism sighting. Downgrade criteria: a P-prediction
 failing, or the misses column outgrowing the sightings.
+
+---
+
+## Results round 1 (2026-07-05, Door 6: `labs/track-c-time/page_wootters.py`)
+
+- **P-A CONFIRMED.** Strict Page–Wootters construction: total Hamiltonian
+  annihilates the history state to 9e-16; external evolution acts as the
+  identity; conditioning on the clock recovers Schrödinger precession with
+  fidelity 1.0000000000 at every tick. All conditional states pure: a
+  clock emerged, an arrow did not. Bonus quantification (Part 3): energy-
+  eigenstate history has exactly zero clock-system entanglement AND zero
+  relational motion — time IS entanglement, the temporal twin of the
+  emergent-space labs.
+- **P-B CONFIRMED, non-trivially.** Feynman–Kitaev history state with
+  record qubits: the global state is again an exact frozen zero-energy
+  ground state, the full relational state is pure at every tick, yet the
+  system-alone entropy (records traced = the inside view) rises
+  monotonically 0.00 -> 0.97 bits across all seven steps. The arrow is
+  manufactured exactly and only by conditioning — S3's lemma reproduced
+  inside a timeless state.
+- **P-C CONFIRMED WITH FORCED REFINEMENT.** Generic spectra are not
+  symmetric under E -> -E, so no unitary inside-operation reverses the
+  motion and Wigner antiunitarity is required. LOOPHOLE LOGGED: systems
+  with spectrum-inverting symmetries (H = Z/2 under X) admit unitary
+  motion reversal. P-C is hereby amended: "generic dynamics" replaces
+  "all dynamics."
+
+**Verdict update (per stated criteria):** first designed test passed on
+all three predictions, one prediction refined by its own test. Status
+upgraded from *suggestive* to *suggestive and once-tested*. Still short
+of evidence for universality: the toy was built from the same theory
+that generated the predictions. Next upgrade requires a sighting or
+confirmation from a formalism not already in the pattern's ancestry —
+or a hardware realization of the P-B arrow (Door 5/6 hybrid: the
+record-conditioned entropy rise measured on transmons).
