@@ -1,0 +1,8 @@
+# Tested versions (Python 3.13). Install: uv venv .venv && uv pip install -r requirements.txt
+qiskit==2.5.0
+qiskit-aer==0.17.2
+qiskit-ibm-runtime==0.47.0
+numpy==2.5.1
+scipy==1.18.0
+sympy==1.14.0
+matplotlib==3.11.0

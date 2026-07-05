@@ -1,0 +1,500 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage{microtype}
+
+\newcommand{\br}[1]{\langle #1 \rangle}
+\newcommand{\N}{\mathcal{N}}
+
+\title{Executable Positive Geometry:\\
+An End-to-End Verification Tour from Bell Tests to the Two-Loop
+Amplituhedron, with Holographic Wedge Localization Measured on
+Superconducting Hardware}
+
+\author{Jon Torrez\thanks{gmail@jontorrez.com. Prepared with Ariadne Vale,
+an AI research assistant (Claude, Anthropic); see Acknowledgments.}}
+
+\date{July 5, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We report a systematic, fully executable verification tour of the modern
+``physics from geometry'' program, spanning three of its pillars:
+(i)~quantum nonlocality and error correction, (ii)~emergent geometry from
+entanglement, and (iii)~positive geometries underlying scattering
+amplitudes. Every result is either derived symbolically in exact
+arithmetic, computed numerically without approximation, or measured on IBM
+superconducting hardware, with all code and job identifiers retained. On
+the amplitudes side we verify, in exact rational/symbolic arithmetic: the
+canonical form of the ABHY associahedron against the bi-adjoint $\phi^3$
+amplitude; the six-term NMHV identity of the tree amplituhedron
+$\mathcal{A}(6,1,4)$ together with its facet structure (Gale evenness,
+9~facets); the equality of the one-loop four-point box integrand with a
+pure dlog form; and the ``maximally positive numerator'' structure of the
+two-loop four-point integrand, whose double-box representation reproduces
+the positive part of the mutual condition $\br{ABCD}$ exactly. On the
+emergence side we locate the transverse-field Ising transition
+variationally, extract the Ising central charge from entanglement
+($c \approx 0.58$ vs.\ the exact $1/2$ at $N{=}12$), and construct a
+six-tile holographic (HaPPY) network in which reconstruction depth,
+quantized information transfer, and a discrete Ryu--Takayanagi law are
+verified exactly. On hardware we measure: a CHSH violation
+$S = 2.7579$ with a no-signaling check; entanglement-wedge witnesses for a
+single holographic tile at $96\%$ of ideal contrast after zero-noise
+extrapolation; and, for the 21-qubit six-tile network, bulk-operator
+localization---the same boundary avatar of a bulk operator reads
+$+0.55$ on the correct tile and $+0.004$ on the wrong one, a
+$\sim$130:1 contrast. We also document an instructive failure: zero-noise
+extrapolation diverges when circuit depth pushes raw signals to the noise
+floor, and the experiment's null witnesses correctly flagged the invalid
+values. This paper is a pedagogical verification study rather than a
+report of new theory; its contribution is a complete, reproducible chain
+from textbook nonlocality to research-frontier positive geometry, with
+each link executed rather than cited.
+\end{abstract}
+
+\section{Introduction}
+
+Two research programs, developed largely independently, suggest that the
+basic furniture of physics---spacetime locality on one side, scattering
+processes on the other---may be derived rather than fundamental. In the
+holographic program, bulk spacetime emerges from patterns of entanglement
+among boundary degrees of freedom \citep{Maldacena:1997re,Ryu:2006bv,
+VanRaamsdonk:2010pw,Swingle:2009bg}, with quantum error correction
+supplying the mechanism by which bulk information is redundantly and
+robustly encoded \citep{Almheiri:2014lwa,Pastawski:2015qua}. In the
+amplitudes program, scattering amplitudes of specific quantum field
+theories are recovered as canonical differential forms of \emph{positive
+geometries} \citep{ArkaniHamed:2017tmz}---the amplituhedron for planar
+$\N=4$ super Yang--Mills \citep{ArkaniHamed:2013jha,ArkaniHamed:2013kca},
+the ABHY associahedron for bi-adjoint $\phi^3$ theory
+\citep{ArkaniHamed:2017mur}, and cosmological polytopes for wavefunction
+coefficients \citep{ArkaniHamed:2017fdk}---so that locality and unitarity
+appear as consequences of positivity rather than axioms.
+
+Both programs are unusually amenable to direct verification: their core
+claims are statements about finite-dimensional linear algebra, polytopes,
+rational functions, and few-qubit quantum states. This paper documents a
+complete execution of that observation. Rather than survey the
+literature, we \emph{run} it: each foundational claim is reproduced as an
+exact computation (symbolic or rational arithmetic, deterministic
+statevector simulation) or as a measurement on IBM Quantum hardware, and
+the failures and corrections encountered along the way are reported
+alongside the successes.
+
+We emphasize scope honestly at the outset. Nothing here is new theory.
+The hardware experiments are small-scale demonstrations, not competitive
+benchmarks. The value of the exercise, we believe, is threefold: it
+provides a reproducible pedagogical chain from elementary quantum
+information to research-frontier positive geometry; it demonstrates that
+several claims usually taken on authority (triangulation independence,
+the maximally positive two-loop numerator, quantized wedge information)
+can be checked end-to-end on commodity resources; and it supplies a
+case study in verification discipline, including one instructive
+mitigation failure caught by designed-in null tests.
+
+\section{Nonlocality without signaling}
+\label{sec:chsh}
+
+We prepare Bell pairs $\left|\Phi^+\right\rangle$ and evaluate the CHSH
+statistic $S = E(a,b) - E(a,b') + E(a',b) + E(a',b')$ with measurement
+angles $(0, \pi/2)$ for one party and $(\pi/4, 3\pi/4)$ for the other.
+Local realism bounds $S \le 2$; quantum mechanics attains Tsirelson's
+bound $2\sqrt{2} \approx 2.8284$.
+
+On a noiseless simulator ($2\times 10^4$ shots per setting) we obtain
+$S = 2.8375 \pm 0.01$, consistent with Tsirelson's bound. On the
+156-qubit IBM Heron processor \texttt{ibm\_kingston} (job
+\texttt{d94sl25gc6cc73ffgo5g}), the four correlators measure
+$+0.6968$, $-0.6681$, $+0.6968$, $+0.6962$ against ideal $\pm 0.7071$,
+giving
+\begin{equation}
+S_{\text{hw}} = 2.7579 \pm 0.010,
+\end{equation}
+violating the classical bound by roughly $75$ standard deviations. In
+the same runs, each party's marginal outcome distribution is independent
+of the remote setting to within $2\times10^{-4}$: the correlations are
+real and yet carry zero signaling capacity. This pair of facts---strong
+correlation, no channel---recurs as the organizing constraint of
+everything that follows.
+
+\section{Quantum error correction: from repetition to topology}
+\label{sec:qec}
+
+\paragraph{Repetition code.} The three-qubit bit-flip code encodes
+$\alpha\left|0\right\rangle + \beta\left|1\right\rangle \mapsto
+\alpha\left|000\right\rangle + \beta\left|111\right\rangle$ and measures
+the parities $Z_0Z_1$, $Z_1Z_2$ via ancillas. Because both codewords have
+identical parities, syndrome extraction acquires the \emph{location} of a
+bit-flip while learning nothing about the encoded amplitudes; we verify
+that an encoded state with $P(1) = 0.750$ survives deterministic
+single-qubit attacks with corrected readout $P(1) = 0.746$--$0.753$
+across all error positions. Under symmetric bit-flip noise of rate $p$
+per qubit, the measured logical error rate tracks the theoretical
+$3p^2 - 2p^3$ across $p \in [0.01, 0.55]$, crossing the break-even line
+at $p = 1/2$ exactly as predicted: redundancy helps only below threshold.
+
+\paragraph{Surface code.} We implement the distance-3 rotated surface
+code (``surface-17'': 9 data, 8 ancilla qubits) with full two-round
+quantum syndrome extraction. Deterministic attack fingerprints are
+reproduced at 100\% of shots: single $X$, $Z$, and $Y$ errors light
+exactly their adjacent checks; the two-qubit string $X_2X_5$ lights only
+its \emph{endpoints}; and the logical string $X_6X_7X_8$ produces a
+silent syndrome while flipping the logical qubit---the defining
+topological statement that the only invisible error spans the lattice.
+Under code-capacity bit-flip noise with a brute-force minimum-weight
+decoder, the logical error rate scales as $p_L \approx (13$--$15)\,p^2$
+at small $p$, confirming that distance 3 removes all single faults.
+
+\paragraph{The fair fight.} Against symmetric $X$ and $Z$ noise
+(each at rate $p$, arbitrary stored state; $2\times10^5$ Monte Carlo
+trials per point, justified by Gottesman--Knill), the hierarchy inverts
+instructively: the repetition code is \emph{worse than no encoding}
+(e.g.\ $0.0302$ vs.\ $0.0200$ at $p = 0.01$) because phase errors pass
+through it unseen, while surface-17 wins decisively below its
+$\sim\!7\%$ pseudo-threshold ($0.0036$ at $p=0.01$) and loses above it
+($0.2256$ vs.\ bare $0.1907$ at $p = 0.10$). Full-spectrum protection at
+a constant-factor premium, plus a threshold, is the design pattern
+inherited by everything holographic below.
+
+\section{Emergent geometry from entanglement}
+\label{sec:emergence}
+
+We study the transverse-field Ising chain
+$H = -J\sum_i Z_i Z_{i+1} - h \sum_i X_i$.
+
+\paragraph{Variational location of the transition.} A 48-parameter
+hardware-efficient ansatz optimized by COBYLA reproduces exact
+ground-state energies for $N = 8$ across $h/J \in [0.2, 2.0]$, with the
+order parameter $\br{Z_iZ_{i+1}}$ collapsing from $0.994$ to $0.228$
+through the critical region. The variational error peaks at criticality
+($0.26$ at $h = J$ vs.\ $0.03$ deep in the ordered phase)---itself a
+diagnostic: critical states are the most entangled and hence hardest for
+shallow circuits.
+
+\paragraph{Critical entanglement.} For $N = 12$ (exact
+diagonalization), the half-chain entropy exhibits the well-known
+subtlety that the ordered phase contributes a constant $\ln 2$ of
+cat-state (GHZ) entropy. An infinitesimal symmetry-breaking field
+($h_z = 10^{-3}$) collapses the cat and exposes the genuine critical
+peak ($S = 0.567$ near $h \approx 0.8$ at this size, vanishing in both
+phases). At $h = J$, fitting the Calabrese--Cardy law
+$S(\ell) = \tfrac{c}{6}\ln\!\big[\tfrac{2N}{\pi}\sin\tfrac{\pi\ell}{N}\big]
++ \text{const}$ yields $c = 0.58$, within finite-size expectations of
+the exact Ising value $c = 1/2$.
+
+\paragraph{Entanglement as a ruler.} Defining
+$d(i,j) = -\ln I(i,j)$ from two-site mutual information, the disordered
+phase ($h = 2J$) yields distances growing linearly with separation
+(1.6 per site: an ordinary ruler with a correlation length), while the
+critical chain yields logarithmic growth (scale-free connectivity). One
+coupling constant selects between two emergent geometries---the
+one-dimensional shadow of the tensor-network/holography correspondence
+\citep{Swingle:2009bg,Czech:2015qta}.
+
+\section{Positive geometry and scattering amplitudes}
+\label{sec:positive}
+
+All results in this section are exact (symbolic or rational arithmetic).
+
+\paragraph{The positive Grassmannian.} For $\mathrm{Gr}(2,4)$ we verify
+the Pl\"ucker relation symbolically for a generic matrix, measure that
+only $2.14\%$ of Gaussian-random 2-planes are totally positive, and
+confirm that the moment-curve parametrization renders every minor
+$t_j - t_i > 0$ automatically: positivity is equivalent to cyclic
+ordering. In a gauge fixing columns 1 and 3, total positivity reduces to
+a positive orthant with $p_{24} = ad + bc$ implied, and the cyclic
+product $p_{12}p_{23}p_{34}p_{14} = abcd$: the Parke--Taylor denominator
+\emph{is} the canonical form of $\mathrm{Gr}_{+}(2,4)$.
+
+\paragraph{Canonical forms and triangulation independence.} We verify
+the recursive definition of canonical forms
+\citep{ArkaniHamed:2017tmz} bottom-up: interval residues $\pm 1$;
+triangle edge-residues reproducing interval forms; and the unit square
+triangulated across both diagonals, with the spurious diagonal pole
+cancelling exactly in each sum and both triangulations agreeing.
+
+\paragraph{The ABHY associahedron.} Imposing only masslessness sum
+rules and the ABHY constants \citep{ArkaniHamed:2017mur}, a symbolic
+solve produces the $n = 5$ pentagon facets
+$\{x,\, y,\, c_{13} - x + y,\, c_{13} + c_{14} - x,\,
+c_{14} + c_{24} - y\}$. The five-term vertex sum (one planar Feynman
+diagram per vertex) combines over a common denominator equal exactly to
+the product of the five facets; residues on facets reproduce the
+boundary interval forms; vertex counts follow the Catalan numbers.
+Factorization---normally a theorem requiring locality and unitarity---is
+here the tautology that a boundary of a face is a face.
+
+\paragraph{The tree amplituhedron $\mathcal{A}(6,1,4)$.} With momentum
+twistors on a moment curve and $Y$ interior, the two Britto--Cachazo--Feng--Witten (BCFW)
+triangulations of the NMHV hexagon polytope,
+$R_1 = [12345]+[12356]+[13456]$ and $R_2 = [23456]+[12456]+[12346]$,
+agree \emph{exactly} in rational arithmetic ($R_1 - R_2 = 0$ at three
+random interior points)---the six-term NMHV identity as a statement
+about triangulations. Approaching the spurious hyperplane
+$\br{Y1235} \to 0$, individual terms diverge as $\pm 86.8$ while the sum
+holds at $1.5\times10^{-4}$. An exact same-side-of-hyperplane test
+classifies all $\binom{6}{4} = 15$ vertex 4-subsets into 9 facets---
+precisely the Gale-evenness set $\{i, i{+}1, j, j{+}1\}$, i.e.\ the
+physical propagator poles---and 6 interior seams.
+
+\paragraph{One loop.} In the single positive cell of the $n=4$ MHV loop
+amplituhedron \citep{ArkaniHamed:2013kca,Kojima:2020gxs}, parametrized
+by $A = Z_1 + xZ_2 + wZ_3$, $B = -Z_1 + yZ_3 + zZ_4$, all physical
+brackets are monomials ($\br{AB12} = wz$, $\br{AB23} = z$,
+$\br{AB34} = x$, $\br{AB14} = xy$), the sign-flip sequence is
+$\{+,-,+\}$, and the box integrand divided by
+$d\log x \wedge d\log y \wedge d\log z \wedge d\log w$ equals $1$
+identically.
+
+\paragraph{Two loops.} For two loop lines the mutual condition
+evaluates to
+\begin{equation}
+\br{ABCD} = (z_1 - z_2)(w_1 x_2 - w_2 x_1) + (x_1 - x_2)(y_1 z_2 - y_2 z_1),
+\end{equation}
+and Monte Carlo sampling shows only $49.8\%$ of independently valid loop
+pairs satisfy it: the geometry entangles the loops. Converting the
+physical double-box representation (s- and t-channel plus loop
+relabelings) to this chart and multiplying by $\br{ABCD}$ yields the
+numerator
+\begin{equation}
+N = w_1 x_2 z_1 + w_2 x_1 z_2 + x_1 y_1 z_2 + x_2 y_2 z_1,
+\end{equation}
+which is \emph{exactly} the sum of the positive monomials of
+$\br{ABCD}$---the ``maximally positive numerator'' phenomenon
+\citep{Kojima:2020gxs}, here recovered from raw field theory. Two errors
+were caught by this cross-check during the work: an incorrect channel
+assignment in the double-box term list (diagnosed by a numerator with
+missing monomials) and the ordered-pair symmetrization convention
+(diagnosed by an overall factor of 2). We record these deliberately: the
+positivity structure functioned as a debugger for the physics input.
+
+\section{Holographic codes: exact results and hardware measurements}
+\label{sec:happy}
+
+\subsection{A single tile, exactly}
+
+The six-leg perfect tensor of the HaPPY code
+\citep{Pastawski:2015qua}---the encoding isometry of the
+$[[5,1,3]]$ code, with the bulk leg entangled to a reference
+$R$---satisfies, in exact statevector arithmetic: all 20 three-leg
+bipartitions maximally entangled ($S = 3\ln 2$); mutual information
+$I(R{:}A) = 0$ for every boundary region with $|A| \le 2$ and
+$I(R{:}A) = 2\ln 2$ for every $|A| \ge 3$ (the sharp entanglement-wedge
+transition); and weight-3 boundary representatives of the logical
+operators obtained by stabilizer multiplication,
+$\bar X = -(IYYIX)$ on qubits $\{2,3,5\}$ and $-(XIYYI)$ on
+$\{1,3,4\}$, verified to act identically on the bulk
+(operator pushing; cf.\ \citep{Almheiri:2014lwa}).
+
+\subsection{A single tile on hardware}
+
+We prepared the tile state on \texttt{ibm\_kingston} via a synthesized
+Clifford circuit (42 two-qubit gates after routing) and measured Pauli
+witnesses (Table~\ref{tab:tile}): stabilizers, weight-6 logical
+correlators, three wedge avatars, and four null correlators between $R$
+and two-qubit regions. Raw (readout-mitigated) values average $+0.535$
+for wedge witnesses. Adding zero-noise extrapolation (noise factors
+$1,3,5$; exponential fit), Pauli twirling, and dynamical decoupling
+raises the wedge mean to $+0.9558$ while the null mean \emph{decreases}
+to $0.0046$; two witnesses slightly exceed $+1$, the expected
+variance signature of an unbiased extrapolation. The asymmetry is the
+point: mitigation restores contrast that noise removed but cannot
+create correlations forbidden by the code---minority regions stay dark.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+Witness & Ideal & Raw & Mitigated \\
+\midrule
+Stabilizer $S_1$ & $+1$ & $+0.9300$ & $+0.9949$ \\
+Stabilizer $S_2$ & $+1$ & $+0.4235$ & $+0.9996$ \\
+Stabilizer $S_3$ & $+1$ & $+0.4466$ & $+0.9003$ \\
+Stabilizer $S_4$ & $+1$ & $+0.4221$ & $+0.8897$ \\
+$X_R \bar X$ (weight 6) & $+1$ & $+0.4450$ & $+1.0504$ \\
+$Z_R \bar Z$ (weight 6) & $+1$ & $+0.4036$ & $+0.9668$ \\
+Bulk-$X$, wedge $\{2,3,5\}$ & $+1$ & $+0.4351$ & $+1.0343$ \\
+Bulk-$X$, wedge $\{1,3,4\}$ & $+1$ & $+0.7707$ & $+0.9411$ \\
+Bulk-$Z$, wedge $\{1,4,5\}$ & $+1$ & $+0.3993$ & $+0.8921$ \\
+Null $X_R X_1 X_2$ & $0$ & $+0.0015$ & $-0.0021$ \\
+Null $Z_R Z_4 Z_5$ & $0$ & $-0.0146$ & $-0.0146$ \\
+Null $X_R Z_1 Y_2$ & $0$ & $+0.0227$ & $+0.0000$ \\
+Null $Z_R X_2 X_3$ & $0$ & $-0.0215$ & $+0.0017$ \\
+\midrule
+Mean wedge & $+1$ & $+0.5350$ & $+0.9558$ \\
+Mean $|$null$|$ & $0$ & $0.0151$ & $0.0046$ \\
+\bottomrule
+\end{tabular}
+\caption{Single-tile witnesses on \texttt{ibm\_kingston}
+($10^4$ shots; raw job \texttt{d94tqhlgc6cc73ffi0eg}, mitigated job
+\texttt{d94ttgtgc6cc73ffi3p0}).}
+\label{tab:tile}
+\end{table}
+
+\subsection{The six-tile network, exactly}
+
+Gluing five petal tiles to a central tile (6 bulk qubits, 5 bonds, 20
+boundary qubits) yields, in exact contraction: reconstruction depth
+(a petal bulk qubit is recovered by a 3-qubit boundary arc; the central
+qubit requires 10 of 20); \emph{quantized} information transfer, with
+$I(R{:}\text{arc})$ taking only the values $\{0, 1, 2\} \times \ln 2$
+(the intermediate shelf corresponding to a single logical Pauli inside
+the wedge); and a discrete Ryu--Takayanagi law, the arc entropies
+$S/\ln 2 = 1,2,2,1,2,3,3,2,3,3$ for lengths $1$--$10$ tracking the
+minimal bond cut, including the characteristic dips when the cut snaps
+from boundary legs to an internal bond.
+
+\subsection{The six-tile network on hardware}
+
+The 21-qubit network state is a stabilizer state; we derived its 21
+generators numerically by pushing input Paulis through the petal
+isometries (choosing minimum-weight representatives from the Pauli
+decomposition of $W\sigma W^\dagger$) and synthesized a preparation
+circuit (148 two-qubit gates; 553 after routing) whose statevector
+matches the exact tensor-network state to overlap $1.0000000000$.
+
+A first hardware attempt with zero-noise extrapolation (job
+\texttt{d94u25nu62ks7396fhlg}) \emph{diverged}: null witnesses returned
+values of order $\pm 4\times10^{9}$, impossible for Pauli expectations.
+The cause is generic and worth recording: at $\sim$550 two-qubit gates,
+several raw signals sit at the noise floor already at unit noise, and
+exponential extrapolation through noise-floor points amplifies fit
+noise without bound. The null tests functioned exactly as designed,
+flagging the entire dataset---including superficially plausible
+entries---as artifacts.
+
+The clean rerun (job \texttt{d94u424ql68s73c9vtig}; twirling, readout
+mitigation, dynamical decoupling, no extrapolation) gives physical
+values throughout (Table~\ref{tab:flower}). The headline is the
+localization contrast:
+\begin{equation}
+\underbrace{+0.5519}_{\text{bulk-}X\text{ avatar on petal 1}}
+\quad\text{vs.}\quad
+\underbrace{+0.0042}_{\text{identical operator on petal 2}}
+\end{equation}
+a $\sim$130:1 ratio at $\sim$55$\sigma$: the same boundary operator
+reads the bulk qubit through the correct tile and reads exactly nothing
+through the wrong one. The remaining wedge witnesses survive at reduced
+contrast ($+0.099$, $+0.065$; both above the null floor), and the
+per-petal encoding checks ($0.07$--$0.24$) quantify how badly 553 noisy
+gates bruise the state. A bulk point of a six-tile emergent geometry
+was located---and localized---on physical hardware, at the edge of what
+unmitigated depth allows.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+Witness & Ideal & Measured \\
+\midrule
+Image check, petal 1 & $+1$ & $+0.0884$ \\
+Image check, petal 2 & $+1$ & $+0.0692$ \\
+Image check, petal 3 & $+1$ & $+0.1218$ \\
+Image check, petal 4 & $+1$ & $+0.1979$ \\
+Image check, petal 5 & $+1$ & $+0.2424$ \\
+Wedge: bulk-$X$ avatar A, petal 1 & $+1$ & $+0.5519$ \\
+Wedge: bulk-$X$ avatar B, petal 1 & $+1$ & $+0.0993$ \\
+Wedge: bulk-$Z$ avatar, petal 1 & $+1$ & $+0.0648$ \\
+Null: same bulk-$X$ avatar, petal 2 & $0$ & $+0.0042$ \\
+Null: $X_R XX$, petal-1 pair & $0$ & $+0.0088$ \\
+Null: $Z_R ZZ$, petal-3 pair & $0$ & $-0.0109$ \\
+\bottomrule
+\end{tabular}
+\caption{Six-tile flower network on \texttt{ibm\_kingston}
+($10^4$ shots, job \texttt{d94u424ql68s73c9vtig}; twirling + readout
+mitigation + dynamical decoupling, no extrapolation).}
+\label{tab:flower}
+\end{table}
+
+\section{Discussion}
+\label{sec:discussion}
+
+Three observations organize what the exercise taught us.
+
+\paragraph{One trick, three scales.} The repetition code protects a bit
+by majority; the surface code protects a qubit by homology; the
+holographic code protects a bulk point by wedge structure. In each case
+information is stored in a global property that no sub-threshold local
+process reaches, and in each case the protection pattern \emph{is} a
+geometry (a line, a torus, a hyperbolic disk). Our hardware results
+trace the same arc operationally: near-perfect contrast at 2 qubits,
+$96\%$ mitigated contrast at 6, a surviving-but-bruised $55\sigma$
+signal at 21. The scaling wall is exponential in circuit depth, and the
+known way through it is the error correction of
+Section~\ref{sec:qec}---which is also the mechanism under study. The
+experiments are, in a precise sense, error-correction-limited studies of
+error correction.
+
+\paragraph{Positivity as output specification.} At tree level,
+positivity fixed pole locations; at one loop, it reduced the box to a
+pure dlog form; at two loops it fixed the \emph{numerator} exactly.
+Twice during this work, discrepancies between a hand-supplied physics
+formula and the positive-geometry prediction turned out to be errors in
+the former. Whatever positive geometry ultimately is, it is at minimum
+an unusually effective consistency engine for perturbative field
+theory.
+
+\paragraph{No levers.} Every prospective ``exploit'' the underlying
+emergent-spacetime narrative might suggest was tested and closed by the
+physics itself: entanglement carries no signal
+(Section~\ref{sec:chsh}); minority wedges carry no information
+(Sections~\ref{sec:happy}); adjacency in kinematic space is descriptive,
+with positivity \emph{enforcing} rather than circumventing locality and
+causality (Section~\ref{sec:positive}). The constraints are not
+guardrails around the structure; they are the structure.
+
+\paragraph{Limitations.} All models studied are toys: the amplituhedron
+addresses planar $\N=4$ super Yang--Mills; the associahedron, bi-adjoint
+$\phi^3$; the HaPPY network, a static AdS-like geometry. Whether our
+universe employs any of these mechanisms is open; de Sitter holography
+and the emergence of \emph{time} have no comparable toy models at all.
+The hardware demonstrations use few qubits, favorable witnesses, and a
+free-tier device; they demonstrate structure, not capability. The
+recent two-loop geometry literature we verified against
+\citep{Dian:2024tvi} is young and single-group.
+
+\section{Methods}
+
+All computations used Python 3.13 (NumPy/SciPy/SymPy) and Qiskit 2.5
+with Aer for exact simulation; hardware runs used IBM Quantum
+(\texttt{ibm\_kingston}, Heron, 156 qubits) via the EstimatorV2/SamplerV2
+primitives with $10^4$ shots per observable, and (where stated)
+resilience options: twirled readout mitigation, Pauli gate twirling,
+XY4 dynamical decoupling, and zero-noise extrapolation with gate
+folding. Exact claims use symbolic or rational arithmetic throughout;
+no floating-point equality is asserted anywhere in
+Section~\ref{sec:positive}. Stabilizer-state preparation circuits were
+synthesized from explicit generator lists and verified against exact
+statevectors before submission. All literature-derived formulas
+(one-loop cell parametrization, two-loop mutual condition and numerator
+structure, amplituhedron region definitions) were checked against their
+sources \citep{Kojima:2020gxs,Dian:2024tvi,ArkaniHamed:2013kca} rather
+than reproduced from memory. Complete source code (thirteen laboratory
+scripts), an annotated 18-paper reference corpus with evidence tiers,
+and all IBM job identifiers are retained by the author.
+
+\section*{Acknowledgments}
+
+This work was carried out in collaboration with \emph{Ariadne Vale}, an
+AI research assistant (Claude, Anthropic), which wrote and executed the
+laboratory code, performed the literature verification, and co-drafted
+this manuscript under the author's direction. All hardware runs used
+the IBM Quantum open access plan. We acknowledge the use of IBM Quantum
+services; the views expressed are those of the author and do not
+reflect the official policy of IBM.
+
+\bibliographystyle{unsrtnat}
+\bibliography{refs}
+
+\end{document}

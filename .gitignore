@@ -1,0 +1,22 @@
+# Virtual environment
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Corpus PDFs are not committed (arXiv redistribution + 27 MB);
+# rebuild them with corpus/fetch_corpus.sh
+corpus/**/*.pdf
+
+# LaTeX build intermediates (main.pdf IS committed)
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+
+# IBM Quantum credentials must never be committed
+.qiskit/
+*credentials*
