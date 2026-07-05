@@ -63,6 +63,19 @@ structure — the same mathematics that appears in holography and TQFT.*
 |---|---|---|---|
 | Fields, Glazebrook & Marcianò, **Universal Quantum Computation in TQNNs and Amplituhedron Representation** (2025) | [2509.19772](https://arxiv.org/abs/2509.19772) | 🔴 | The claimed formal correspondence between topological quantum neural networks and amplituhedron-like structures; interprets scattering as computation. Real paper, interesting mathematics, but <1 year old, single research group, not independently confirmed. **Do not load-bear on this.** |
 
+## 6-perception-interface/ — Adjacent: the Hoffman program
+
+Included not as evidence for the framework but as the subject of a test
+(Lab 6): Donald Hoffman's claim that conscious-agent Markov dynamics
+connect to the amplituhedron via decorated permutations. See
+`6-perception-interface/DOSSIER-hoffman.md` for the full assessment.
+
+| Paper | Venue | Tier | What it claims |
+|---|---|---|---|
+| Hoffman, Singh & Prakash, **The Interface Theory of Perception** (2015) | Psychon. Bull. Rev. | 🟡 | Perception evolves for fitness, not truth; spacetime as species-specific interface. Real math, contested interpretation, legitimate cognitive science. |
+| Hoffman & Prakash, **Objects of Consciousness** (2014) | Front. Psychol. | 🔴 | Conscious agents (Markov kernels) as fundamental ontology. Well-defined formalism, no empirical discriminator. |
+| Hoffman, Prakash & Prentner, **Fusions of Consciousness** (2023) | Entropy | 🔴 | Agent dynamics → decorated permutations → amplituhedron. Explicitly conjectural in the text; the Def.-2 map uses only communicating-class structure. Lab 6 tests it. |
+
 ---
 
 ## What the corpus does NOT validate

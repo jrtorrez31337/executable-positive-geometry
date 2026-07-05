@@ -32,4 +32,9 @@ fetch 1208.0928        "3-qec-topological/2012-fowler-etal-surface-codes-practic
 fetch 1304.3061        "4-quantum-computing/2013-peruzzo-etal-vqe-variational-eigensolver.pdf"
 fetch 2509.19772       "5-tqnn-bridge/2025-fields-glazebrook-marciano-tqnn-amplituhedron.pdf"
 
-echo "corpus complete: $(find . -name '*.pdf' | wc -l)/18 papers"
+# Pillar 6 (Hoffman program — open-access, non-arXiv sources)
+fetch_url() { if [ -f "$2" ]; then echo "skip (exists): $2"; return; fi; curl -sL -A "Mozilla/5.0" "$1" -o "$2"; head -c 4 "$2" | grep -q "%PDF" || { echo "FAILED: $2"; exit 1; }; echo "ok: $2"; sleep 2; }
+fetch_url "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.00577/pdf" "6-perception-interface/2014-hoffman-prakash-objects-of-consciousness.pdf"
+fetch_url "https://link.springer.com/content/pdf/10.3758/s13423-015-0890-8.pdf" "6-perception-interface/2015-hoffman-singh-prakash-interface-theory-of-perception.pdf"
+fetch_url "https://europepmc.org/articles/PMC9858210?pdf=render" "6-perception-interface/2023-hoffman-prakash-prentner-fusions-of-consciousness.pdf"
+echo "corpus complete: $(find . -name '*.pdf' | wc -l)/21 papers"
