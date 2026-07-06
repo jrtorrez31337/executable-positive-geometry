@@ -75,6 +75,9 @@ connect to the amplituhedron via decorated permutations. See
 | Hoffman, Singh & Prakash, **The Interface Theory of Perception** (2015) | Psychon. Bull. Rev. | 🟡 | Perception evolves for fitness, not truth; spacetime as species-specific interface. Real math, contested interpretation, legitimate cognitive science. |
 | Hoffman & Prakash, **Objects of Consciousness** (2014) | Front. Psychol. | 🔴 | Conscious agents (Markov kernels) as fundamental ontology. Well-defined formalism, no empirical discriminator. |
 | Hoffman, Prakash & Prentner, **Fusions of Consciousness** (2023) | Entropy | 🔴 | Agent dynamics → decorated permutations → amplituhedron. Explicitly conjectural in the text; the Def.-2 map uses only communicating-class structure. Lab 6 tests it. |
+| Prakash et al., **Fitness Beats Truth in the Evolution of Perception** (2021) | Acta Biotheoretica | 🟡 | The FBT theorem underlying interface theory (previously index-only; now filed). |
+| Hoffman, Prakash & Chattopadhyay, **Traces of Consciousness** (2024/2025) | Preprints.org / Trace Institute | 🔴 | The post-Fusions refinement: trace order / trace chains on Markov dynamics, claimed route to empirical tests via scattering data. **Successor map to Def. 2 — the subject of Lab 6b.** |
+| **Trace Institute White Paper** (2025) | traceinstitute.org | 🔴 | The program's institutional prospectus (Hoffman's Trace Institute). Context document. |
 
 ## 7-magic/ — Track D: magic (non-stabilizerness) and holography
 

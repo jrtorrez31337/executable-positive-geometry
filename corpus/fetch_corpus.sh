@@ -44,4 +44,10 @@ fetch 2306.14996 "7-magic/2024-cao-etal-area-operators-require-nonlocal-magic.pd
 fetch 2403.07056 "7-magic/2024-gravitational-backreaction-is-magical.pdf"
 fetch 2511.15576 "7-magic/2025-experimental-nonlocal-magic-superconducting.pdf"
 
-echo "corpus complete: $(find . -name '*.pdf' | wc -l)/25 papers"
+
+# Pillar 6 additions (Trace Institute-hosted)
+fetch_url "https://traceinstitute.org/papers/foundational/2025-hoffman-et-al-traces-of-consciousness.pdf" "6-perception-interface/2025-hoffman-prakash-chattopadhyay-traces-of-consciousness.pdf"
+fetch_url "https://traceinstitute.org/papers/foundational/2020-prakash-et-al-fitness-beats-truth.pdf" "6-perception-interface/2021-prakash-etal-fitness-beats-truth.pdf"
+fetch_url "https://traceinstitute.org/papers/TRACE_INSTITUTE_WHITE_PAPER.pdf" "6-perception-interface/2025-trace-institute-white-paper.pdf"
+
+echo "corpus complete: $(find . -name '*.pdf' | wc -l)/28 papers"

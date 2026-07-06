@@ -97,3 +97,24 @@ That expectation is falsifiable by the lab itself.
 Index-only (paywalled/book, not downloaded): *The Case Against Reality*
 (Norton, 2019); Prakash et al., "Fitness Beats Truth in the Evolution of
 Perception," Acta Biotheoretica 69:319 (2021).
+
+---
+
+## Update 2026-07-06: the program moved — Traces of Consciousness
+
+After Lab 6 audited the Fusions Definition 2 (2023), we discovered the
+program's successor paper: **Traces of Consciousness** (Hoffman, Prakash
+& Chattopadhyay, Preprints.org Oct 2024; revised 2025), introducing a
+"trace order" / "trace chain" construction on Markov dynamics — the
+refined observation machinery Fusions promised. Notable shifts: the
+third author is now an accelerator physicist (Chattopadhyay); the paper
+claims a route to EMPIRICAL TESTS via scattering data; and the program
+has institutionalized as the Trace Institute (traceinstitute.org, white
+paper filed here). Lab 6's verdict stands for the 2023 map; the 2024/25
+map requires its own audit (Lab 6b) before any claim about the current
+program. Standing structural headwind, sharpened by our Track D work:
+"non-trivial area operators require non-local magic" (JHEP 11(2024)105)
+— classical Markov substrates sit even further from the required
+non-stabilizerness than stabilizer QM does; any map from trace chains to
+physics-bearing geometry must manufacture magic from classical
+stochastic dynamics, an unaddressed resource-theoretic gap.
