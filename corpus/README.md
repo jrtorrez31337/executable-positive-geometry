@@ -76,6 +76,18 @@ connect to the amplituhedron via decorated permutations. See
 | Hoffman & Prakash, **Objects of Consciousness** (2014) | Front. Psychol. | 🔴 | Conscious agents (Markov kernels) as fundamental ontology. Well-defined formalism, no empirical discriminator. |
 | Hoffman, Prakash & Prentner, **Fusions of Consciousness** (2023) | Entropy | 🔴 | Agent dynamics → decorated permutations → amplituhedron. Explicitly conjectural in the text; the Def.-2 map uses only communicating-class structure. Lab 6 tests it. |
 
+## 7-magic/ — Track D: magic (non-stabilizerness) and holography
+
+The evidence base for the wedge-resolved magic program — including the
+paper whose definitions forced our Phase-1 terminology correction.
+
+| Paper | arXiv | Tier | What it establishes |
+|---|---|---|---|
+| Leone, Oliviero & Hamma, **Stabilizer Rényi Entropy** (2022) | [2106.12587](https://arxiv.org/abs/2106.12587) | 🟢 | The workhorse computable magic measure (our M₂ engine implements it). Pure-state monotone; mixed-state extension is diagnostic only — the false-positive our twin protocol controls. |
+| Cao et al., **Non-trivial Area Operators Require Non-local Magic** (2024) | [2306.14996](https://arxiv.org/abs/2306.14996) | 🟡 | Theory anchor: stabilizer holographic codes cannot host state-dependent area operators / backreaction — magic is structurally required. Motivates magic-injected HaPPY as the minimal backreaction toy. |
+| **Gravitational back-reaction is magical** (2024) | [2403.07056](https://arxiv.org/abs/2403.07056) | 🟡 | Companion theory: maps SRE to curvature/area-fluctuation language in holography. |
+| **Experimental demonstration of non-local magic in a superconducting quantum processor** (2025) | [2511.15576](https://arxiv.org/abs/2511.15576) | 🟢 | Defines non-local magic = min SRE over local unitaries; closed form −log₂(4P²−6P+3) from reduction purity; 2-qubit hardware measurement. **The definitional source for our Phase-1 correction**: no codes, no wedges, no twin protocol — the boundary of their claims marks our corner. |
+
 ---
 
 ## What the corpus does NOT validate
