@@ -37,10 +37,11 @@ fetch_url() { if [ -f "$2" ]; then echo "skip (exists): $2"; return; fi; curl -s
 fetch_url "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2014.00577/pdf" "6-perception-interface/2014-hoffman-prakash-objects-of-consciousness.pdf"
 fetch_url "https://link.springer.com/content/pdf/10.3758/s13423-015-0890-8.pdf" "6-perception-interface/2015-hoffman-singh-prakash-interface-theory-of-perception.pdf"
 fetch_url "https://europepmc.org/articles/PMC9858210?pdf=render" "6-perception-interface/2023-hoffman-prakash-prentner-fusions-of-consciousness.pdf"
-echo "corpus complete: $(find . -name '*.pdf' | wc -l)/25 papers"
 
 # Pillar 7 (Track D: magic and holography)
 fetch 2106.12587 "7-magic/2022-leone-oliviero-hamma-stabilizer-renyi-entropy.pdf"
 fetch 2306.14996 "7-magic/2024-cao-etal-area-operators-require-nonlocal-magic.pdf"
 fetch 2403.07056 "7-magic/2024-gravitational-backreaction-is-magical.pdf"
 fetch 2511.15576 "7-magic/2025-experimental-nonlocal-magic-superconducting.pdf"
+
+echo "corpus complete: $(find . -name '*.pdf' | wc -l)/25 papers"
