@@ -144,3 +144,22 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# ─── LITERATURE CORRECTION (post-run, 2026-07-05) ────────────────────────────
+# The established definition of "non-local magic" (arXiv:2511.15576; JHEP 11
+# (2024) 105) is the SRE surviving optimization over LOCAL unitaries. Under
+# that definition our T-Bell has ZERO non-local magic: the phase is locally
+# erasable (T-dagger supported in wedge 4 converts it to a stabilizer state;
+# their closed form -log2(4P^2-6P+3) with P=1/2 gives 0). What this lab
+# measured is therefore NOT non-local magic in the literature's sense but
+# WEDGE-VISIBILITY: the erasable phase-magic is invisible to every single
+# wedge's reduced state and appears only in the union. Distinct property,
+# correctly measured, previously mislabeled. Moreover the IRREDUCIBLE
+# non-local magic of the sweep states (nonzero at partial entanglement,
+# e.g. 0.2996 at t=pi/6 by their closed form) is exactly the twin's own
+# amplitude-magic that our control subtracts: the twin protocol isolates
+# the erasable component and discards the irreducible one. Follow-up
+# (Phase 1b, unclaimed corner): wedge-resolve BOTH components separately
+# in holographic codes — visibility geography of erasable vs irreducible
+# magic. This correction was caught by a pre-publication literature check;
+# the terminology in printouts above should be read accordingly.
