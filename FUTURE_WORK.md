@@ -11,12 +11,14 @@ Build the iterated-residue machinery (layered single-variable residues in
 adapted coordinates) and complete the census; the ±1 unit leading
 singularities of N=4 SYM at five points live entirely in these strata.
 
-## Door 2 — n=6 loop amplituhedron
-One loop: six sign-flip cells (machinery of `loop_n5.py` generalizes
-directly). Two loops: 36 composite cells; test whether the maximally
-positive numerator pattern (verified at n=4,5) survives, and whether the
-Kojima–Rao quasi-linear complication finally appears. Gold-standard
-comparison: ABCT double pentagons at n=6 (formula already implemented).
+## Door 2 — n=6 loop amplituhedron  [DONE 2026-07-05, commit 2ccf101]
+Two-loop n=6: 36 composite cells; the maximally-positive-numerator
+assembly matches the sum of 60 ABCT double pentagons at ratio exactly 1
+(finite rational points) — the quasi-linear complication does NOT appear.
+See `labs/track-b/05-loop-amplituhedron/loop2_n6.py`. REMAINING (open):
+a symbolic identity proof over all kinematics (current evidence is
+finite-point exact, not a proof); more independent positive-Z ensembles
+beyond moment-curve samples; and the composite iterated-residue census.
 
 ## Door 4 — Write up the two-loop five-point result
 The postulate P1 (9 product cells glued by maximally positive mutual

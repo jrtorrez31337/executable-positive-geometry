@@ -6,9 +6,23 @@ rather than the simulator's 2.83: decoherence, gate errors, and readout
 errors all chew on the correlations. The gap between the two numbers is
 the entire reason Milestone 2 (error correction) exists.
 
+Reproducibility (per peer review 2026-07-08): pass BACKEND to pin the
+device rather than selecting least-busy, so a posted job ID is
+reproducible. The published run used ibm_kingston (the default below).
+
+Statistics: S is a sum of four sample-mean correlators, each at SHOTS
+shots; the ~1-sigma error on S is ~sqrt(4*(1-E^2)/SHOTS) ~ 0.01 at
+SHOTS=2e4, so S=2.7579 sits ~75 sigma above the classical bound of 2
+UNDER THE I.I.D. SHOT-NOISE MODEL ONLY. This is NOT a loophole-free Bell
+test: detection, locality, and freedom-of-choice loopholes are all open
+(shared lab, sequential settings, no space-like separation). It is a
+device-correlation demonstration, not a foundational refutation of local
+realism.
+
 Prerequisite (one-time): save your IBM Quantum API key —
   QiskitRuntimeService.save_account(token="...", set_as_default=True)
 """
+import os
 
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
@@ -20,7 +34,13 @@ import math
 
 def main() -> None:
     service = QiskitRuntimeService()
-    backend = service.least_busy(operational=True, simulator=False)
+    # Pin the backend for reproducibility (published run: ibm_kingston).
+    # Override with BACKEND=<name>, or BACKEND=least_busy to auto-select.
+    pin = os.environ.get("BACKEND", "ibm_kingston")
+    if pin == "least_busy":
+        backend = service.least_busy(operational=True, simulator=False)
+    else:
+        backend = service.backend(pin)
     print(f"Backend: {backend.name} ({backend.num_qubits} qubits), "
           f"queue depth {backend.status().pending_jobs}")
 

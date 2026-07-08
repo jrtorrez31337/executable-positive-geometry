@@ -4,8 +4,9 @@
 amplituhedron, with holographic wedge localization measured on
 superconducting hardware.**
 
-This repository contains thirteen laboratory scripts, a verified 18-paper
-reference corpus, and a manuscript, tracing a single arc:
+This repository contains 32 laboratory scripts across four tracks and
+seven capstones, a verified 28-paper reference corpus (7 pillars), and
+two manuscripts, tracing a single arc:
 
 > *Space, locality, and scattering may be outputs of deeper structure —
 > entanglement patterns and positive geometries. Every claim in that
@@ -53,7 +54,7 @@ labs/
     happy_network.py           six-tile flower: depth, quantized info, discrete RT
     happy_hardware.py          single tile on ibm_kingston (+ error mitigation)
     flower_hardware.py         21-qubit network on ibm_kingston
-corpus/                        annotated 18-paper reference library
+corpus/                        annotated 28-paper reference library (7 pillars)
     README.md                  index with per-paper evidence tiers (🟢/🟡/🔴)
     refs.bib                   BibTeX for all corpus papers
     fetch_corpus.sh            re-download all PDFs (not committed)
@@ -97,6 +98,19 @@ every claim as proven, toy-model, or speculative. Three tempting
 signaling through entanglement, no information in minority wedges, no
 bypassing locality via kinematic-space adjacency — positivity *enforces*
 causality; it does not circumvent it.
+
+**On the hardware claims specifically** (per external peer review, codex-science
+2026-07-08): the IBM runs are *controlled protocol demonstrations on toy-code
+states*, not evidence for real-space emergence. HaPPY "bulk localization" is
+HaPPY-language for a code-subspace witness, not a claim about our universe's
+spacetime. The surface-code ~7% figure is a *code-capacity pseudo-threshold*,
+not an operational fault-tolerant threshold. The two-loop n=5/n=6 "ratio = 1"
+results are *finite-point exact checks* at generic rational kinematics, not
+symbolic identity proofs over all kinematics — the all-n statement remains a
+conjecture. Job IDs are listed per experiment; saved counts/expectation-values
+with error bars and retrieval notebooks are a tracked to-do (see FUTURE_WORK),
+and hardware scripts pin their backend for reproducibility rather than
+selecting least-busy.
 
 ## Acknowledgments
 
