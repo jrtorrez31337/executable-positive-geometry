@@ -91,6 +91,7 @@ paper whose definitions forced our Phase-1 terminology correction.
 | Cao et al., **Non-trivial Area Operators Require Non-local Magic** (2024) | [2306.14996](https://arxiv.org/abs/2306.14996) | 🟡 | Theory anchor: stabilizer holographic codes cannot host state-dependent area operators / backreaction — magic is structurally required. Motivates magic-injected HaPPY as the minimal backreaction toy. |
 | **Gravitational back-reaction is magical** (2024) | [2403.07056](https://arxiv.org/abs/2403.07056) | 🟡 | Companion theory: maps SRE to curvature/area-fluctuation language in holography. |
 | **Experimental demonstration of non-local magic in a superconducting quantum processor** (2025) | [2511.15576](https://arxiv.org/abs/2511.15576) | 🟢 | Defines non-local magic = min SRE over local unitaries; closed form −log₂(4P²−6P+3) from reduction purity; 2-qubit hardware measurement. **The definitional source for our Phase-1 correction**: no codes, no wedges, no twin protocol — the boundary of their claims marks our corner. |
+| Cao, Cheng, Karthikeyan, Li & Preskill, **State-dependent geometries from magic-enriched quantum codes** (2026) | [2603.13475](https://arxiv.org/abs/2603.13475) | 🔴 | Exact codes have a state-INDEPENDENT area term (no backreaction); *approximate* 'skewed' codes make it state-dependent, controlled by **tripartite non-local magic** in the encoding Choi state (zero for stabilizers). **Load-bearing for Track D Phase 2.** |
 
 ---
 
