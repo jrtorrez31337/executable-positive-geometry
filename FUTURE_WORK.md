@@ -45,3 +45,30 @@ three independent "arrow of time as the currency of self-containment"
 sightings (elliptic dS/Z2 non-time-orientability; det=+1-only holonomy
 with the missing mirror = antiunitary time reversal; the conditional-
 entropy arrow lemma in Fusions of Consciousness p. 24).
+
+## Door 7 — Track D: magic as the resource for gravity [OPENED 2026-07-08]
+The newest and most active line — non-stabilizerness ("magic") in
+holographic codes and SYK, the live 2025–26 frontier (see
+`corpus/FRONTIER-2026.md`). Executed: Phase 0–1b (wedge magic geography,
+erasable vs irreducible species), Phase 2 (backreaction = magic), Phase 3b
+(proto-area grows with bulk entropy, Theorem 4.2, via Petz recovery — the
+fix for the honestly-recorded Phase-3 sign failure), Phase 4–5 (SYK4-vs-SYK2
+and multipartite magic), Phase 6 (traversable-wormhole teleportation on a
+chaos-certified sparse SYK). Open doors:
+
+- **Phase 7 hardware, shallower redesign.** The purity-only non-local-magic
+  run is fully prepped (`phase7_submit.py` / `phase7_retrieve.py` /
+  `phase7_purity_estimator.py`) but shown *in advance* to be noise-dominated
+  on free-tier Heron: decoherence mixing of the wedge is indistinguishable
+  from the signal's own mixing at ~27 2q-gate depth, so a clean NL readout
+  needs a *shallower encoder*, not just error mitigation. Design the shallow
+  variant, or fire the run as a Tier-1 device-characterization when quota
+  resets (~monthly free-tier reset).
+- **Phase 6 N=8 chaos via the full SFF.** The gap ratio and the connected-SFF
+  ramp both certify RMT chaos only at N≥10; the paper's own N=8 has too few
+  even-parity levels. A larger-statistics / full-spectrum SFF study could
+  settle N=8 directly.
+- **The foundation-chain theory note.** Write up
+  `2306.14996 → 2403.07056 → 2010.05960 → 2603.13475` as the "magic-enriched
+  approximate codes produce state-dependent geometry" spine (per the joint
+  `corpus/GAP-ANALYSIS.md` / `FRONTIER-2026.md`).
