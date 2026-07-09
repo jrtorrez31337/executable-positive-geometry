@@ -50,4 +50,6 @@ fetch_url "https://traceinstitute.org/papers/foundational/2025-hoffman-et-al-tra
 fetch_url "https://traceinstitute.org/papers/foundational/2020-prakash-et-al-fitness-beats-truth.pdf" "6-perception-interface/2021-prakash-etal-fitness-beats-truth.pdf"
 fetch_url "https://traceinstitute.org/papers/TRACE_INSTITUTE_WHITE_PAPER.pdf" "6-perception-interface/2025-trace-institute-white-paper.pdf"
 
-echo "corpus complete: $(find . -name '*.pdf' | wc -l)/28 papers"
+fetch 2502.01582 "7-magic/2025-bera-schiro-syk-nonstabilizerness.pdf"
+fetch 2502.03093 "7-magic/2025-jasser-odavic-hamma-syk-stabilizer-entropy.pdf"
+echo "corpus complete: $(find . -name '*.pdf' | wc -l)/33 papers"
