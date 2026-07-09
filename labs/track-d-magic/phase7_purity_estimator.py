@@ -101,12 +101,16 @@ def estimate_nl(counts_list, unitaries, wedge=WEDGE, n_shots=None):
         per.append(_collision_purity(marg, k))
     per = np.array([p for p in per if not np.isnan(p)])
     p_wedge = float(np.mean(per))
-    sigma_pw = float(np.std(per, ddof=1) / np.sqrt(len(per))) if len(per) > 1 else np.nan
+    sigma_pw = float(np.std(per, ddof=1) / np.sqrt(len(per))) if len(per) > 1 else 0.0
     p_l, nl = nl_from_wedge_purity(p_wedge)
-    # propagate sigma through P_L=4P_W and the closed form (finite difference)
-    _, nl_hi = nl_from_wedge_purity(p_wedge + sigma_pw) if np.isfinite(sigma_pw) else (0, nl)
-    return {"P_wedge": p_wedge, "P_L": p_l, "NL": nl,
-            "sigma_NL": abs(nl_hi - nl)}
+    # propagate sigma analytically: sigma_NL = |d NL/d P_L| * 4 * sigma_P_wedge,
+    # d NL/d P_L = -(8 P_L - 6)/(ln2 * (4 P_L^2 - 6 P_L + 3)).
+    denom = 4 * p_l ** 2 - 6 * p_l + 3
+    deriv = abs((8 * p_l - 6) / (np.log(2) * denom)) if 0.5 < p_l < 1.0 else 0.0
+    sigma_nl = float(deriv * 4.0 * sigma_pw)
+    return {"P_wedge": p_wedge, "P_wedge_sigma": sigma_pw, "P_L": p_l,
+            "NL": nl, "sigma": sigma_nl, "n_settings": int(len(per)),
+            "estimator": "phase7_purity_estimator.estimate_nl"}
 
 
 def heron_like_noise_model():
