@@ -21,5 +21,8 @@ paper/*.out
 .qiskit/
 *credentials*
 
+# Phase 7 hardware run artifacts: job ids, settings, and raw counts
+labs/track-d-magic/phase7_runs/
+
 # Private correspondence drafts — never commit
 drafts/
