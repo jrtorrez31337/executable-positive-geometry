@@ -35,6 +35,65 @@ from qiskit.quantum_info import random_clifford  # noqa: E402
 RUN_ROOT = pathlib.Path(__file__).with_name("phase7_runs")
 DEFAULT_SEED = 20260709
 EXACT_NL_TARGET = 0.2996
+MAX_MIXED_WEDGE_FLOOR = 0.125
+TIER1_SIGMA_MULTIPLE = 2.0
+TIER2_NL_THRESHOLD = 0.10
+
+
+def phase7_success_criterion(*, n_settings: int, shots: int) -> dict:
+    """Pre-registered, noise-aware interpretation for persisted run.json files."""
+    return {
+        "source": "quant-phy-agent seq84 Phase-7 noise rehearsal",
+        "assessment": "noise_dominated_on_free_tier_heron",
+        "noiseless_nl_target": EXACT_NL_TARGET,
+        "max_mixed_wedge_floor": MAX_MIXED_WEDGE_FLOOR,
+        "noise_rehearsal": {
+            "model": "FakeTorino / Heron r1 rehearsal",
+            "expected_hardware_nl": "~0.01",
+            "retained_signal_fraction": "3-6%",
+            "optimistic_mitigation_nl_ceiling": "~0.09",
+            "conclusion": (
+                "At this depth, decoherence drives P_L toward 0.5 in the same "
+                "direction as the signal's own mixing; a clean NL measurement "
+                "requires a shallower redesign, not just mitigation."
+            ),
+        },
+        "shot_budget": {
+            "selected_settings": int(n_settings),
+            "selected_shots": int(shots),
+            "tier1_default": "150x512 is acceptable for characterization",
+            "tier2_reference": "400x1024 gives sigma(NL) about 0.046 in MC",
+        },
+        "tiers": {
+            "tier_1_characterization": {
+                "claim": (
+                    "Pipeline plus device are characterized: measured P_wedge "
+                    "is significantly above the 0.125 max-mixed floor and "
+                    "consistent with the registered noise model."
+                ),
+                "floor": MAX_MIXED_WEDGE_FLOOR,
+                "sigma_multiple": TIER1_SIGMA_MULTIPLE,
+                "significance_test": (
+                    f"P_wedge - {TIER1_SIGMA_MULTIPLE:g}*P_wedge_sigma "
+                    f"> {MAX_MIXED_WEDGE_FLOOR:g}"
+                ),
+                "run_recommendation": (
+                    "Fire this Tier-1 characterization run when quota resets."
+                ),
+            },
+            "tier_2_real_non_local_magic": {
+                "claim": (
+                    "A real non-local-magic readout survives hardware noise."
+                ),
+                "threshold": TIER2_NL_THRESHOLD,
+                "success_test": f"NL > {TIER2_NL_THRESHOLD:g}",
+                "run_recommendation": (
+                    "Redesign shallower before spending quota if Tier 2 is "
+                    "the objective."
+                ),
+            },
+        },
+    }
 
 
 def utc_stamp() -> str:
@@ -207,9 +266,9 @@ def main() -> int:
         "clifford_seeds": clifford_seeds,
         "settings_file": settings_file,
         "settings_sha256": settings_sha,
-        "pre_registered_success_criterion": (
-            "Use phase7_purity_estimator variance/noise study when present; "
-            "retrieve reports NL and sigma against the noiseless 0.2996 target."
+        "pre_registered_success_criterion": phase7_success_criterion(
+            n_settings=args.settings,
+            shots=args.shots,
         ),
         "base_circuit_metrics": base_metrics,
         "measured_circuit_metrics": measured_metrics,

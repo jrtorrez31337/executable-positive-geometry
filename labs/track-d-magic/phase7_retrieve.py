@@ -140,6 +140,52 @@ def normalize_estimate(result) -> dict:
     return out
 
 
+def success_criterion_lines(meta: dict, result: dict) -> list[str]:
+    criterion = meta.get("pre_registered_success_criterion")
+    if not isinstance(criterion, dict):
+        return []
+
+    lines = [f"criterion={criterion.get('assessment', 'registered')}"]
+    tiers = criterion.get("tiers", {})
+    tier1 = tiers.get("tier_1_characterization", {})
+    floor = tier1.get("floor", criterion.get("max_mixed_wedge_floor"))
+    sigma_multiple = float(tier1.get("sigma_multiple", 2.0))
+    p_wedge = result.get("P_wedge")
+    sigma_pw = result.get("P_wedge_sigma")
+    if floor is not None and p_wedge is not None:
+        floor = float(floor)
+        p_wedge = float(p_wedge)
+        if sigma_pw is None:
+            verdict = "above" if p_wedge > floor else "not above"
+            lines.append(
+                f"Tier 1 floor check: {verdict} "
+                f"(P_wedge={p_wedge:.6f}, floor={floor:.6f}; sigma missing)"
+            )
+        else:
+            sigma_pw = float(sigma_pw)
+            lower = p_wedge - sigma_multiple * sigma_pw
+            verdict = "passes" if lower > floor else "does not pass"
+            lines.append(
+                f"Tier 1 floor check: {verdict} "
+                f"({p_wedge:.6f} - {sigma_multiple:g}*{sigma_pw:.6f} "
+                f"{'>' if lower > floor else '<='} {floor:.6f})"
+            )
+
+    tier2 = tiers.get("tier_2_real_non_local_magic", {})
+    threshold = tier2.get("threshold")
+    nl = result.get("NL")
+    if threshold is not None and nl is not None:
+        threshold = float(threshold)
+        nl = float(nl)
+        verdict = "passes" if nl > threshold else "does not pass"
+        lines.append(
+            f"Tier 2 NL threshold: {verdict} "
+            f"(NL={nl:.6f} {'>' if nl > threshold else '<='} {threshold:.6f})"
+        )
+    lines.append("Tier 1 still requires consistency with the registered noise model.")
+    return lines
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("run_dir", type=pathlib.Path,
@@ -190,6 +236,8 @@ def main() -> int:
     print(f"P_wedge={result.get('P_wedge'):.6f}  P_L={result.get('P_L'):.6f}")
     print(f"NL={result.get('NL'):.6f} +/- {result.get('sigma', 0.0):.6f} "
           f"(noiseless target {EXACT_NL_TARGET})")
+    for line in success_criterion_lines(meta, result):
+        print(line)
     print(f"estimator={result.get('estimator', estimate_nl.__module__)}")
     return 0
 
