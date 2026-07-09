@@ -5,7 +5,7 @@ literature sweep (quant-phy + codex-science, hand-in-hand) sharpened this to
 a THEOREM-ANCHORED boson/fermion asymmetry whose root is the dimensionality
 of the per-mode Hilbert space:
 
-  BOSON  (this file: stub; codex-science owns the full boson section)
+  BOSON  (this file: theorem-null + artifact guard, codex-science)
     Cosmological creation makes a two-mode-squeezed Gaussian state. In CV,
     magic = Wigner negativity (Mari-Eisert = CV Gottesman-Knill; Gaussian =
     stabilizer). By Hudson's theorem a pure Gaussian state is Wigner-positive
@@ -76,7 +76,8 @@ def rdm_purity(psi):
 
 
 def closed_form_nl(P):
-    return max(float(-np.log2(4 * P ** 2 - 6 * P + 3)), 0.0)
+    value = float(-np.log2(4 * P ** 2 - 6 * P + 3))
+    return value if value > 0.0 else 0.0
 
 
 def nonlocal_magic(psi, n_starts=10, seed=0):
@@ -101,14 +102,74 @@ def fermi_dirac(omega, H):
     return 1.0 / (np.exp(omega / T) + 1.0) if T > 0 else 0.0
 
 
+def boson_cv_wigner_mana(r):
+    """Physical CV magic of the pure two-mode squeezed vacuum.
+
+    The state is Gaussian for every squeezing r. With the CV stabilizer
+    convention used in Mari-Eisert/Gross-Hudson, a pure Gaussian has
+    nonnegative Wigner function, so log integral |W| = 0 exactly.
+    """
+    _ = r
+    return 0.0
+
+
+def boson_truncation_weight(r, cutoff_dim):
+    """Probability retained by truncating sum_n sqrt(1-lambda^2) lambda^n |n,n>."""
+    lam = np.tanh(r)
+    return float(1.0 - lam ** (2 * cutoff_dim))
+
+
+def boson_pair_truncated(r, qubits_per_mode, relabel=None):
+    """Two-mode squeezed vacuum in a finite Fock cutoff encoded into qubits.
+
+    cutoff_dim = 2**qubits_per_mode. The map from Fock labels to qubit basis
+    labels is deliberately explicit: changing it is an encoding choice, not a
+    physical CV operation.
+    """
+    dim = 2 ** qubits_per_mode
+    lam = np.tanh(r)
+    coeffs = np.array([np.sqrt(1 - lam ** 2) * lam ** n for n in range(dim)])
+    coeffs = coeffs / np.linalg.norm(coeffs)
+
+    if relabel is None:
+        relabel = np.arange(dim)
+    relabel = np.asarray(relabel, dtype=int)
+    if sorted(relabel.tolist()) != list(range(dim)):
+        raise ValueError("relabel must be a permutation of range(cutoff_dim)")
+
+    psi = np.zeros(dim * dim, dtype=complex)
+    for n, amp in enumerate(coeffs):
+        psi[relabel[n] * dim + relabel[n]] = amp
+    return psi
+
+
+def nonaffine_relabel(dim):
+    """A deterministic non-affine relabel for dim >= 8.
+
+    For 1 and 2 qubits per mode, every basis permutation is affine over F2
+    and therefore Clifford as a classical reversible map. At dim >= 8 a simple
+    transposition can expose that finite-cutoff Pauli SRE depends on the
+    arbitrary Fock-to-qubit encoding.
+    """
+    perm = np.arange(dim)
+    if dim >= 8:
+        perm[3], perm[5] = perm[5], perm[3]
+    return perm
+
+
+def boson_cutoff_sre(r, qubits_per_mode, relabel=None):
+    psi = boson_pair_truncated(r, qubits_per_mode, relabel=relabel)
+    return m2(dm(psi))
+
+
 def main():
-    print("Project 1 -- FERMION section (quant-phy). Boson section: codex-science.\n")
+    print("Project 1 -- magic of the expanding vacuum")
+    print("Fermion signal: quant-phy. Boson theorem-null + artifact control: codex-science.\n")
 
     # --- P1b verification: nonlocal magic == Phase-1b closed form ---------
     print("P1b  fermion pair alpha|00>+beta|11>: numerical nonlocal magic vs")
     print("     our Phase-1b closed form -log2(4P^2-6P+3), P=|a|^4+|b|^4:")
     print(f"     {'|beta|^2':>8} {'P(rdm)':>7} {'NL_numeric':>11} {'NL_closed':>10} {'raw SRE':>8}")
-    maxrow = None
     for beta2 in (0.0, 0.05, 0.146, 0.25, 0.5, 0.75, 0.854, 0.95, 1.0):
         psi = fermion_pair(beta2)
         P = rdm_purity(psi)
@@ -140,10 +201,38 @@ def main():
           f"(|beta|^2~0.146), falling as H->inf (|beta|^2->0.5).")
     print("     'Cosmological fermion magic is maximal at INTERMEDIATE expansion.'\n")
 
-    print("BOSON section (codex-science, stub): analytic Wigner-negativity = 0 for")
-    print("all squeezing r (Hudson); finite-cutoff Pauli-SRE artifact control.")
-    print("Root of the asymmetry: fermion Fock = 2-dim/mode (JW exact, magic")
-    print("physical); boson Fock = inf-dim/mode (truncation -> artifact).")
+    # --- P1a boson theorem-null + finite-cutoff artifact control ----------
+    print("P1a  bosonic two-mode squeezed vacuum:")
+    print("     |TMSV(r)> = sqrt(1-lambda^2) sum_n lambda^n |n,n>, lambda=tanh(r)")
+    print("     This is a pure Gaussian state, so its CV Wigner mana is EXACTLY ZERO")
+    print("     for every r by the Gaussian/Hudson theorem route.")
+    print(f"     {'r':>5} {'lambda':>8} {'CV mana':>8} {'retained D=8':>13} {'retained D=16':>14}")
+    for r in (0.0, 0.25, 0.5, 0.9, 1.3):
+        print(f"     {r:>5.2f} {np.tanh(r):>8.4f} {boson_cv_wigner_mana(r):>8.4f} "
+              f"{boson_truncation_weight(r, 8):>13.6f} {boson_truncation_weight(r, 16):>14.6f}")
+    print("     -> physical bosonic particle production creates entanglement and")
+    print("        complexity, but no CV magic in the free Gaussian model.\n")
+
+    print("     finite-cutoff Pauli-SRE control: encode the truncated Fock space into")
+    print("     qubits and measure ordinary qubit SRE. Nonzero values below are NOT")
+    print("     physical bosonic magic; they depend on the arbitrary cutoff/encoding.")
+    print(f"     {'r':>5} {'q/mode':>7} {'cutoff D':>8} {'weight':>9} {'binary SRE':>11} {'relabel SRE':>11}")
+    for r in (0.25, 0.5, 0.9):
+        for q in (1, 2, 3, 4):
+            dim = 2 ** q
+            binary = boson_cutoff_sre(r, q)
+            perm = nonaffine_relabel(dim)
+            relabeled = boson_cutoff_sre(r, q, relabel=perm)
+            print(f"     {r:>5.2f} {q:>7} {dim:>8} {boson_truncation_weight(r, dim):>9.5f} "
+                  f"{binary:>11.4f} {relabeled:>11.4f}")
+    print("     -> the same Gaussian CV state has mana 0, while finite qubit")
+    print("        encodings produce cutoff- and relabel-dependent Pauli SRE.")
+    print("        That is the artifact guard: bosonic P1a is a theorem-null, not")
+    print("        a small hardware-style qubit signal.\n")
+
+    print("Root of the asymmetry: fermion Fock = 2-dim/mode (JW exact, qubit")
+    print("magic physical); boson Fock = infinite-dim/mode (qubit truncation is")
+    print("an approximation, and its Pauli-SRE is an encoding artifact).")
 
 
 if __name__ == "__main__":
