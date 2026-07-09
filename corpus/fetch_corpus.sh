@@ -52,4 +52,5 @@ fetch_url "https://traceinstitute.org/papers/TRACE_INSTITUTE_WHITE_PAPER.pdf" "6
 
 fetch 2502.01582 "7-magic/2025-bera-schiro-syk-nonstabilizerness.pdf"
 fetch 2502.03093 "7-magic/2025-jasser-odavic-hamma-syk-stabilizer-entropy.pdf"
-echo "corpus complete: $(find . -name '*.pdf' | wc -l)/33 papers"
+fetch 2601.03076 "7-magic/2026-malvimat-sarkis-suk-yoon-multipartite-nonlocal-magic-syk.pdf"
+echo "corpus complete: $(find . -name '*.pdf' | wc -l)/34 papers"

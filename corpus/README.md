@@ -94,6 +94,7 @@ paper whose definitions forced our Phase-1 terminology correction.
 | Cao, Cheng, Karthikeyan, Li & Preskill, **State-dependent geometries from magic-enriched quantum codes** (2026) | [2603.13475](https://arxiv.org/abs/2603.13475) | 🔴 | Exact codes have a state-INDEPENDENT area term (no backreaction); *approximate* 'skewed' codes make it state-dependent, controlled by **tripartite non-local magic** in the encoding Choi state (zero for stabilizers). **Load-bearing for Track D Phase 2/3b.** |
 | Bera & Schiro, **Non-Stabilizerness of the Sachdev-Ye-Kitaev Model** (2025) | [2502.01582](https://arxiv.org/abs/2502.01582) | 🔴 | Chaotic SYK4 ground states have Gaussian-like connected Majorana spectra and larger SRE than free/integrable SYK2 (Laplace-like). **Primary source for Track D Phase 4** (SYK-magic baseline). |
 | Jasser, Odavić & Hamma, **Stabilizer Entropy and Entanglement Complexity in the SYK Model** (2025) | [2502.03093](https://arxiv.org/abs/2502.03093) | 🔴 | Interpolated Majorana SYK4+SYK2 SRE study; supplies the real-Majorana Hamiltonian convention used in Phase 4. |
+| Malvimat, Sarkis, Suk & Yoon, **Multipartite Non-local Magic and SYK Model** (2026) | [2601.03076](https://arxiv.org/abs/2601.03076) | 🔴 | Defines the inclusion-exclusion multipartite non-local-magic functional (Eq. 2.14) and reports TPQ microstates retain magic structure washed out in the thermal density matrix. **Primary source for Track D Phase 5.** |
 
 ---
 
