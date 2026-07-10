@@ -38,6 +38,17 @@ Gibbons-Hawking temperature T_dS = H/2pi, Fermi-Dirac 1/(e^{omega/T}+1).
 Then magic vs EXPANSION RATE H is non-monotonic: 0 at H->0 (no production),
 peak at intermediate H (|beta|^2=0.146), falling toward 0 as H->inf
 (|beta|^2->1/2, the flat maximal-production 'Bell' point).
+
+Hardware-adjacent benchmark (2605.04099):
+  The sudden de Sitter -> radiation scalar profile has
+      n_k = |beta_k|^2 = 1 / [4 (k |eta_e|)^4].
+  We ride that real particle-production spectrum with the bosonic theorem
+  null: the state is still Gaussian, so physical CV magic stays exactly zero
+  mode-by-mode. The qubit finite-cutoff SRE is printed only as an artifact
+  control. For the proposed fermion extension, this file also provides the
+  acceptance diagnostics quant-phy's massive-Dirac beta_k solver should pass:
+  Pauli bound, massless conformal null, UV adiabatic tail, and magic peaking
+  where |beta_k^F|^2 crosses the P1b value 0.146...
 """
 
 import pathlib
@@ -48,6 +59,9 @@ from scipy.optimize import minimize
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent / ".." / "track-d-magic"))
 from phase0_wedge_magic import m2  # noqa: E402
+
+FERMION_MAGIC_PEAK_BETA2_LOW = 0.5 * (1.0 - 1.0 / np.sqrt(2.0))
+FERMION_MAGIC_PEAK_BETA2_HIGH = 0.5 * (1.0 + 1.0 / np.sqrt(2.0))
 
 
 def su2(a, b, c):
@@ -102,6 +116,50 @@ def fermi_dirac(omega, H):
     return 1.0 / (np.exp(omega / T) + 1.0) if T > 0 else 0.0
 
 
+def fermion_magic_from_beta2(beta2):
+    """P1b nonlocal magic as a function of exact fermion occupation."""
+    beta2 = float(np.clip(beta2, 0.0, 1.0))
+    return closed_form_nl(rdm_purity(fermion_pair(beta2)))
+
+
+def ds_radiation_scalar_bogoliubov(x):
+    """Sudden dS -> radiation scalar Bogoliubov coefficients.
+
+    arXiv:2605.04099 uses eta_e < 0. With x = k |eta_e|, the analytic
+    benchmark is alpha = 1 + i/x - 1/(2x^2), beta = exp(2ix)/(2x^2),
+    so |beta|^2 = 1/(4x^4) and |alpha|^2 - |beta|^2 = 1.
+    """
+    x = np.asarray(x, dtype=float)
+    if np.any(x <= 0):
+        raise ValueError("x = k |eta_e| must be positive")
+    alpha = 1.0 + 1j / x - 1.0 / (2.0 * x ** 2)
+    beta = np.exp(2j * x) / (2.0 * x ** 2)
+    return alpha, beta
+
+
+def ds_radiation_scalar_occupation(x):
+    """n_k = |beta_k|^2 for the 2605.04099 sudden scalar transition."""
+    x = np.asarray(x, dtype=float)
+    if np.any(x <= 0):
+        raise ValueError("x = k |eta_e| must be positive")
+    return 1.0 / (4.0 * x ** 4)
+
+
+def boson_squeezing_from_occupation(n_pairs):
+    """Two-mode squeezed vacuum parameter for mean pair occupation n."""
+    n_pairs = np.asarray(n_pairs, dtype=float)
+    if np.any(n_pairs < 0):
+        raise ValueError("mean occupation must be nonnegative")
+    return np.arcsinh(np.sqrt(n_pairs))
+
+
+def boson_multi_pair_tail(n_pairs):
+    """Exact TMSV probability of two or more pairs after a 0/1 truncation."""
+    n_pairs = np.asarray(n_pairs, dtype=float)
+    lam2 = n_pairs / (1.0 + n_pairs)
+    return lam2 ** 2
+
+
 def boson_cv_wigner_mana(r):
     """Physical CV magic of the pure two-mode squeezed vacuum.
 
@@ -153,13 +211,39 @@ def nonaffine_relabel(dim):
     """
     perm = np.arange(dim)
     if dim >= 8:
-        perm[3], perm[5] = perm[5], perm[3]
+        perm[1], perm[-1] = perm[-1], perm[1]
     return perm
 
 
 def boson_cutoff_sre(r, qubits_per_mode, relabel=None):
     psi = boson_pair_truncated(r, qubits_per_mode, relabel=relabel)
     return m2(dm(psi))
+
+
+def fermion_spectrum_diagnostics(xs, beta2s, massless=False):
+    """Acceptance diagnostics for a proposed massive-Dirac beta_k spectrum."""
+    xs = np.asarray(xs, dtype=float)
+    beta2s = np.asarray(beta2s, dtype=float)
+    if xs.ndim != 1 or beta2s.ndim != 1 or xs.shape != beta2s.shape:
+        raise ValueError("xs and beta2s must be one-dimensional arrays of equal length")
+    if np.any(xs <= 0):
+        raise ValueError("all x values must be positive")
+
+    magic = np.array([fermion_magic_from_beta2(b) for b in beta2s])
+    peak_i = int(np.argmax(magic))
+    return {
+        "pauli_bounded": bool(np.all(beta2s >= -1e-10) and np.all(beta2s <= 1.0 + 1e-10)),
+        "massless_null": bool(np.max(np.abs(beta2s)) < 1e-9) if massless else None,
+        "uv_beta2": float(beta2s[np.argmax(xs)]),
+        "uv_magic": float(magic[np.argmax(xs)]),
+        "max_magic": float(magic[peak_i]),
+        "max_magic_x": float(xs[peak_i]),
+        "max_magic_beta2": float(beta2s[peak_i]),
+        "hits_p1b_peak_band": bool(
+            np.any(np.isclose(beta2s, FERMION_MAGIC_PEAK_BETA2_LOW, atol=0.03))
+            or np.any(np.isclose(beta2s, FERMION_MAGIC_PEAK_BETA2_HIGH, atol=0.03))
+        ),
+    }
 
 
 def main():
@@ -229,6 +313,63 @@ def main():
     print("        encodings produce cutoff- and relabel-dependent Pauli SRE.")
     print("        That is the artifact guard: bosonic P1a is a theorem-null, not")
     print("        a small hardware-style qubit signal.\n")
+
+    # --- 2605.04099 hardware-adjacent scalar benchmark --------------------
+    print("P1-bench  2605.04099 sudden dS->radiation scalar benchmark:")
+    print("     x = k|eta_e|, alpha = 1+i/x-1/(2x^2), beta = exp(2ix)/(2x^2),")
+    print("     n_k = |beta|^2 = 1/(4x^4). Riding this REAL spectrum does not")
+    print("     change P1a: the bosonic out-state is still Gaussian, so CV mana = 0.")
+    print(f"     {'x':>5} {'n_k':>10} {'|a|^2-|b|^2':>13} {'r=asinh sqrt(n)':>16} "
+          f"{'CV mana':>8} {'P(>=2 pairs)':>12}")
+    benchmark_xs = np.array([0.8, 1.0, 1.3, 1.5, 1.8, 2.0, 2.2, 2.5, 3.0])
+    for x in benchmark_xs:
+        alpha, beta = ds_radiation_scalar_bogoliubov(x)
+        n = float(abs(beta) ** 2)
+        r = float(boson_squeezing_from_occupation(n))
+        norm = float(abs(alpha) ** 2 - abs(beta) ** 2)
+        print(f"     {x:>5.1f} {n:>10.5f} {norm:>13.8f} {r:>16.5f} "
+              f"{boson_cv_wigner_mana(r):>8.4f} {float(boson_multi_pair_tail(n)):>12.6f}")
+    print("     -> this is the hardware-adjacent boson curve: particle production")
+    print("        varies strongly with mode, while physical bosonic magic remains")
+    print("        identically zero across the spectrum.\n")
+    print("        x=0.8 and x=1.0 are IR stress rows from the same analytic")
+    print("        spectrum; the 2605.04099 hardware demonstration uses x>=1.3.\n")
+
+    print("     representative finite-cutoff artifact guard on the same spectrum:")
+    print(f"     {'x':>5} {'regime':>9} {'q/mode':>7} {'D':>4} {'weight':>9} "
+          f"{'binary SRE':>11} {'relabel SRE':>11}")
+    for x in (0.8, 1.0, 1.3, 2.2, 3.0):
+        n = float(ds_radiation_scalar_occupation(x))
+        r = float(boson_squeezing_from_occupation(n))
+        regime = "IR-stress" if x < 1.3 else "HW/UV"
+        for q in (2, 3):
+            dim = 2 ** q
+            binary = boson_cutoff_sre(r, q)
+            relabeled = boson_cutoff_sre(r, q, relabel=nonaffine_relabel(dim))
+            print(f"     {x:>5.1f} {regime:>9} {q:>7} {dim:>4} "
+                  f"{boson_truncation_weight(r, dim):>9.6f} {binary:>11.4f} "
+                  f"{relabeled:>11.4f}")
+    print("     -> nonzero Pauli-SRE here is cutoff/encoding dependent. It is the")
+    print("        artifact control for any four-qubit/single-excitation hardware")
+    print("        implementation, not evidence of bosonic CV magic.\n")
+
+    # --- Fermion extension acceptance checks ------------------------------
+    print("P1-bench  fermion extension acceptance diagnostics for the next build:")
+    print("     I agree the massive dS->radiation fermion channel should be numerical")
+    print("     unless a clean sudden-matching spinor formula is independently verified.")
+    print("     Required checks for beta_k^F(x, mu): Pauli bound 0<=|beta|^2<=1,")
+    print("     massless conformal null, UV adiabatic tail ->0, and magic peaking")
+    print(f"     when |beta|^2 crosses {FERMION_MAGIC_PEAK_BETA2_LOW:.6f} "
+          f"or {FERMION_MAGIC_PEAK_BETA2_HIGH:.6f}.")
+    null_xs = np.array([0.5, 1.0, 2.0, 5.0, 10.0])
+    null_beta2 = np.zeros_like(null_xs)
+    null_diag = fermion_spectrum_diagnostics(null_xs, null_beta2, massless=True)
+    print(f"     massless conformal null beta^2=0: pauli_bounded={null_diag['pauli_bounded']}, "
+          f"massless_null={null_diag['massless_null']}, "
+          f"uv_magic={null_diag['uv_magic']:.4f}, max_magic={null_diag['max_magic']:.4f}")
+    print("     -> this is the cross-check surface for quant-phy's forthcoming")
+    print("        massive-Dirac beta_k solver; plug its beta^2 grid into")
+    print("        fermion_spectrum_diagnostics before interpreting the magic band.\n")
 
     print("Root of the asymmetry: fermion Fock = 2-dim/mode (JW exact, qubit")
     print("magic physical); boson Fock = infinite-dim/mode (qubit truncation is")
