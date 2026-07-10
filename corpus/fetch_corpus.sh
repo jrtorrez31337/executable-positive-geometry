@@ -59,4 +59,6 @@ fetch 2604.27049 "7-magic/2026-iannotti-etal-nonlocal-magic-fermionic-gaussian.p
 fetch 2512.10126 "7-magic/2025-haque-jafari-underwood-inflation-not-magic.pdf"
 fetch 2406.06418 "7-magic/2024-bridging-magic-nongaussian-gkp.pdf"
 fetch 2605.04099 "7-magic/2026-alavirad-desitter-radiation-particle-creation-sim.pdf"
-echo "corpus complete: $(find . -name '*.pdf' | wc -l)/40 papers"
+fetch 2603.13475 "7-magic/2026-cao-etal-state-dependent-geometries-magic-enriched-codes.pdf"
+fetch 1704.05069 "1-positive-geometry/2017-arkani-hamed-thomas-trnka-unwinding-amplituhedron-binary.pdf"
+echo "corpus complete: $(find . -name '*.pdf' | wc -l)/39 papers"

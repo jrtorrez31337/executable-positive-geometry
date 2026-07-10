@@ -6,7 +6,7 @@ wedge localization and an emergent arrow of time measured on
 superconducting hardware.**
 
 This repository contains **47 laboratory scripts** across five lines of
-work (Tracks A–D plus holographic capstones), a verified **40-paper**
+work (Tracks A–D plus holographic capstones), a verified **39-paper**
 reference corpus (7 pillars), and two manuscripts, tracing a single arc:
 
 > *Space, locality, scattering, time, and even gravitational
