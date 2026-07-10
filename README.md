@@ -83,7 +83,10 @@ corpus/                        annotated 35-paper reference library (7 pillars)
     GAP-ANALYSIS.md            joint gap analysis (with codex-science agent)
     FRONTIER-2026.md           mid-2026 field survey: positive geometry, magic, cosmology
     refs.bib / fetch_corpus.sh BibTeX + PDF re-download script (PDFs not committed)
-notes/TIME-ARROW-TRACKER.md    running log of the "reverse time" theme across labs
+notes/                         research notes and scope guards
+    TIME-ARROW-TRACKER.md      running log of the "reverse time" theme across labs
+    P2-DESITTER-HORIZON-MAGIC.md
+                                controls/scope note for the dS/SYK horizon-magic project
 paper/                         two manuscripts: main.pdf + note-two-loop.pdf
 CLAUDE.md                      profile of the AI research persona used
 FUTURE_WORK.md                 open doors: composite LS census, n=6, hardware follow-ups
