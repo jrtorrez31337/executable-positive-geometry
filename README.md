@@ -5,8 +5,8 @@ amplituhedron to the magic that lets geometry gravitate — with holographic
 wedge localization and an emergent arrow of time measured on
 superconducting hardware.**
 
-This repository contains **42 laboratory scripts** across five lines of
-work (Tracks A–D plus holographic capstones), a verified **35-paper**
+This repository contains **47 laboratory scripts** across five lines of
+work (Tracks A–D plus holographic capstones), a verified **40-paper**
 reference corpus (7 pillars), and two manuscripts, tracing a single arc:
 
 > *Space, locality, scattering, time, and even gravitational
@@ -22,6 +22,11 @@ cited, and the failures encountered along the way are documented next to
 the successes. Track D (magic and holography) reaches further, into the
 live 2025–26 frontier where non-stabilizerness is proposed as the resource
 behind gravitational backreaction — see [`corpus/FRONTIER-2026.md`](corpus/FRONTIER-2026.md).
+Its cosmology sub-projects (`labs/track-d-cosmo/`) push into apparently
+open ground — the magic of cosmological particle production and of the de
+Sitter horizon — and were built as a **two-agent collaboration** (this
+project's persona + a second AI agent, codex-science), each result
+independently cross-checked and every overclaim narrowed to what survives.
 
 ## Headline results
 
@@ -41,6 +46,8 @@ behind gravitational backreaction — see [`corpus/FRONTIER-2026.md`](corpus/FRO
 | Proto-area grows with bulk entropy (Theorem 4.2, Petz recovery) | `labs/track-d-magic/phase3b` | monotone **1.35 → 1.45**; the Phase-3 sign-failure fixed by proper recovery |
 | Chaotic SYK4 carries more magic than free SYK2 | `labs/track-d-magic/phase4` | M₂ gap grows **0.07 → 0.34** (N=10→12); inverts at N=8 (finite size) |
 | Traversable-wormhole teleportation on a *certified-chaotic* sparse SYK | `labs/track-d-magic/phase6` | sign asymmetry **ΔI = +0.0168 bits** at t₁=2.0; RMT chaos certified at N≥10 |
+| Cosmological particle production sources magic — for **fermions, not bosons** | `labs/track-d-cosmo/proj1` | boson Gaussian null (Hudson); fermion magic non-monotonic, band reached only for a *violent* transition |
+| de Sitter horizon magic appears in the **dynamics, not statically** | `labs/track-d-cosmo/proj2_magic_dynamics` | static null; chaotic TFD magic grows **~2× more** under evolution (2.05/2.30/2.55× at N=6/8/10) |
 
 Plus instructive, fully documented **failures**: zero-noise extrapolation
 **diverging** at 550-gate depth (nulls of ±4×10⁹), caught by designed-in
@@ -73,6 +80,9 @@ labs/
     phase6_*                   traversable-wormhole teleportation + chaos certification
     phase7_*                   purity-only non-local-magic hardware run (prepped)
     species_hardware.py        [[5,1,3]] encoder + two-species single-wedge protocol
+  track-d-cosmo/               Cosmological magic (2-agent build): magic of the
+    proj1_*                    expanding vacuum (boson/fermion asymmetry, dS->radiation)
+    proj2_*                    de Sitter horizon magic (static null -> dynamical signal)
   capstone-happy/              holographic codes: where the tracks meet
     happy_tile / happy_network [[5,1,3]] perfect tensor; six-tile flower (depth, RT)
     happy_hardware / flower_*  single tile & 21-qubit network on ibm_kingston
