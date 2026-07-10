@@ -262,7 +262,7 @@ def dirac_occupation_smooth(x, mu, eta0=-30.0, eta1=6.0, max_step=0.01):
     H_k(eta) = k sigma_x + m a(eta) sigma_z from the early adiabatic vacuum.
     x = k|eta_e| = k, mu = m|eta_e| = m. The fermion mass term M = m a is C^1
     (a' continuous), so the fermion never sees the a''/a jump that drives
-    boson production -> exponentially weak occupation."""
+    boson production -> strongly suppressed occupation."""
     from scipy.integrate import solve_ivp
     k, m = float(x), float(mu)
 
@@ -411,7 +411,7 @@ def main():
     print("     Validated limits: massless mu=0 => n_k=0 (conformal null, exact);")
     print("     UV x->inf => n_k->0 (adiabatic). Both automatic (Pauli-bounded).\n")
 
-    # (A) the paper's SMOOTH C^1 transition: fermion production is exp-weak
+    # (A) the paper's SMOOTH C^1 transition: fermion production is tiny
     print("     (A) paper's SMOOTH (C^1) transition, mu=2 -- fermion barely produced:")
     xs_s = np.array([0.5, 1.0, 1.5, 2.0, 3.0])
     b2_s = np.array([dirac_occupation_smooth(x, 2.0) for x in xs_s])
