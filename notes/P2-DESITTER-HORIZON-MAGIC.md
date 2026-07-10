@@ -80,6 +80,48 @@ current evidence is strongest:
   resolution on the current coarse grid. Do not write a precise one-to-one
   saturation-equals-dip claim.
 
+## Dynamics Method And Result (quant-phy)
+
+Object: the one-sided time-evolved thermofield double
+
+    |TFD(beta, t)> = (1/sqrtZ) sum_n e^{-beta E_n / 2} e^{-i E_n t} |n>_L |n>_R,
+
+at beta = 1. We compute M2(t), the stabilizer Renyi entropy of this pure
+2-copy state (phase0 engine), and the spectral form factor
+g(t) = |Z(beta, t)|^2 / |Z(beta, 0)|^2 with Z = sum_n e^{-beta E_n} e^{-i E_n t},
+for chaotic SYK4 vs free SYK2, disorder-averaged. Reuses the Phase-4/5 SYK
+machinery and the Phase-6 spectral-form-factor tooling (no reinvention).
+
+Results:
+
+- Scrambling-rise (robust headline). The magic rise from t=0 to the late
+  plateau is about 2x larger for SYK4 than SYK2. Rise ratios with SEMs over
+  independent seeds: 2.05 +/- 0.11 (N=6), 2.30 +/- 0.09 (N=8), 2.55 +/- 0.24
+  (N=10). Chaotic TFD magic grows roughly twice as much under time evolution
+  -- a scrambling signature, robust across sizes and the load-bearing result.
+
+- Static-to-dynamics sign flip. Statically the free SYK2 TFD carries MORE
+  magic (t=0 gap negative). Time evolution reverses this for N>=8: chaotic
+  SYK4 saturates higher. The discriminator is dynamical, not static -- which
+  is why the static section is a null.
+
+- Plateau gap (secondary). The SYK4 - SYK2 late-plateau gap is +0.605 +/-
+  0.032 (N=8) and +1.030 +/- 0.105 (N=10): positive and growing for N>=8.
+  BUT N=6 is actively negative (-0.165 over three seeds), a small-N crossover
+  -- NOT a clean extensive-from-small-N trend. Under the same-spectrum
+  diagonal-basis TFD control the clean positive gap is visible only at N=10.
+  So this is suggestive of "magic ~ horizon dof" but genuinely needs larger N.
+
+- SFF timing. Magic reaches ~95% saturation around t ~ 1-1.5 while the first
+  SFF dip is t ~ 2-5 on the coarse grid: an order-of-magnitude relation, not
+  a precise saturation-equals-dip lock.
+
+Provenance note (kept deliberately). The plateau-gap extensive trend was
+initially overstated from a single seed (N=6 read +0.049); the
+independent-seed SEM cross-check corrected it to a small-N crossover. The
+robust load-bearing result is the scrambling-rise ratio, not the plateau gap.
+This correction is itself part of the record.
+
 ## Recommended Public Wording
 
 The concise version:
