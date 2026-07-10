@@ -10,6 +10,15 @@ baseline was written.
 | Bera and Schiro, "Non-Stabilizerness of Sachdev-Ye-Kitaev Model" | [2502.01582](https://arxiv.org/abs/2502.01582) | Primary source for the SYK4/SYK2 magic separation: chaotic SYK4 has a Gaussian-like connected Majorana spectrum and larger SRE, while free SYK2 has a Laplace-like spectrum. |
 | Jasser, Odavic and Hamma, "Stabilizer Entropy and entanglement complexity in the Sachdev-Ye-Kitaev model" | [2502.03093](https://arxiv.org/abs/2502.03093) | Independent SYK4+SYK2 interpolation source for the Majorana-Hamiltonian convention, SRE scaling, and the claim that SYK4 has more non-stabilizer structure than the integrable/free endpoint. |
 
+## Cosmological Boson/Fermion Magic
+
+Project 1 sources were verified against the arXiv API before the cosmology
+labs were written or extended.
+
+| Paper | arXiv | Role in Project 1 |
+|---|---|---|
+| Ireland and Vennin, "When inflationary perturbations refuse to classicalise: the role of non-Gaussianity in Wigner negativity" | [2601.22219](https://arxiv.org/abs/2601.22219) | Primary source for P1c: pure Gaussian perturbations have nonnegative Wigner functions, while interaction-generated non-Gaussianity produces Wigner-negative interference fringes; the paper reports a^2 growth of negativity in ultra-slow-roll backgrounds. |
+
 Phase 4 uses the real-Majorana convention
 
 ```text

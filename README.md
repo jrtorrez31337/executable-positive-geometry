@@ -5,8 +5,8 @@ amplituhedron to the magic that lets geometry gravitate — with holographic
 wedge localization and an emergent arrow of time measured on
 superconducting hardware.**
 
-This repository contains **47 laboratory scripts** across five lines of
-work (Tracks A–D plus holographic capstones), a verified **39-paper**
+This repository contains **48 laboratory scripts** across five lines of
+work (Tracks A–D plus holographic capstones), a verified **40-paper**
 reference corpus (7 pillars), and two manuscripts, tracing a single arc:
 
 > *Space, locality, scattering, time, and even gravitational
@@ -46,7 +46,7 @@ independently cross-checked and every overclaim narrowed to what survives.
 | Proto-area grows with bulk entropy (Theorem 4.2, Petz recovery) | `labs/track-d-magic/phase3b` | monotone **1.35 → 1.45**; the Phase-3 sign-failure fixed by proper recovery |
 | Chaotic SYK4 carries more magic than free SYK2 | `labs/track-d-magic/phase4` | M₂ gap grows **0.07 → 0.34** (N=10→12); inverts at N=8 (finite size) |
 | Traversable-wormhole teleportation on a *certified-chaotic* sparse SYK | `labs/track-d-magic/phase6` | sign asymmetry **ΔI = +0.0168 bits** at t₁=2.0; RMT chaos certified at N≥10 |
-| Cosmological particle production sources magic — for **fermions, not bosons** | `labs/track-d-cosmo/proj1` | boson Gaussian null (Hudson); fermion magic non-monotonic, band reached only for a *violent* transition |
+| Cosmological magic splits by resource theory | `labs/track-d-cosmo/proj1*` | free bosons are Wigner-positive; cubic non-Gaussianity turns CV negativity on; fermion magic is exact qubit magic |
 | de Sitter horizon magic appears in the **dynamics, not statically** | `labs/track-d-cosmo/proj2_magic_dynamics` | static null; chaotic TFD magic grows **~2× more** under evolution (2.05/2.30/2.55× at N=6/8/10) |
 
 Plus instructive, fully documented **failures**: zero-noise extrapolation
@@ -88,7 +88,7 @@ labs/
     happy_hardware / flower_*  single tile & 21-qubit network on ibm_kingston
     self_wedge / holonomy*     self-reference (Klein), code-automorphism holonomy (+ HW)
     spawn_object.py            bulk-object injection via boundary operators (ER=EPR toy)
-corpus/                        annotated 39-paper reference library (7 pillars)
+corpus/                        annotated 40-paper reference library (7 pillars)
     README.md                  index with per-paper evidence tiers (🟢/🟡/🔴)
     GAP-ANALYSIS.md            joint gap analysis (with codex-science agent)
     FRONTIER-2026.md           mid-2026 field survey: positive geometry, magic, cosmology

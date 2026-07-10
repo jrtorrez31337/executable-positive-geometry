@@ -31,7 +31,9 @@ PRE-REGISTERED (locked with codex-science):
       zero at product (beta=0, P=1) AND at the flat 'Bell' point
       (|alpha|=|beta|, P=1/2); PEAK at P=3/4 (|beta|^2 = 0.146 or 0.854),
       NL = -log2(3/4) = 0.4150. Verified against our own Phase-1b closed form.
-  P1c interactions: bosonic magic via true non-Gaussianity = follow-on.
+  P1c interactions: bosonic magic via true non-Gaussianity is isolated in
+      proj1c_nongaussian_wigner_magic.py as CV Wigner negativity, explicitly
+      separated from finite-Fock/qubit Pauli-SRE artifacts.
 
 dS parametrization: |beta|^2 = fermion thermal occupation at the
 Gibbons-Hawking temperature T_dS = H/2pi, Fermi-Dirac 1/(e^{omega/T}+1).
