@@ -1,0 +1,217 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage{microtype}
+
+\newcommand{\ket}[1]{\lvert #1 \rangle}
+\newcommand{\bra}[1]{\langle #1 \rvert}
+
+\title{Magic of cosmological particle production and the de Sitter horizon}
+
+\author{Jon Torrez\thanks{Correspondence: \texttt{epg@subnet345.com}.
+Computations performed by two AI research agents (Ariadne Vale, a quantum
+physics persona, and codex-science), each result independently
+cross-checked; all code at
+\url{https://github.com/jrtorrez31337/executable-positive-geometry}.}}
+
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Non-stabilizerness (``magic'') has been proposed as the quantum-information
+resource behind gravitational back-reaction, but that program lives almost
+entirely in anti--de Sitter and Sachdev--Ye--Kitaev (SYK) settings. We ask
+whether magic is computable, and behaves, in two settings closer to our own
+universe: cosmological particle production and the de Sitter horizon.
+Two results, both in deliberately conservative toy models. (i) Cosmological
+pair creation sources magic \emph{by resource theory}: a free bosonic
+two-mode-squeezed out-state is Gaussian and hence Wigner-positive
+(magic-free), with any finite-qubit stabilizer entropy an encoding artifact;
+only genuine non-Gaussianity (interactions) turns on Wigner negativity. The
+fermionic out-state, by contrast, has exact qubit non-local magic
+$-\log_2(4P^2-6P+3)$ that is non-monotonic in the occupation, and on the
+sudden de Sitter$\to$radiation transition this fermionic magic is strongly
+suppressed unless the transition is violent---so cosmological fermion magic
+is a probe of the violence of reheating. (ii) The de Sitter horizon, via its
+conjectured double-scaled-SYK dual, shows \emph{no} magic signature at the
+static level, but a robust one in the dynamics: the stabilizer entropy of
+the time-evolved thermofield double grows about twice as fast for a chaotic
+Hamiltonian as for a free one, and the chaotic--free late-time gap grows
+with system size ($+0.61,+1.03,+1.37$ at $N=8,10,12$; positive under a
+same-spectrum control for $N\ge 10$), the de Sitter analog of the
+magic$\leftrightarrow$area link. We state throughout what is a theorem, what
+is a conservative proxy, and where an initially over-stated claim was
+narrowed by adversarial cross-check.
+\end{abstract}
+
+\section{Introduction}
+
+Entanglement entropy fixes the Ryu--Takayanagi \emph{area}, but an area on a
+fixed background does not gravitate; producing state-dependent geometry and
+back-reaction requires a further resource, and recent work identifies it with
+non-stabilizerness, or ``magic''
+\citep{cao_area,cao_backreaction,cao_codes}. That identification has been
+developed in AdS holographic codes and in SYK. Here we ask the two natural
+``our universe'' questions it invites: does cosmological particle production
+generate magic (Section~\ref{sec:p1}), and is the de Sitter horizon magical
+(Section~\ref{sec:p2})?
+
+Both are addressed by exact computation in small toy models, reusing a
+Fast-Walsh--Hadamard stabilizer-entropy engine and standard SYK machinery.
+The organizing principle that emerges is a \emph{resource-theory} one: in the
+continuous-variable description magic is Wigner negativity, and free
+(Gaussian) sectors are magic-free by Hudson's theorem, so any magic must come
+from either the genuinely discrete (fermionic) sector or from interactions
+and chaos.
+
+\section{Magic of the expanding vacuum}
+\label{sec:p1}
+
+An expanding background turns the in-vacuum into an out-state of created
+pairs of opposite comoving momentum---a two-mode-squeezed (boson) or single
+Pauli-blocked pair (fermion) per mode. We compute the magic of that
+out-state.
+
+\subsection{Boson: a theorem-anchored null, and the non-Gaussian turn-on}
+\emph{[Section drafted by codex-science: the free bosonic two-mode-squeezed
+out-state is a pure Gaussian state, hence Wigner-positive and magic-free by
+Hudson's theorem / the continuous-variable Gottesman--Knill correspondence
+\citep{mari_eisert}; the finite Fock-to-qubit stabilizer entropy is an
+encoding artifact (relabel-dependent above two qubits per mode); and cubic
+non-Gaussianity turns on a nonzero Wigner-negative volume, with an
+ultra-slow-roll growth proxy after \citet{ireland_vennin}. This is already
+published for inflation as ``Inflation is Not Magic''
+\citep{inflation_not_magic}.]}
+
+\subsection{Fermion: exact qubit magic and the violence of reheating}
+Pauli exclusion makes the fermionic out-state a single pair per mode. Under
+the Jordan--Wigner map---which is exact because fermionic Fock space is
+two-dimensional per mode---mode $k$ and its partner form the two-qubit state
+$\alpha\ket{00}+\beta\ket{11}$ with $|\beta|^2$ the occupation. Its qubit
+non-local magic (the stabilizer Rényi entropy minimized over local
+unitaries) has the closed form
+\begin{equation}
+  \mathcal{M}(\beta) \;=\; -\log_2\!\big(4P^2-6P+3\big),
+  \qquad P=|\alpha|^4+|\beta|^4,
+\end{equation}
+verified to machine precision against a direct local-unitary minimization.
+It is \emph{non-monotonic}: it vanishes at the product limit
+($|\beta|^2=0$) \emph{and} at the maximally-mixed ``Bell'' point
+($|\beta|^2=\tfrac12$), and peaks at $\mathcal{M}=\log_2\tfrac43\approx0.415$
+where $|\beta|^2=\tfrac12(1\mp1/\sqrt2)$. Cosmological creation thus writes
+magic into an intermediate band of the occupation.
+
+The physically sharp statement rides the sudden de Sitter$\to$radiation
+transition whose scalar Bogoliubov coefficients are analytic
+\citep{byun_dsrad}, $|\beta_k|^2=1/(4x^4)$ with $x=k|\eta_e|$. The boson
+carries \emph{no} magic across this whole spectrum (Gaussian, above). A
+massless fermion is conformally invariant in a conformally-flat FRW universe
+and is not produced at all---an exact null. A massive fermion is produced,
+but for the paper's smooth ($C^1$) transition the production is strongly
+suppressed (peak occupation $\sim3\times10^{-4}$): the mass term $M=m\,a(\eta)$
+is $C^1$ and never couples to the $a''/a$ jump that drives boson production.
+Only a genuinely violent (sudden, $a'$-discontinuous) transition, for which
+the sudden-approximation occupation
+$n_k=\tfrac12\big(1-x/\sqrt{x^2+\mu^2}\big)$ runs from $\tfrac12$ in the
+infrared to $0$ in the ultraviolet, drives the occupation through the magic
+band. Hence
+\begin{center}
+\emph{cosmological fermion magic is a probe of the violence of reheating:}
+\end{center}
+negligible for a smooth transition, band-level only for a sudden one, and
+zero for a massless (conformal) fermion. The boson/fermion asymmetry has a
+one-line root: fermionic Fock space is two-dimensional per mode, so its
+qubit magic is physical, whereas bosonic Fock space is infinite-dimensional
+and any qubit magic is a truncation artifact.
+
+\section{Is the de Sitter horizon magical?}
+\label{sec:p2}
+
+The de Sitter static patch is conjecturally dual to double-scaled SYK
+\citep{dsjt_dssyk,doubled_dssyk}, giving a computable stand-in for the
+chaotic finite horizon Hilbert space; the honest dictionary is
+high-temperature and degree-of-freedom based, so we test scaling with a
+horizon-dof proxy rather than a temperature monotone. As a conservative
+executable proxy we use ordinary SYK$_4$ (chaotic) versus SYK$_2$ (free).
+
+\paragraph{The static level is a null.} At a fixed time, magic does not
+separate chaotic from free: the thermal-pure-quantum stabilizer entropy is
+extensive but barely differs between SYK$_4$ and SYK$_2$; the twin-controlled
+thermal-state magic even runs backwards (chaos flattens the spectrum toward
+maximal mixedness); and the infinite-temperature doubled thermofield double
+$\sum_E\ket{E}_L\ket{E^*}_R=\sum_i\ket{i}_L\ket{i}_R$ is exactly the Bell
+state, magic-free independent of the Hamiltonian. This null is confirmed
+across multiple measures.
+
+\paragraph{The dynamics reveals a signature.} The discriminator is the
+stabilizer entropy of the time-evolved thermofield double
+$\ket{\mathrm{TFD}(\beta,t)}\propto\sum_n e^{-\beta E_n/2}e^{-iE_nt}
+\ket{n}_L\ket{n}_R$, whose magic dynamics is expected to track the spectral
+form factor \citep{tfd_sff}. Two discriminators, both with error bars over
+independent disorder realizations:
+\begin{itemize}
+\item \textbf{Scrambling rise.} Chaotic SYK$_4$ thermofield-double magic
+grows about twice as fast as free SYK$_2$ under evolution; the rise ratio is
+$2.05,2.30,2.55,2.17$ at $N=6,8,10,12$---robust across size.
+\item \textbf{Extensive plateau gap.} The late-time SYK$_4$--SYK$_2$ magic gap
+is positive and grows with the number of degrees of freedom,
+$+0.61,+1.03,+1.37$ at $N=8,10,12$ (tight seeds at $N=12$,
+$+1.37\pm0.07$). Under a same-spectrum diagonal-basis control that removes the
+eigenbasis contribution the gap is $-0.14,+0.75,+0.94$ at $N=8,10,12$:
+positive and growing for $N\ge10$.
+\end{itemize}
+Strikingly, at a fixed time the \emph{free} system carries more magic (the
+static gap is negative); only under evolution does the chaotic system reveal
+its larger magic capacity. The growth of the gap with the horizon-dof count
+is the de Sitter analog of the magic$\leftrightarrow$area link
+\citep{cao_area}, seen dynamically where the static snapshot is flat.
+
+\section{Scope, and a note on method}
+
+Every model here is a toy: the fermion result is a two-level Dirac mode
+model, and the de Sitter results use a conservative SYK$_4$/SYK$_2$ proxy for
+double-scaled SYK at finite $N\le12$, not the full constrained double-scaled
+construction. The claims are correspondingly bounded: the boson null is a
+theorem, the fermion reheating-violence statement is a mechanism in a toy
+transition, and the horizon-magic signature is a scrambling-sensitive
+diagnostic whose extensive scaling is firmed for $N\ge10$ but wants larger
+$N$ / full DSSYK to become a theorem.
+
+We record one methodological point deliberately. The extensive plateau gap
+was first reported from a single disorder seed as a clean trend from small
+$N$; an independent-seed error-bar cross-check showed the smallest-$N$ point
+was a fluctuation (an actual sign crossover), and the claim was narrowed to
+its firmed form above. The correction, and the two agents' mutually
+adversarial cross-checks that produced it, are part of the result.
+
+\begin{thebibliography}{99}
+\small
+\bibitem{cao_area} C.~Cao \emph{et al.}, \emph{Non-trivial Area Operators
+Require Non-local Magic}, arXiv:2306.14996.
+\bibitem{cao_backreaction} \emph{Gravitational back-reaction is magical},
+arXiv:2403.07056.
+\bibitem{cao_codes} C.~Cao, W.~Cheng, A.~Karthikeyan, Y.~Li, J.~Preskill,
+\emph{State-dependent geometries from magic-enriched quantum codes},
+arXiv:2603.13475.
+\bibitem{mari_eisert} A.~Mari, J.~Eisert, \emph{Positive Wigner functions
+render classical simulation of quantum computation efficient}, PRL 109,
+230503 (2012).
+\bibitem{ireland_vennin} L.~Ireland, V.~Vennin, arXiv:2601.22219.
+\bibitem{inflation_not_magic} S.~S.~Haque, Jafari, B.~Underwood,
+\emph{Inflation is Not Magic}, arXiv:2512.10126.
+\bibitem{byun_dsrad} Byun, Kim, Lee, arXiv:2605.04099.
+\bibitem{dsjt_dssyk} \emph{dS JT Gravity and Double-Scaled SYK},
+arXiv:2209.09997.
+\bibitem{doubled_dssyk} arXiv:2310.16994.
+\bibitem{tfd_sff} \emph{Connecting Magic Dynamics in Thermofield Double
+States to Spectral Form Factors}, arXiv:2601.12787.
+\end{thebibliography}
+
+\end{document}
