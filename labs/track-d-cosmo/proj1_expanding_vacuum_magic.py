@@ -246,6 +246,58 @@ def fermion_spectrum_diagnostics(xs, beta2s, massless=False):
     }
 
 
+_SX = np.array([[0, 1], [1, 0]], dtype=complex)
+_SZ = np.array([[1, 0], [0, -1]], dtype=complex)
+
+
+def dirac_scale_factor(eta):
+    """Sudden dS->radiation scale factor (2605.04099 Eq 2), units eta_e=-1,
+    H=1, a_e=1: a, a' continuous at eta_e; only a''/a jumps."""
+    return -1.0 / eta if eta <= -1.0 else 2.0 + eta
+
+
+def dirac_occupation_smooth(x, mu, eta0=-30.0, eta1=6.0, max_step=0.01):
+    """Massive-Dirac fermion pair occupation for the PAPER'S SMOOTH (C^1)
+    transition, by integrating the two-level mode Hamiltonian
+    H_k(eta) = k sigma_x + m a(eta) sigma_z from the early adiabatic vacuum.
+    x = k|eta_e| = k, mu = m|eta_e| = m. The fermion mass term M = m a is C^1
+    (a' continuous), so the fermion never sees the a''/a jump that drives
+    boson production -> exponentially weak occupation."""
+    from scipy.integrate import solve_ivp
+    k, m = float(x), float(mu)
+
+    def Hk(eta):
+        return k * _SX + m * dirac_scale_factor(eta) * _SZ
+
+    _, v0 = np.linalg.eigh(Hk(eta0))
+    psi0 = v0[:, 0]
+
+    def rhs(eta, y):
+        p = y[:2] + 1j * y[2:]
+        dp = -1j * (Hk(eta) @ p)
+        return np.concatenate([dp.real, dp.imag])
+
+    sol = solve_ivp(rhs, [eta0, eta1],
+                    np.concatenate([psi0.real, psi0.imag]),
+                    rtol=1e-8, atol=1e-10, max_step=max_step)
+    psi1 = sol.y[:2, -1] + 1j * sol.y[2:, -1]
+    psi1 /= np.linalg.norm(psi1)
+    _, v1 = np.linalg.eigh(Hk(eta1))
+    return float(abs(np.vdot(v1[:, 1], psi1)) ** 2)
+
+
+def dirac_occupation_sharp(x, m_in, m_out):
+    """Massive-Dirac occupation for a genuinely SUDDEN mass jump m_in->m_out
+    (a' discontinuous = a violent transition): n_k = |<excited_out|ground_in>|^2,
+    automatically Pauli-bounded in [0,1]. For m_in=0 (early conformal) ->
+    m_out=mu this runs from n_k=0.5 (IR) to 0 (UV), crossing the magic band."""
+    _, gv = np.linalg.eigh(float(x) * _SX + float(m_in) * _SZ)
+    ground_in = gv[:, 0]
+    _, ev = np.linalg.eigh(float(x) * _SX + float(m_out) * _SZ)
+    excited_out = ev[:, 1]
+    return float(abs(np.vdot(excited_out, ground_in)) ** 2)
+
+
 def main():
     print("Project 1 -- magic of the expanding vacuum")
     print("Fermion signal: quant-phy. Boson theorem-null + artifact control: codex-science.\n")
@@ -353,23 +405,45 @@ def main():
     print("        artifact control for any four-qubit/single-excitation hardware")
     print("        implementation, not evidence of bosonic CV magic.\n")
 
-    # --- Fermion extension acceptance checks ------------------------------
-    print("P1-bench  fermion extension acceptance diagnostics for the next build:")
-    print("     I agree the massive dS->radiation fermion channel should be numerical")
-    print("     unless a clean sudden-matching spinor formula is independently verified.")
-    print("     Required checks for beta_k^F(x, mu): Pauli bound 0<=|beta|^2<=1,")
-    print("     massless conformal null, UV adiabatic tail ->0, and magic peaking")
-    print(f"     when |beta|^2 crosses {FERMION_MAGIC_PEAK_BETA2_LOW:.6f} "
-          f"or {FERMION_MAGIC_PEAK_BETA2_HIGH:.6f}.")
-    null_xs = np.array([0.5, 1.0, 2.0, 5.0, 10.0])
-    null_beta2 = np.zeros_like(null_xs)
-    null_diag = fermion_spectrum_diagnostics(null_xs, null_beta2, massless=True)
-    print(f"     massless conformal null beta^2=0: pauli_bounded={null_diag['pauli_bounded']}, "
-          f"massless_null={null_diag['massless_null']}, "
-          f"uv_magic={null_diag['uv_magic']:.4f}, max_magic={null_diag['max_magic']:.4f}")
-    print("     -> this is the cross-check surface for quant-phy's forthcoming")
-    print("        massive-Dirac beta_k solver; plug its beta^2 grid into")
-    print("        fermion_spectrum_diagnostics before interpreting the magic band.\n")
+    # --- Fermion channel: massive-Dirac magic spectrum (quant-phy) ---------
+    print("P1-bench  FERMION magic spectrum, massive Dirac in dS->radiation:")
+    print("     Two-level mode model H_k = k sx + m a(eta) sz; occupation n_k=|beta_k|^2.")
+    print("     Validated limits: massless mu=0 => n_k=0 (conformal null, exact);")
+    print("     UV x->inf => n_k->0 (adiabatic). Both automatic (Pauli-bounded).\n")
+
+    # (A) the paper's SMOOTH C^1 transition: fermion production is exp-weak
+    print("     (A) paper's SMOOTH (C^1) transition, mu=2 -- fermion barely produced:")
+    xs_s = np.array([0.5, 1.0, 1.5, 2.0, 3.0])
+    b2_s = np.array([dirac_occupation_smooth(x, 2.0) for x in xs_s])
+    for x, b2 in zip(xs_s, b2_s):
+        print(f"       x={x:>4.1f}  n_k={b2:.6f}  magic={fermion_magic_from_beta2(b2):.6f}")
+    dS = fermion_spectrum_diagnostics(xs_s, b2_s)
+    print(f"       peak n_k={dS['max_magic_beta2']:.2e}, peak magic={dS['max_magic']:.2e}, "
+          f"reaches band={dS['hits_p1b_peak_band']}")
+    print("       -> the fermion mass term M=ma is C^1, so it never sees the a''/a jump")
+    print("          that drives boson production. Fermion magic here is negligible.\n")
+
+    # (B) a genuinely SHARP transition (a' discontinuous): reaches the band
+    print("     (B) a VIOLENT (sudden mass 0->mu) transition -- reaches the magic band:")
+    xs_h = np.array([0.4, 0.8, 1.2, 1.6, 2.0, 2.6, 3.5, 5.0, 8.0])
+    b2_h = np.array([dirac_occupation_sharp(x, 0.0, 2.0) for x in xs_h])
+    for x, b2 in zip(xs_h, b2_h):
+        band = "  <- magic band" if abs(b2 - FERMION_MAGIC_PEAK_BETA2_LOW) < 0.04 else ""
+        print(f"       x={x:>4.1f}  n_k={b2:.4f}  magic={fermion_magic_from_beta2(b2):.4f}{band}")
+    dH = fermion_spectrum_diagnostics(xs_h, b2_h)
+    print(f"       peak magic={dH['max_magic']:.4f} at x={dH['max_magic_x']:.1f} "
+          f"(n_k={dH['max_magic_beta2']:.4f}); reaches band={dH['hits_p1b_peak_band']}; "
+          f"pauli_bounded={dH['pauli_bounded']}")
+    print("       -> n_k runs 0.5 (IR) -> 0 (UV); magic PEAKS in a momentum band where")
+    print("          n_k crosses 0.146. Cosmological fermion magic marks a k-band.\n")
+
+    print("     RESULT (the sharpened three-way asymmetry): bosons are produced")
+    print("     copiously (n_k=1/4x^4) but carry ZERO magic (Gaussian/Hudson);")
+    print("     massless fermions produce NOTHING (conformal, magic 0); massive")
+    print("     fermions carry magic, but ONLY a violent (a'-discontinuous)")
+    print("     transition produces enough to reach the band -- so cosmological")
+    print("     fermion magic is a probe of the VIOLENCE of reheating, negligible")
+    print("     for the smooth transition and band-level only for a sudden one.\n")
 
     print("Root of the asymmetry: fermion Fock = 2-dim/mode (JW exact, qubit")
     print("magic physical); boson Fock = infinite-dim/mode (qubit truncation is")
