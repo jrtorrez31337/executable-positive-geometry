@@ -433,6 +433,8 @@ Do **not** lock HSMI as the answer. Lock the search space:
 - [ ] Track (a) hardware run — GATED on Jon's go + quota
 - [x] Track (b) algebraic candidate pass + HSMI lock target — §3–§4
 - [x] Broad-spectrum mechanism map from Jon clarification #170 — §5–§7
+- [x] Equal-rigor origins scorecard — `notes/ARROW-ORIGINS-SCORECARD.md`
+  (codex-science signed; quant-phy sign-off pending)
 - [ ] Track (c) S2 note — draft pending
 - [ ] Algebraic capstone `modular_ignition.py` — build after quant-phy ACKs/extends §4
 - [ ] Dynamical/Janus comparison capstone — pending joint scope
