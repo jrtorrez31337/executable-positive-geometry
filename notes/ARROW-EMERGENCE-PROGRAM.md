@@ -10,6 +10,12 @@ This is the plan + quant-phy's opening formulation of the missing piece. Tobin
 posts an independent formulation; we converge here. Two-agent model as with
 `corpus/FRONTIER-2026.md` and the S4 sign-off.
 
+**Broadened 2026-07-12.** Jon clarified through quant-phy (#170) that the
+half-sided-modular-inclusion bet is one candidate, not the answer. The program
+now maps the full spectrum of arrow-start mechanisms, then asks whether the
+dynamical-complexity and algebraic-positive-generator families are secretly one
+mechanism.
+
 ---
 
 ## 0. Where we are (the honest baseline)
@@ -210,7 +216,7 @@ II_1 entropy story with no HSMI-positive-generator structure.
   Neither source, as checked here, supplies the HSMI positive translation
   generator required for Track (b).
 
-## 4. Formulation lock (joint target after Tobin pass)
+## 4. Algebraic candidate lock (HSMI, not the whole-program answer)
 
 **Locked claim, qualified.** The new Track (b) object is not "entropy grows"
 and not "modular flow is time." It is:
@@ -232,7 +238,122 @@ the finite regulator exhibits the continuum emergence of:
 The capstone fails if those three are absent or if the only arrow visible is
 again an S3/GSL relative-entropy monotone.
 
-## 5. The three tracks + the capstone
+## 5. Full-spectrum map after Jon clarification (#170)
+
+The organizing question is no longer "is HSMI the answer?" It is: **what kind
+of mechanism can make a flow of time start?** I classify candidates by what is
+doing the work.
+
+### 5.1 Mechanism families
+
+| Family | Examples / anchors | What starts the flow? | Verdict |
+|---|---|---|---|
+| **Inherited boundary** | Boltzmann Past Hypothesis; Penrose Weyl-curvature hypothesis; Carroll-Chen `hep-th/0410270` as a two-headed inflationary variant | A special low-entropy or low-Weyl boundary/neck is selected, then ordinary dynamics carries the arrow away from it | Explains alignment but does not ignite the arrow from the laws alone; the low-order condition is the input |
+| **Observer / manufactured** | P-B record tracing; S3 conditioning; decoherence / Quantum Darwinism; S4-GSL entropy under algebra restriction | An inside description discards, conditions on, or restricts information | Real and experimentally accessible, but cheap: it manufactures an arrow from perspective/coarse-graining |
+| **Dynamical ignition** | Barbour-Koslowski-Mercati `1310.5167`, `1409.0917`; shape complexity / Janus point | A time-symmetric closed gravitational system generically has a minimum-complexity point; records and complexity grow toward both branches | Best genuine-ignition candidate: the arrow is a branch property of the solution, not an imposed initial macrostate |
+| **Sequential growth / causal set** | Rideout-Sorkin `gr-qc/9904062` classical sequential growth | New causal-set elements are born by a stochastic growth law satisfying discrete general covariance and Bell causality | Candidate ignition if birth is physical; if label order is gauge, the physical remnant is causal order, not external becoming |
+| **Complexity second law** | Brown-Susskind `1701.01107`; black-hole/interior complexity growth | Less-than-maximal complexity is a resource that overwhelmingly evolves toward higher complexity | Dynamical after uncomplexity exists; not a complete start mechanism unless low initial complexity is typical or derived |
+| **Algebraic positive generator** | Connes-Rovelli thermal time; Borchers-Wiesbrock HSMI; Ceyhan-Faulkner `1812.04683` | A standard algebraic inclusion produces a positive generator and one-sided semigroup of algebra inclusions | Rigorous candidate, but conditional: the inclusion/spectrum condition must be derived or tied to a dynamical start |
+| **Explicit law-level arrow** | Objective-collapse models; fundamental T/CP-violating dynamics if promoted to macroscopic arrow | The law is time-asymmetric | Not emergence; useful as a control class because it hard-codes what we are trying to explain |
+| **Two-boundary / postselected arrows** | Gold-style final conditions; ABL/two-state-vector/postselection families; time-symmetric cosmologies with a special middle or endpoints | Both ends, or a middle neck, constrain admissible histories | Usually inherited rather than ignited; can mimic two-headed arrows and must be kept separate from Janus-style typicality |
+
+### 5.2 Which families genuinely ignite?
+
+**Strongest ignition candidates.**
+
+1. **Janus / shape-complexity gravity** ignites most cleanly at the global
+   solution level: a minimum-complexity Janus point is not chosen as a
+   low-entropy macrostate but appears generically in the closed unconfined
+   model. The caveats are model-dependence, typicality measure, and extension
+   from Newtonian shape dynamics to GR/QFT.
+2. **Algebraic HSMI** ignites most cleanly at the local/operator level: a
+   standard half-sided inclusion gives a positive generator and a forward
+   inclusion semigroup. The caveat is that the inclusion/spectrum condition is
+   an input unless a dynamics produces it.
+3. **Causal-set sequential growth** is genuine if "birth" is ontic. Under
+   discrete general covariance, however, label-time is gauge; then it gives a
+   causal order, not necessarily a felt flow.
+
+**Borderline.** Complexity second law is powerful once the system has
+uncomplexity. It becomes ignition only if the low-complexity resource is
+itself derived from typicality, a Janus point, or an algebraic constraint.
+
+**Not ignition.** Past Hypothesis, Weyl-curvature boundary conditions,
+ordinary inflationary arrows, observer coarse-graining, GSL-as-entropy
+monotonicity, and explicit time-asymmetric laws all either assume the arrow,
+manufacture it perspectivally, or write it into the law.
+
+## 6. Stress test: Janus complexity vs algebraic positive generator
+
+**Candidate unification.** The two serious mechanisms may be the same pattern
+in different languages:
+
+> A flow starts when a self-contained system has (i) a distinguished
+> low-complexity/standard point, (ii) an order on accessible substructures, and
+> (iii) a positive generator whose forward semigroup refines that order.
+
+In Janus language, the distinguished point is the minimum of shape complexity;
+the order is record formation along a branch; the monotone is complexity. In
+HSMI language, the distinguished point is the standard cyclic-separating pair;
+the order is algebra inclusion; the monotone generator is `P >= 0`. A real
+synthesis would show that branch-wise record growth can be represented as a
+net of nested algebras with a positive modular translation, or conversely that
+the HSMI semigroup carries a natural complexity that grows along `a >= 0`.
+
+**Strongest case against unification.**
+
+- Janus is global and two-headed; HSMI is local and one-sided. They only match
+  if a Janus solution yields two oppositely oriented HSMI branches, related by
+  the modular reflection `J`.
+- Shape complexity is nonlinear, classical, and coarse; `P` is a linear
+  self-adjoint generator in an operator algebra. No theorem currently maps
+  `dC/da >= 0` to `P >= 0`.
+- Janus produces records dynamically; HSMI assumes a standard inclusion. If
+  the inclusion is not generated by the same dynamics that creates records,
+  HSMI is a kinematic arrow, not the start of the flow.
+- Complexity growth can occur without an algebraic half-sided inclusion, and
+  an HSMI can exist without an obvious complexity-growth interpretation. Either
+  result would split the mechanisms.
+
+**Bridge conjecture to test.** On each Janus branch, construct a record algebra
+`M_a` generated by degrees of freedom accessible up to branch parameter `a`.
+If `M_{a+da} subset M_a` or the reverse orientation forms a half-sided modular
+net with generator `P_branch >= 0`, then Janus/dynamical ignition and HSMI
+positive-generator ignition are the same mechanism at different scales. If no
+standard inclusion can be extracted, the two mechanisms stay distinct.
+
+**Observable for the synthesis.**
+
+- Janus side: shape complexity `C(a)` and record count/mutual information grow
+  away from the Janus point on both branches.
+- Algebra side: `neg_mass(P_N) -> 0`, `cov_defect_N -> 0`, and one-sided
+  nesting asymmetry persists.
+- Unification side: the same branch parameter orders both `C(a)` and the
+  algebra net, with `sign(dC/da)` matching the sign choice of `P_branch`.
+
+**Falsifier for "one mechanism."** The unification fails if Janus branches have
+robust complexity/record growth but no extractable positive-inclusion
+semigroup, or if the HSMI regulator succeeds while carrying no branch
+complexity/record monotone. In that case the program should keep two arrows:
+global dynamical ignition and local algebraic orientation.
+
+## 7. Revised program lock
+
+Do **not** lock HSMI as the answer. Lock the search space:
+
+1. **Algebraic deep-dive:** keep §3–§4 as the HSMI candidate and build
+   `modular_ignition.py` only as an algebraic-positive-generator capstone.
+2. **Dynamical deep-dive:** add a Janus/shape-complexity toy or analysis note
+   that makes the two-headed complexity arrow explicit and records its
+   falsifiers.
+3. **Synthesis test:** only claim "we found how the flow starts" if a common
+   positive-order structure links the Janus/complexity branch and the HSMI
+   semigroup. Otherwise report two non-equivalent ignition mechanisms.
+4. **Controls:** inherited-boundary, observer-manufactured, law-level, and
+   two-boundary mechanisms stay in the table as controls, not as the primary
+   explanation.
+
+## 8. The three tracks + capstones
 
 - **Track (a) — modular clock on hardware.** PREVIEW DONE:
   `labs/track-c-time/modular_arrow_predict.py` (exact three-line prediction:
@@ -255,23 +376,33 @@ again an S3/GSL relative-entropy monotone.
   the arrow of time appearing from the flow structure, not from conditioning.
   Success = the §3 observable set plus the §4 locked criteria; falsifier = the
   §3 falsifier. Owner: joint, after quant-phy ACKs/extends the lock.
+- **Synthesis capstone — compare dynamical and algebraic ignition.** A
+  Janus/shape-complexity toy or analysis note should plot branch complexity and
+  record formation, then ask whether the same branch parameter can order a
+  nested algebra net. Success = common positive-order structure; falsifier =
+  §6. Owner: joint, after the algebraic and dynamical deep-dives exist.
 
-## 6. Collaboration protocol
+## 9. Collaboration protocol
 
 1. quant-phy posts this formulation to Tobin on the bus with the four §2
    questions.
 2. Tobin runs an independent extended-thinking formulation of the missing piece
    + a literature check (Borchers, Wiesbrock, and any finite/lattice HSMI or
    DSSYK-generator work) and posts back.
-3. Converge §1–§3 here (the joint "formulation lock" block in §4), the way S4
-   was signed off. Only then build the capstone toy.
+3. Converge §1–§7 here (algebraic lock + full-spectrum map), the way S4 was
+   signed off. Only then build capstone toys.
 4. Tracks (a) and (c) proceed in parallel and get checked off here as done.
+5. Jon clarification #170 broadens the scope: HSMI remains a candidate, while
+   Janus/complexity and causal-set/complexity-law families stay live until the
+   synthesis test is resolved.
 
-## 7. Status board
+## 10. Status board
 
 - [x] Track (a) preview simulation — `modular_arrow_predict.py` (this commit)
 - [ ] Track (a) hardware run — GATED on Jon's go + quota
-- [x] Track (b) Tobin independent pass + formulation-lock target — this note
+- [x] Track (b) algebraic candidate pass + HSMI lock target — §3–§4
+- [x] Broad-spectrum mechanism map from Jon clarification #170 — §5–§7
 - [ ] Track (c) S2 note — draft pending
-- [ ] Capstone `modular_ignition.py` — build after quant-phy ACKs/extends §4
+- [ ] Algebraic capstone `modular_ignition.py` — build after quant-phy ACKs/extends §4
+- [ ] Dynamical/Janus comparison capstone — pending joint scope
 - [ ] Everything documented + both agents signed off
