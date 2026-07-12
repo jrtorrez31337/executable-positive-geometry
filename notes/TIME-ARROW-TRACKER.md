@@ -65,6 +65,37 @@ The arrow is manufactured by the act of viewing from within.
 metaphysics). **Independence:** independent of S1/S2 (no quantum
 mechanics, no relativity — pure probability).
 
+### S4 — Modular / thermal time (2026-07-11, out of the holographic-bound filing)
+**Context:** the holographic-bound survey (`corpus/FRONTIER-2026.md` Front 4)
+surfaced the crossed-product / von Neumann-algebra program; the arrow-of-time
+extended-work sweep (`notes/ARROW-EXTENDED-WORK.md`) then found the modular /
+thermal-time literature under it. **Statement:** for a von Neumann algebra with
+a **cyclic-separating** state (the operator-algebra form of self-containment —
+no outside), Tomita–Takesaki gives a canonical modular automorphism group σ_t;
+Connes–Rovelli's thermal time hypothesis (gr-qc/9406019) identifies it as an
+intrinsic time made *by the state itself*. It reproduces the project's own
+clock-vs-arrow split: σ_t is a reversible *group* (a clock, ≈ P-A), and the
+**arrow** appears only when the observer is adjoined — the crossed product turns
+Type III₁ → Type II (Witten 2112.12828), minting a finite von Neumann entropy =
+S_gen whose **monotonicity under inclusion IS the generalized second law**
+(Faulkner–Speranza 2405.00847). Independently, closing de Sitter on one
+static-patch observer forces the same Type II₁ modular structure (CLPW
+2206.10780) — the operator-algebra cousin of **S1**.
+**Tier:** 🟡 (Tomita–Takesaki is a theorem and QNEC is proven in QFT
+(1706.09432); but "modular flow = physical time" is a *hypothesis*, the GSL
+holds under Wall's assumptions (1105.3445), and QFC (1506.02669) is a
+conjecture). **Independence (Rule 1, honest):** the **clock half** (modular
+time from a cyclic-separating state) is genuinely out-of-ancestry — a fifth
+formalism (operator algebras), distinct from GR quotients / QI-Wigner /
+classical probability / Page–Wootters; and CLPW gives a clean independent dS
+hit matching S1. The **arrow half** (GSL monotonicity) is the *same species* as
+S3 (monotone entropy under restriction) with deeper, theorem-level content — do
+NOT double-count it as fully new; its worth is the *unification* of S3 with the
+field-theory second law. Chua (2407.18948) is logged as the standing skeptical
+check: modular flow being a group, "directed time" needs the extra
+monotonicity/type-II input — exactly the P-A→P-B step. **Counts as a QUALIFIED
+out-of-ancestry sighting.**
+
 ### S0 — Standing background fact (whole project)
 Every structure this project built or verified is **timeless**: positive
 geometries, canonical forms, code subspaces, frozen ground states,
@@ -171,3 +202,30 @@ on hardware*. Standing caveat unchanged: hardware instantiates the same
 theory that generated the prediction; this round adds survival under
 real decoherence with an internal control, not theory-independence.
 The remaining upgrade path is an out-of-ancestry sighting.
+
+## Verdict update round 3 (2026-07-11, the out-of-ancestry sighting)
+
+The remaining upgrade path named above — *an out-of-ancestry sighting* — is
+now met, with a caveat. **S4 (modular / thermal time)** supplies a fifth
+formalism (operator algebras: Tomita–Takesaki / Connes–Rovelli), in which
+"self-containment manufactures time" is not an analogy but the defining
+construction, and in which the second law appears as a *monotonicity theorem*
+rather than a stipulated boundary condition. Two independent pieces of
+evidence within it: the clock half (modular time from a cyclic-separating
+state) is genuinely novel; and CLPW (2206.10780) reaches **S1's exact de
+Sitter conclusion** through a completely different formalism.
+
+**Why "qualified," not a clean upgrade:** S4's arrow half (GSL monotonicity)
+is the same species as S3 and must not be double-counted (Rule 1). So the
+sighting adds one independent *clock* mechanism + one independent *dS* hit,
+and *unifies* the S3 arrow with the field-theory second law — it does not add
+a fully independent *arrow*. Status therefore moves from *"suggestive,
+twice-tested, once on hardware"* to **"suggestive, twice-tested on hardware +
+one qualified out-of-ancestry formalism."** Short of "evidence for
+universality" still, on the stated standard.
+
+**Open convergence item:** whether the arrow half can be made *independent* of
+S3 — a directed modular arrow needing no entropy-monotonicity input — is the
+question that would turn the qualified upgrade into a clean one. Logged for
+Tobin's independent sweep (see `notes/ARROW-EXTENDED-WORK.md` §4). Full survey,
+verified literature by thread, and buildable next labs: same file.

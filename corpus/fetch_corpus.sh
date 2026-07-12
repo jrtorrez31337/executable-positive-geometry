@@ -74,5 +74,8 @@ fetch 2601.07915 "2-holography-emergence/2026-chandrasekaran-flanagan-horizon-su
 fetch 2511.00622 "2-holography-emergence/2026-chen-xu-covariant-desitter-observers.pdf"
 fetch 2511.21852 "2-holography-emergence/2026-sahu-etal-generalized-entanglement-wedges.pdf"
 fetch 2403.09021 "2-holography-emergence/2026-vn-algebras-double-scaled-syk.pdf"
+# Modular / thermal time — the arrow-of-time (Track C) anchors of the above
+fetch gr-qc/9406019 "2-holography-emergence/1994-connes-rovelli-thermal-time-von-neumann.pdf"
+fetch 2206.10780    "2-holography-emergence/2022-chandrasekaran-longo-penington-witten-desitter-algebra.pdf"
 
-echo "corpus complete: $(find . -name '*.pdf' | wc -l)/48 papers"
+echo "corpus complete: $(find . -name '*.pdf' | wc -l)/50 papers"
