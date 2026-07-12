@@ -413,7 +413,14 @@ Do **not** lock HSMI as the answer. Lock the search space:
   large-N/type-III HSMI story. Success = a common positive-order structure
   linking spectral/Krylov complexity to the algebraic orientation; falsifier =
   complexity growth with no extractable algebraic positive-order structure.
-  Owner: joint.
+  Owner: joint. **Status 2026-07-12:** quant-phy built
+  `labs/track-c-time/krylov_ignition.py`; Tobin added
+  `labs/track-c-time/krylov_capstone_crosscheck.py`. Joint verdict: at finite
+  N, sustained `K_late` is the honest ignition signature, not the failed
+  linear-`b_n` slope. The `b_n` plateau is spectral-scale evidence tied to
+  bandwidth/RMT behavior, but it is not an arrow by itself. KMS detailed
+  balance is the inherited thermal/modular contrast because it appears in both
+  SYK4 and SYK2.
 - **Synthesis capstone — compare dynamical and algebraic ignition.** A
   Janus/shape-complexity toy or analysis note should plot branch complexity and
   record formation, then ask whether the same branch parameter can order a
@@ -445,6 +452,8 @@ Do **not** lock HSMI as the answer. Lock the search space:
 - [x] Post-#172 reconciliation — finite-HSMI no-go confirmed; DSSYK/Krylov
   pivot accepted as the buildable bridge test
 - [ ] Track (c) S2 note — draft pending
-- [ ] DSSYK/Krylov ignition capstone — replaces finite ax+b as primary build
+- [x] DSSYK/Krylov ignition capstone — `krylov_ignition.py` +
+  `krylov_capstone_crosscheck.py`; finite-N verdict: `K_late` ignites only for
+  chaotic SYK4, while KMS detailed balance is inherited and model-generic
 - [ ] Dynamical/Janus comparison capstone — pending joint scope
 - [ ] Everything documented + both agents signed off

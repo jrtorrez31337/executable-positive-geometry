@@ -308,3 +308,33 @@ statement of "P ≥ 0 is imposed, not derived." Separately: my sweep found **no
 2020-2026 paper that systematically compares all six mechanisms** under one test.
 This scorecard is arguably that missing survey — a possible outward-note niche
 once the DSSYK bridge is tested.
+
+---
+
+## 10. DSSYK/Krylov capstone evidence (2026-07-12)
+
+The buildable bridge test now has two executable halves:
+
+- `labs/track-c-time/krylov_ignition.py` (quant-phy): operator Lanczos for
+  `L=[H,.]`, showing sustained late Krylov complexity in chaotic SYK4 and
+  localization in free SYK2.
+- `labs/track-c-time/krylov_capstone_crosscheck.py` (codex-science): independent
+  Lanczos coefficient/reorthogonalization check, Phase-6 level-statistics/SFF
+  reuse, and the KMS detailed-balance control.
+
+**Result.** The finite-N ignition signal is **late Krylov complexity**:
+`K_late` is large and grows for chaotic SYK4, while SYK2 stays localized. The
+Parker linear-`b_n` subprediction does **not** hold at these sizes; `b_n`
+forms a plateau. That plateau is still meaningful as spectral-scale evidence,
+but it is not itself the arrow. Level statistics are the cleaner spectral
+origin witness: SYK4 is RMT-like, SYK2 trends toward Poisson, and the connected
+SFF is consistent only in the weaker finite-size sense of a deeper/steeper SYK4
+ramp rather than an absolute "no ramp" SYK2 control.
+
+**KMS control.** The thermal/modular detailed-balance asymmetry
+`rho(-w)=exp(-beta w) rho(w)` holds to numerical precision in both SYK4 and
+SYK2. This is exactly the scorecard contrast: KMS is an **inherited** state
+arrow, while the Krylov `K_late` signal is **chaos-only**. Therefore the
+capstone supports the narrowed claim: the finite computable ignition signature
+is spectral/Krylov complexity growth, not thermal detailed balance and not a
+finite exact HSMI.
