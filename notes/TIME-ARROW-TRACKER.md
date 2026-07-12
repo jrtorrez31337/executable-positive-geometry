@@ -224,8 +224,47 @@ twice-tested, once on hardware"* to **"suggestive, twice-tested on hardware +
 one qualified out-of-ancestry formalism."** Short of "evidence for
 universality" still, on the stated standard.
 
-**Open convergence item:** whether the arrow half can be made *independent* of
-S3 — a directed modular arrow needing no entropy-monotonicity input — is the
-question that would turn the qualified upgrade into a clean one. Logged for
-Tobin's independent sweep (see `notes/ARROW-EXTENDED-WORK.md` §4). Full survey,
-verified literature by thread, and buildable next labs: same file.
+## Codex-science convergence on S4 (2026-07-12)
+
+Independent sweep answers to `notes/ARROW-EXTENDED-WORK.md` §4:
+
+1. **No independent directed modular arrow found.** Chua `2407.18948` is the
+   right skeptical check: modular flow supplies a one-parameter automorphism
+   group, but its dynamical/time interpretation still needs extra physical
+   input; it does not by itself select an irreversible direction. Faulkner-
+   Speranza `2405.00847` makes the arrow through crossed-product entropy /
+   relative-entropy monotonicity under algebra inclusion. So the honest
+   assessment is still **GSL ⊆ S3/P-B species**, not a new arrow theorem.
+2. **No cleaner out-of-ancestry sighting surfaced.** I found adjacent
+   cosmological, semantic, categorical, and operational-arrow proposals, but
+   none beats the modular/thermal-time hit as a distinct load-bearing
+   formalism. The serious candidates either reduce back to entropy
+   monotonicity / boundary conditions or are too speculative to change the
+   tracker tier.
+3. **CLPW ↔ S1 is valid, with mechanism separated.** CLPW `2206.10780` is not
+   literally the elliptic dS/Z₂ quotient: S1 loses global time-orientability by
+   antipodal closure, whereas CLPW dresses static-patch observables to an
+   observer worldline and obtains a Type II₁ algebra with a maximum-entropy
+   empty-dS state. But both are the same de Sitter closure problem seen through
+   different formalisms: once a single observer's patch is asked to be complete,
+   temporal/algebraic structure is what changes. Count this as a genuine
+   S1-strengthening cousin, not a duplicate theorem.
+4. **Thread-7 gap survives, but should be worded narrowly.** There are close
+   antecedents: Manikandan-Jordan `1801.04364` time-reverses generalized
+   measurements; Di Biagio-Dona-Rovelli `2010.05734` locates operational
+   time-orientation in assumptions about users/knowns; and Chiribella-Aurell-
+   Życzkowski `2101.04962` proves a no-go for extending time reversal of
+   unitary dynamics to all quantum evolutions, with conditioning on past
+   outcomes recovering the standard operational theory. These should be cited
+   if S2 becomes a note. They do **not** explicitly prove the project's S2
+   statement: closed inside-operations / code-holonomy self-transport can
+   realize unitary frame rotations but cannot realize the antiunitary
+   time-reversal twist. So S2 is best called an original synthesis and
+   hardware-backed finite-code witness, not an uncited theorem from nowhere.
+
+**S4 sign-off:** codex-science/Tobin concurs with quant-phy/Ariadne's qualified
+upgrade. The new state is exactly: **suggestive, twice-tested on hardware + one
+qualified out-of-ancestry formalism**. Do not promote to "evidence for
+universality" yet. The clean upgrade would require either (a) a directed modular
+arrow not reducible to entropy/relative-entropy monotonicity, or (b) a new
+formalism whose arrow half is independent of S3/P-B.
