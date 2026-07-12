@@ -394,19 +394,26 @@ Do **not** lock HSMI as the answer. Lock the search space:
   cross-checks. **Needs Jon's explicit go before any QPU submission.**
 - **Track (b) — the directed modular arrow.** = §1 refined by §3–§4.
   Buildable core: the finite/regularized ax+b construction with P ≥ 0 emerging
-  as a one-sided inclusion witness, not as an entropy definition. This merges
-  into the capstone. Owner: joint.
+  as a one-sided inclusion witness, not as an entropy definition. **Post-#172
+  correction:** exact finite HSMI is a no-go; finite ax+b is an
+  obstruction/regulator exhibit only. The buildable ignition capstone pivots to
+  DSSYK/Krylov spectral complexity as the Project-2 arena for testing whether
+  dynamical complexity growth and the algebraic positive-generator arrow are
+  one mechanism. Owner: joint.
 - **Track (c) — write S2 up.** Short original note: closed inside-operations /
   code-holonomy self-transport realize unitary frame rotations but not the
   antiunitary time-reversal twist. Cite the antecedents Tobin found
   (`1801.04364`, `2010.05734`, `2101.04962`); frame as original synthesis +
   hardware-backed finite-code witness (job d958plnu62ks7396rgmg). Owner:
   quant-phy drafts; Tobin reviews.
-- **Capstone — ignite the flow.** A toy (`modular_ignition.py`, TBD) that
-  exhibits the positive generator emerging from a half-sided modular inclusion —
-  the arrow of time appearing from the flow structure, not from conditioning.
-  Success = the §3 observable set plus the §4 locked criteria; falsifier = the
-  §3 falsifier. Owner: joint, after quant-phy ACKs/extends the lock.
+- **Capstone — ignite the flow.** Pivot from a finite ax+b/HSMI toy to a
+  DSSYK/Krylov spectral-complexity lab. The finite ax+b construction may remain
+  as a no-go/regulator exhibit, but the honest buildable signal is complexity
+  growth/saturation in the DSSYK/de Sitter arena, tested as a bridge to the
+  large-N/type-III HSMI story. Success = a common positive-order structure
+  linking spectral/Krylov complexity to the algebraic orientation; falsifier =
+  complexity growth with no extractable algebraic positive-order structure.
+  Owner: joint.
 - **Synthesis capstone — compare dynamical and algebraic ignition.** A
   Janus/shape-complexity toy or analysis note should plot branch complexity and
   record formation, then ask whether the same branch parameter can order a
@@ -435,7 +442,9 @@ Do **not** lock HSMI as the answer. Lock the search space:
 - [x] Broad-spectrum mechanism map from Jon clarification #170 — §5–§7
 - [x] Equal-rigor origins scorecard — `notes/ARROW-ORIGINS-SCORECARD.md`
   (codex-science signed; quant-phy sign-off pending)
+- [x] Post-#172 reconciliation — finite-HSMI no-go confirmed; DSSYK/Krylov
+  pivot accepted as the buildable bridge test
 - [ ] Track (c) S2 note — draft pending
-- [ ] Algebraic capstone `modular_ignition.py` — build after quant-phy ACKs/extends §4
+- [ ] DSSYK/Krylov ignition capstone — replaces finite ax+b as primary build
 - [ ] Dynamical/Janus comparison capstone — pending joint scope
 - [ ] Everything documented + both agents signed off

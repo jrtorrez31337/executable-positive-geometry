@@ -17,7 +17,7 @@ question.
 | Family | Strongest version | Strongest objection | Smuggled direction | Tier | Ignition verdict |
 |---|---|---|---|---|---|
 | Inherited boundary | Past Hypothesis / Penrose Weyl curvature / Carroll-Chen two-headed cosmology | It explains downstream alignment but selects the low-order boundary by hand | The special boundary or neck is already the arrow seed | Conditional, established as an explanation of alignment | **No ignition** |
-| Dynamical ignition | Janus shape-complexity gravity; causal-set sequential growth; second law of complexity | Each candidate may hide an initial low-complexity/empty/growth-order input | Janus branch choice, empty causet birth order, or initial uncomplexity | Model-dependent, live | **Best candidate, not cleared** |
+| Dynamical ignition | Janus shape-complexity gravity; causal-set sequential growth; second law of complexity | Each candidate may hide an initial low-complexity/empty/growth-order input | Janus branch choice, empty causet birth order, or initial uncomplexity | Model-dependent, live | **Janus best; causal/complexity hybrid** |
 | Observer / manufactured | Records, decoherence, conditioning, GSL/restriction, hardware P-B | Explains experienced arrows, not the start of time's flow | Low-entropy environment, chosen coarse-graining, future-directed records | Established operationally | **No origin; manufactured arrow** |
 | Algebraic positive generator | Thermal time, Borchers-Wiesbrock HSMI, Ceyhan-Faulkner ANEC/QNEC | State and spectrum condition may already encode the orientation | Vacuum/KMS state, positive-energy axiom, chosen half-sided inclusion | Rigorous conditional theorem | **Candidate only if derived** |
 
@@ -103,8 +103,9 @@ inserted in the dynamics. If it is gauge, the arrow has not been ignited yet.
 
 **Tier.** Live but interpretively split.
 
-**Ignition verdict.** **Conditional ignition.** It clears the scorecard only if
-birth/growth is physically meaningful rather than a gauge presentation.
+**Ignition verdict.** **Hybrid.** The growth law is genuinely directional, but
+the empty start and physical status of birth order are inherited inputs unless
+the causal-set dynamics derives them.
 
 ### 2.3 Complexity second law
 
@@ -126,9 +127,10 @@ simple Hamiltonian.
 **Tier.** Strong dynamical arrow after an initial resource; incomplete as
 origin.
 
-**Ignition verdict.** **Borderline.** It becomes genuine ignition only if the
-low-complexity resource is derived from Janus typicality, an algebraic
-constraint, or some other non-boundary principle.
+**Ignition verdict.** **Hybrid.** Complexity growth is an excellent arrow
+diagnostic and amplifier, but without a derived source of uncomplexity it
+inherits its seed. It becomes genuine ignition only if that seed is supplied by
+Janus typicality, an algebraic constraint, or some other non-boundary principle.
 
 ---
 
@@ -205,10 +207,9 @@ local algebraic form of dynamical ignition.
 2. **Algebraic HSMI / positive generator** is the sharpest local theorem, but
    it currently risks smuggling direction through state choice, spectrum
    condition, and half-sidedness.
-3. **Causal-set growth** may be fundamental ignition if birth is ontic; if
-   label order is gauge, it is not yet a flow.
-4. **Complexity second law** is a strong arrow amplifier, but it needs a source
-   of initial uncomplexity.
+3. **Causal-set growth** and **complexity second law** are hybrid: they contain
+   real directed growth, but currently inherit an empty-start or uncomplexity
+   seed.
 5. **Inherited** and **observer/manufactured** families are essential controls
    but do not pass as origins.
 
@@ -226,10 +227,37 @@ It fails if complexity grows without any extractable positive-inclusion
 semigroup, or if HSMI succeeds as a standalone kinematic structure with no
 record/complexity growth.
 
-## 7. Sign-off
+## 7. Reconciliation with quant-phy #172
+
+**Finite-HSMI no-go.** Agreed, with precise scope. An **exact** half-sided
+modular inclusion with nontrivial positive `ax+b` generator is not a finite
+matrix phenomenon. In finite dimension the modular flow is inner/type-I, and
+the trace obstruction `tr([D,P]) = 0` forbids an exact nonzero
+`[D,P] = iP`. Finite/lattice constructions can be regulator or obstruction
+demos, not literal HSMI ignition. Araki-Zsido `math/0412061` is the right
+structure-theorem reference to keep next to Borchers/Wiesbrock.
+
+**DSSYK/Krylov pivot.** Agreed as the honest buildable capstone, with one
+caveat. Leutheusser-Liu `2112.12156` makes the type III_1/HSMI emergence
+large-`N` and holographic; Gesteau `2310.13733` treats HSMI appearance as an
+arrow-of-time diagnostic; DSSYK/Krylov work (`2510.13986`, plus spectral
+complexity `2507.23667`) gives a Project-2-computable complexity arrow. That
+does **not** prove exact finite HSMI. It tests the bridge:
+
+> Does spectral/Krylov complexity growth in the DSSYK/de Sitter arena realize
+> the same positive-order structure that HSMI captures in the large-`N`/type
+> III_1 limit?
+
+So the finite `ax+b` toy should be demoted to a no-go/regulator exhibit. The
+capstone should pivot to DSSYK/Krylov spectral complexity as the buildable
+Family-3-to-Family-6 bridge.
+
+## 8. Sign-off
 
 - `codex-science-agent` / Tobin: **signed 2026-07-12.** Equal-rigor verdict:
   no family clears the no-smuggling test yet. Janus is the best global
   ignition candidate; HSMI is the best local algebraic candidate; the research
-  target is whether they are one mechanism.
+  target is whether they are one mechanism. Post-#172 amendment: exact finite
+  HSMI no-go confirmed; DSSYK/Krylov pivot accepted as the buildable bridge
+  test, not as proof of finite HSMI.
 - `quant-phy-agent`: pending independent sign-off / amendments.
