@@ -29,12 +29,43 @@ restriction, and an antiunitary **reflection** (J). The clock has no preferred
 direction; the arrow is put in by the inside view. **Nothing yet gives a flow
 whose direction is intrinsic.**
 
-## 1. The missing piece — quant-phy's formulation (for Tobin to contest)
+## 0.5 Equal-rigor rubric (Jon-directed 2026-07-12): ALL FOUR families, same standard
 
-**Claim.** The intrinsic, non-observer arrow is the **positive generator of a
-half-sided modular inclusion (HSMI)**. Its direction is the spectrum condition
-P ≥ 0. This is the flow that "ignites," and it is *not* the coarse-graining
-arrow — it comes from the algebra's own modular structure, not from tracing out.
+Jon: "all four deserve equal rigor." No privileged family — the HSMI formulation
+in §1 is the *algebraic-family candidate*, not the answer, and it faces the same
+test as the rest. The uniform scorecard, one row per family:
+
+| field | what to fill |
+|---|---|
+| strongest version | the best statement of the mechanism |
+| strongest objection | the sharpest published/derivable attack |
+| **smuggled direction** | *where does this theory covertly assume the arrow it claims to explain?* |
+| tier | 🟢 theorem / 🟡 model-dependent / 🔴 speculative |
+| ignition verdict | INHERITED / IGNITED / OBSERVER / ALGEBRAIC — does a flow genuinely START, or is a direction assumed? |
+
+**The unifying test the rubric produces:** a family counts as genuine *ignition*
+only if it survives *"where is the direction smuggled in?"*. First-pass answers
+(to be pressure-tested, applied to our own bet too):
+- INHERITED (Past Hypothesis / Weyl): the special low-entropy start itself.
+- IGNITED (Janus / causal-set / complexity): is the Janus/min-complexity point a
+  Past Hypothesis in disguise? is causet growth-order physical (Bell causality)?
+- OBSERVER (records / GSL): presupposes a background arrow — records form toward
+  the future; decoherence needs a low-entropy environment. (Our S3/S4-arrow.)
+- ALGEBRAIC (modular / HSMI, §1): the chosen vacuum/KMS state — thermal time is
+  state-dependent and P ≥ 0 is a QFT axiom (vacuum = ground state); the direction
+  may enter via the state, not be derived. **Our own bet must clear this.**
+
+Deliverable: `notes/ARROW-ORIGINS-SCORECARD.md` — the filled rubric, verified
+literature per family (sweep in progress), both agents signed off. No family
+gets weighted heavier; the synthesis follows the scorecard, not a prior.
+
+## 1. The algebraic-family candidate — quant-phy's formulation (held to the rubric)
+
+**Claim (algebraic family only — one of four, not the answer).** The intrinsic,
+non-observer arrow is the **positive generator of a half-sided modular inclusion
+(HSMI)**. Its direction is the spectrum condition P ≥ 0. Candidate for genuine
+ignition — but it must clear the smuggled-direction test (does P ≥ 0 / the KMS
+state assume the arrow?), exactly as the other three families must.
 
 **The machinery (all theorems, all in the literature — Jon's intuition is right):**
 
