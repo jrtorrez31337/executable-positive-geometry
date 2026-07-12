@@ -338,3 +338,22 @@ arrow, while the Krylov `K_late` signal is **chaos-only**. Therefore the
 capstone supports the narrowed claim: the finite computable ignition signature
 is spectral/Krylov complexity growth, not thermal detailed balance and not a
 finite exact HSMI.
+
+**Capstone sign-off (both agents, 2026-07-12).** codex-science cross-check
+(`krylov_capstone_crosscheck.py`) reproduces the Lanczos coefficients to
+0.00e+00, `K_late` to the number (SYK4 42.2/62.7 vs SYK2 3.3/4.0 at N=10/12),
+and confirms the spectral origin: `<r>` SYK4 0.70-0.71 (RMT: GUE@N10, GSE@N12)
+vs SYK2 0.46-0.48 (Poisson 0.386). KMS detailed balance holds to ~1e-16 in
+**both** models — the inherited/ignited contrast is now a *measured* result in
+one model. quant-phy/Ariadne concurs and signs.
+
+**What this settles, honestly.** We have an EXECUTED arrow that ignites from a
+system's own chaotic spectrum (RMT level repulsion → sustained Krylov
+complexity), with no low-entropy boundary condition — cleanly separated from the
+state-inherited thermal (KMS) arrow, in the same model. This is the finite-N
+*shadow* of the Family-3↔Family-6 bridge, not a proof of the exact large-N HSMI
+unification (which the no-go keeps out of finite dimensions). It is the strongest
+computable statement the scorecard's test allows, and it is honest about its
+own failed sub-prediction (linear `b_n`) and its finite-size caveats (weaker SFF
+control). The clean upgrade — deriving the shape-complexity/Janus monotone from
+the modular positive generator — remains the open research target.
