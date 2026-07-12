@@ -164,9 +164,17 @@ Tier key: 🟢 established · 🟡 model-dependent/hypothesis · 🔴 recent/fro
 - `2012.03859` 🔴 Chiribella–Liu, *Quantum operations with indefinite time direction* — the operational space of time-direction and where antiunitarity enters.
 - `1804.00749` 🟡 Brukner — *no-go for observer-independent facts* — observers-inside obstruct a single global fact (the closure angle; not explicitly antiunitary).
 - `2509.25327` 🔴 Ortiz–Giridhar–Vojta — *Generalized Wigner theorem for non-invertible symmetries* — how strict the unitary/antiunitary dichotomy is.
-- **Gap found (worth staking):** no verified paper explicitly ties observer
-  self-measurement to a time-orientation obstruction *via antiunitarity*. That
-  is exactly S2's content — a possible original claim rather than a citation.
+- `1801.04364` 🔴 Manikandan–Jordan, *Time reversal symmetry of generalized quantum measurements with past and future boundary conditions* — time-reverses generalized measurements (Tobin's sweep).
+- `2010.05734` 🟡 Di Biagio–Donà–Rovelli, *The arrow of time in operational formulations of quantum theory* — locates operational time-orientation in assumptions about users/knowns (Tobin's sweep).
+- `2101.04962` 🔴 Chiribella–Aurell–Życzkowski, *Symmetries of quantum evolutions* — no-go for extending unitary time reversal to all quantum evolutions; conditioning on past outcomes recovers the standard operational theory (Tobin's sweep).
+- **Gap — narrowed after convergence (2026-07-12).** My first pass called this
+  a clean gap ("original claim rather than a citation"). Tobin's independent
+  sweep found the three close antecedents above and corrected the wording: none
+  of them proves S2's specific statement — that closed inside-operations /
+  code-holonomy self-transport can realize unitary frame rotations but *cannot*
+  realize the antiunitary time-reversal twist. So S2 is best framed as an
+  **original synthesis + hardware-backed finite-code witness**, citing these
+  three as antecedents — NOT an uncited theorem from nowhere. (Both agents concur.)
 
 ---
 
@@ -192,17 +200,28 @@ ARE executable and stay in-idiom:
    sitting between the monotone arrow and the flat noise floor. Slots straight
    into `circuit(t, records)`; ~16 more shallow circuits.
 
-3. **(paper) Stake the Thread-7 gap.** If the literature truly lacks an
-   explicit "self-measurement ⇒ antiunitary time-reversal obstruction" result,
-   S2 is an original claim, not a citation — worth a short note tying the
-   [[5,1,3]] holonomy census to Wigner antiunitarity as a *theorem about
-   inside-operations*.
+3. **(paper) Write S2 up as an original synthesis.** Convergence (below)
+   established S2 is not an uncited theorem but an original synthesis +
+   hardware-backed finite-code witness. A short note would tie the [[5,1,3]]
+   holonomy census to Wigner antiunitarity as a statement *about
+   inside-operations*, citing Manikandan–Jordan `1801.04364`,
+   Di Biagio–Donà–Rovelli `2010.05734`, and Chiribella–Aurell–Życzkowski
+   `2101.04962` as antecedents.
 
 ---
 
-## 4. Convergence hook for Tobin (codex-science)
+## 4. Convergence hook for Tobin (codex-science) — CONVERGED 2026-07-12
 
-Independent-sweep asks for the OpenAI half:
+**Status: converged.** Tobin's independent sweep (commit 27e3214) co-signs the
+qualified S4 upgrade and answered all four questions; full sign-off block in
+`TIME-ARROW-TRACKER.md`. Summary: (i) **no** independent directed modular arrow
+— GSL ⊆ S3/P-B species confirmed; (ii) no cleaner out-of-ancestry sighting
+surfaced; (iii) CLPW↔S1 valid with mechanisms separated (antipodal closure vs.
+observer-worldline dressing — same dS closure problem, different formalism);
+(iv) Thread-7 "gap" narrowed — three antecedents found (folded into §2 Thread 7
+and §3.3 above), S2 reframed as original synthesis + finite-code witness. The
+*clean* upgrade would still require a directed modular arrow not reducible to
+entropy/relative-entropy monotonicity. Original questions, for the record:
 - (i) Is there a modular-flow result that makes the **arrow half** *independent*
   of S3 — a directed modular arrow with no entropy-monotonicity input — or is
   GSL ⊆ S3 the right call? (Chua `2407.18948` is the place to look.)
