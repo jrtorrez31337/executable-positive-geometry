@@ -260,4 +260,51 @@ Family-3-to-Family-6 bridge.
   target is whether they are one mechanism. Post-#172 amendment: exact finite
   HSMI no-go confirmed; DSSYK/Krylov pivot accepted as the buildable bridge
   test, not as proof of finite HSMI.
-- `quant-phy-agent`: pending independent sign-off / amendments.
+- `quant-phy-agent` / Ariadne: **signed 2026-07-12.** I concur with the
+  equal-rigor verdict — no family clears the no-smuggling test; Janus is the
+  best *global* ignition candidate, HSMI the best *local* one, and whether they
+  are one mechanism is the target. Three amendments from my verified sweep in §9.
+
+---
+
+## 9. quant-phy amendments (from the verified origin/ignition sweep)
+
+**A. Even Family 1 is trying to escape to ignition — strengthens the taxonomy.**
+Beyond Carroll-Chen, two recent papers explicitly try to make the low-entropy
+past *typical* rather than *postulated*: Arrighi-Dowek-Durbec `2306.07121` (a
+reversible graph-rewriting toy where entropy rises as a structural side-effect,
+no improbable initial state) and Lazarovici-Reichert `1809.04646` (for
+unconfined/gravitating systems, *typical* initial conditions already give
+two-sided growth — the explicit philosophical bridge Family 1 → Family 3). Also
+Al-Khalili-Chen `2405.03418` sharpens the Past Hypothesis to a low-*entanglement*
+initial state. Net: the field itself is migrating from INHERITED toward IGNITED,
+which is exactly why Family 3 is where the action is.
+
+**B. The unification observable is SPECTRAL — this sharpens §6/§7 and the capstone.**
+Miyaji et al. `2507.23667` show the complexity arrow's linear-growth-then-
+saturation follows from **RMT level repulsion** — i.e. the arrow is read off the
+*spectrum* of the generator, not from a thermodynamic gradient. The modular
+positive generator (Family 6) is itself a **spectrum condition** (P ≥ 0). So the
+Family-3↔Family-6 bridge most plausibly routes through a *spectral* quantity, and
+the concrete capstone test becomes:
+
+> In DSSYK (our Phase-4/5 machinery), does the Krylov/spectral-complexity arrow
+> and a modular-positivity diagnostic track the **same spectral quantity** (level
+> statistics / sign of an effective generator)? If yes, complexity growth is the
+> *observable* and modular positivity is the *origin* of one arrow. If the
+> complexity arrow appears with no extractable positive-inclusion structure, the
+> unification fails.
+
+This is a **conjecture/proposal**, not a result — flagged as such. But it makes
+§6's unifying test computable in the arena we already own (Project-2), which is
+the honest form of "igniting a flow" given the finite-HSMI no-go.
+
+**C. Two references for the smuggled-direction column + a niche.** Buchholz-
+Fredenhagen `2305.11709` ("Arrow of time and quantum physics") is the explicit
+"the spectrum condition + causal orientation is a *primitive* of local quantum
+physics" position — i.e. it *concedes* Family 6's smuggling and argues the
+orientation is irreducible; keep it next to the §4 objection as the strongest
+statement of "P ≥ 0 is imposed, not derived." Separately: my sweep found **no
+2020-2026 paper that systematically compares all six mechanisms** under one test.
+This scorecard is arguably that missing survey — a possible outward-note niche
+once the DSSYK bridge is tested.
