@@ -207,3 +207,65 @@ Most buildable next labs, in order: Tobin's Phase-4 SYK-magic baseline and
 Phase-7 purity-only hardware run (Front 2); then the curve-integral
 associahedron extension (Front 1). No new lab should outrun the foundation
 chain `2306.14996 -> 2403.07056 -> 2010.05960 -> 2603.13475`.
+
+---
+
+## Addendum (2026-07-11, quant-phy): Front 4 — the holographic bound and its algebraic sharpening
+
+Opened from Jon's holographic-bound question (bus #146; Tobin's survey #147).
+This is a *fourth* front, adjacent to Front 2 but distinct: not "magic as the
+resource for gravity," but the entropy **bound** itself and the recent move that
+turns it from an inequality into an operator statement. Nine papers filed to
+`corpus/2-holography-emergence/` (all IDs verified by title against each PDF's
+first page). Corpus is now 48 PDFs.
+
+**The load-bearing chain (bound -> algebra):**
+
+1. Global bound: 't Hooft/Susskind holographic bound `S <= A/4G`, from Bekenstein.
+2. Covariant/local form: Bousso bound, sharpened to the **Quantum Focusing
+   Conjecture** (`1506.02669`). Its non-gravitational limit, the QNEC, is a
+   *proven theorem* in QFT; the QFC itself is **not proven** — flag this whenever
+   the chain is used.
+3. Where the bound is saturated dynamically: quantum extremal surfaces / islands
+   (generalized entropy `S_gen = A/4G + S_matter`), already surveyed in
+   `corpus/GAP-ANALYSIS.md` (HRT -> FLM -> QES -> JLMS).
+4. **The 2025-26 sharpening (this addendum):** a horizon's observable algebra is
+   Type III_1 in ordinary QFT and has *no* density matrix or finite entropy.
+   Crossing it with the modular flow (Witten `2112.12828`) yields a **Type II**
+   algebra that does — and its von Neumann entropy is *exactly* `S_gen`
+   (`2309.15897`, and its edge-mode sequel `2601.07910`). This is the operator
+   statement `S_gen = S_vN`. Faulkner-Speranza `2405.00847` shows the algebraic
+   monotonicity reproduces the generalized second law; Chandrasekaran-Flanagan
+   `2601.07915` and Sahu et al. `2511.21852` push it to subregions / generalized
+   entanglement wedges.
+5. **de Sitter and the Project-2 tie:** dS gives a **Type II_1** algebra, whose
+   *maximal* entropy is the cosmological-horizon area (Chen-Xu `2511.00622`).
+   The computable handle is DSSYK: Xu `2403.09021` identifies the Type II_1
+   algebra of double-scaled SYK with a finite maximal entropy matching a dS
+   horizon — the same DSSYK<->dS bridge Project-2 already uses for horizon magic.
+
+| Priority | Paper | Tier | Role in the chain |
+|---|---|---|---|
+| P0 | Bousso et al., QFC, `1506.02669` | Established (QFC conjectural; QNEC proven) | The covariant bound made local; root of the QES/island chain. |
+| P0 | Witten, crossed product, `2112.12828` | Established | Type III_1 -> Type II; density matrices and finite vN entropy exist. |
+| P1 | Kudler-Flam-Leutheusser-Satishchandran, `2309.15897` | Toy/rigorous | S_gen = S_vN made precise for a horizon. |
+| P1 | Faulkner-Speranza, GSL, `2405.00847` | Toy/rigorous | Algebraic monotonicity = generalized second law; QFC/QNEC <-> Type II bridge. |
+| P1 | Xu, vN algebras in DSSYK, `2403.09021` | Recent | **Project-2 anchor:** DSSYK Type II_1, finite max entropy = dS horizon. |
+| P2 | Chen-Xu, dS covariant observers, `2511.00622` | Recent | dS Type II_1; max entropy = cosmological-horizon area. |
+| P2 | Klinger-Kudler-Flam-Satishchandran II, `2601.07910` | Recent | Symmetry group + edge modes behind the gravitational algebra. |
+| P2 | Chandrasekaran-Flanagan, `2601.07915` | Recent | Subregion algebras, classical -> quantum, QFC-type proof. |
+| P2 | Sahu et al., generalized entanglement wedges, `2511.21852` | Recent | vN algebras for generalized wedges; reconnects to EW reconstruction. |
+
+**Buildable next step (honest scope).** The *rigorous* content here is operator-
+algebraic, not circuit-executable — do not overclaim a "Type II algebra on
+hardware." What IS executable is the **DSSYK Type II_1 / finite-max-entropy**
+statement (`2403.09021`), which is exactly the arena Project-2 already computes
+in: a small-`N` DSSYK lab that measures the *finite* maximal entropy (the II_1
+trace normalization) and compares it to the dS-horizon value would be the first
+lab-level contact with this front. Frame it as "reproducing the finite-entropy
+normalization of the DSSYK algebra," not "measuring a gravitational algebra."
+This slots directly onto Project-2's existing DSSYK<->dS machinery. No lab
+should claim the crossed-product construction itself has been reproduced.
+
+**Watchlist (surveyed, not filed):** `2605.13576`, `2607.01873` — track for the
+next pass; cite only if a lab loads them.

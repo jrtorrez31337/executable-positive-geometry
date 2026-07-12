@@ -62,4 +62,17 @@ fetch 2406.06418 "7-magic/2024-bridging-magic-nongaussian-gkp.pdf"
 fetch 2605.04099 "7-magic/2026-alavirad-desitter-radiation-particle-creation-sim.pdf"
 fetch 2603.13475 "7-magic/2026-cao-etal-state-dependent-geometries-magic-enriched-codes.pdf"
 fetch 1704.05069 "1-positive-geometry/2017-arkani-hamed-thomas-trnka-unwinding-amplituhedron-binary.pdf"
-echo "corpus complete: $(find . -name '*.pdf' | wc -l)/40 papers"
+
+# Holographic bound & gravitational (von Neumann) algebras
+# (crossed-product Type III->II program; the algebraic sharpening of S <= A/4)
+fetch 1506.02669 "2-holography-emergence/2015-bousso-etal-quantum-focusing-conjecture.pdf"
+fetch 2112.12828 "2-holography-emergence/2022-witten-gravity-crossed-product.pdf"
+fetch 2405.00847 "2-holography-emergence/2024-faulkner-speranza-gravitational-algebras-gsl.pdf"
+fetch 2309.15897 "2-holography-emergence/2025-kudler-flam-etal-generalized-bh-entropy-is-vn-entropy.pdf"
+fetch 2601.07910 "2-holography-emergence/2026-klinger-kudler-flam-satishchandran-symmetry-edge-modes.pdf"
+fetch 2601.07915 "2-holography-emergence/2026-chandrasekaran-flanagan-horizon-subregion-algebras.pdf"
+fetch 2511.00622 "2-holography-emergence/2026-chen-xu-covariant-desitter-observers.pdf"
+fetch 2511.21852 "2-holography-emergence/2026-sahu-etal-generalized-entanglement-wedges.pdf"
+fetch 2403.09021 "2-holography-emergence/2026-vn-algebras-double-scaled-syk.pdf"
+
+echo "corpus complete: $(find . -name '*.pdf' | wc -l)/48 papers"

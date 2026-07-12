@@ -42,6 +42,26 @@ among boundary degrees of freedom.*
 | Pastawski, Yoshida, Harlow & Preskill, **HaPPY holographic codes** (2015) | [1503.06237](https://arxiv.org/abs/1503.06237) | 🟡 | Explicit buildable toy model where emergent bulk space = the code subspace of a QEC code made of qubits. The strongest single validation of the project's core premise. |
 | Czech, Lamprou, McCandlish & Sully, **Integral Geometry and Holography** (2015) | [1505.05515](https://arxiv.org/abs/1505.05515) | 🟡 | Defines *kinematic space* in the holographic sense: an auxiliary geometry where nonlocal boundary data becomes local. Note: this "kinematic space" (space of geodesics) is a **different object** from the kinematic space of momenta in 1711.09102 — the framework document conflates them. |
 
+### The holographic bound and its algebraic sharpening (crossed-product / Type II von Neumann algebras)
+
+*Added 2026-07-11. The chain from the entropy bound itself to the modern statement
+that a black-hole (or de Sitter) horizon carries a von Neumann algebra whose entropy
+is exactly the generalized entropy A/4G + S_matter. This is the frontier that turns
+the holographic bound from an inequality into an operator statement — and it feeds
+Project-2 (de Sitter / DSSYK) directly. Every ID verified by title against the PDF.*
+
+| Paper | arXiv | Tier | What it validates |
+|---|---|---|---|
+| Bousso, Fisher, Leichenauer & Wall, **A Quantum Focusing Conjecture** (2015) | [1506.02669](https://arxiv.org/abs/1506.02669) | 🟢 | The covariant entropy bound made local: generalized entropy is non-increasing under "focusing." Root of the QFC → QES → island chain. **Caveat:** the QFC is a *conjecture*; only its non-gravitational limit, the QNEC, is a proven theorem in QFT. |
+| Witten, **Gravity and the Crossed Product** (2022) | [2112.12828](https://arxiv.org/abs/2112.12828) | 🟢 | The founding move of the modern program: crossing a Type III₁ QFT algebra with its modular flow yields a **Type II** algebra with a finite trace — so density matrices and a finite von Neumann entropy exist where they didn't before. |
+| Faulkner & Speranza, **Gravitational algebras and the generalized second law** (2024) | [2405.00847](https://arxiv.org/abs/2405.00847) | 🟡 | Applies the crossed product to horizon cuts; monotonicity of vN entropy under algebra inclusion *is* the generalized second law. Bridges QFC/QNEC to the Type II picture. |
+| Kudler-Flam, Leutheusser & Satishchandran, **Generalized Black Hole Entropy is von Neumann Entropy** (2023–25) | [2309.15897](https://arxiv.org/abs/2309.15897) | 🟡 | The clean statement: A/4G + S_matter *is* the von Neumann entropy of the horizon's Type II crossed-product algebra. S_gen = S_vN, made precise. |
+| Klinger, Kudler-Flam & Satishchandran, **Generalized Entropy is von Neumann Entropy II: symmetry group & edge modes** (2026) | [2601.07910](https://arxiv.org/abs/2601.07910) | 🔴 | Sequel to 2309.15897: the complete symmetry group whose crossed product builds the gravitational algebra, and the edge modes it requires. Very recent. |
+| Chandrasekaran & Flanagan, **Subregion algebras in classical and quantum gravity** (2026) | [2601.07915](https://arxiv.org/abs/2601.07915) | 🔴 | Extends the algebra from global horizons to *gravitational subregions*, classical → quantum, with a QFC-type entropy proof. Very recent frontier. |
+| Chen & Xu, **An algebra for covariant observers in de Sitter space** (2026) | [2511.00622](https://arxiv.org/abs/2511.00622) | 🔴 | The de Sitter case: a Type II₁ algebra for covariant observers, where the *maximal* entropy is the cosmological-horizon area. Direct Project-2 tie. |
+| Sahu, van der Heijden, Van Raamsdonk & Zibakhsh, **Algebras for generalized entanglement wedges** (2026) | [2511.21852](https://arxiv.org/abs/2511.21852) | 🔴 | Assigns von Neumann algebras to generalized entanglement wedges, reconnecting the crossed-product program to entanglement-wedge reconstruction. Very recent. |
+| Xu, **Von Neumann Algebras in Double-Scaled SYK** (2024–26) | [2403.09021](https://arxiv.org/abs/2403.09021) | 🔴 | The computable bridge: DSSYK carries a Type II₁ algebra with a finite maximal entropy matching a dS horizon — the many-body handle for Project-2 (DSSYK ↔ de Sitter). |
+
 ## 3-qec-topological/ — The "Hardening Layer"
 
 Validates: *topological codes protect quantum information via global/boundary

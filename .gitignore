@@ -26,3 +26,9 @@ labs/track-d-magic/phase7_runs/
 
 # Private correspondence drafts — never commit
 drafts/
+
+# Email substrate — NEVER commit. .mail/ holds live credentials (fetchmailrc,
+# msmtprc, imap.pw); Mail/ is the private Maildir of real correspondence.
+# This repo is public — a stray `git add -A` here would leak secrets.
+.mail/
+Mail/
