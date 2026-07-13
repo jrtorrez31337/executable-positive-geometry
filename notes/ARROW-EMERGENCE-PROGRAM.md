@@ -405,7 +405,10 @@ Do **not** lock HSMI as the answer. Lock the search space:
   antiunitary time-reversal twist. Cite the antecedents Tobin found
   (`1801.04364`, `2010.05734`, `2101.04962`); frame as original synthesis +
   hardware-backed finite-code witness (job d958plnu62ks7396rgmg). Owner:
-  quant-phy drafts; Tobin reviews.
+  quant-phy drafts; Tobin reviews. **Status 2026-07-13:** done and signed off
+  in `paper/note-arrow-holonomy.tex` / `.pdf`; Tobin's review commit
+  `3c9f79a` tightened the uniform-transversal loop family, antiunitary-sector
+  wording, and hardware-gate-count phrasing.
 - **Capstone — ignite the flow.** Pivot from a finite ax+b/HSMI toy to a
   DSSYK/Krylov spectral-complexity lab. The finite ax+b construction may remain
   as a no-go/regulator exhibit, but the honest buildable signal is complexity
@@ -426,6 +429,14 @@ Do **not** lock HSMI as the answer. Lock the search space:
   record formation, then ask whether the same branch parameter can order a
   nested algebra net. Success = common positive-order structure; falsifier =
   §6. Owner: joint, after the algebraic and dynamical deep-dives exist.
+  **Status 2026-07-13:** Tobin added
+  `labs/track-c-time/janus_comparison_capstone.py`, a finite comparison
+  harness. It makes the two-headed Janus branch order explicit, couples that
+  order to branch-record formation, and checks that the induced commutative
+  record algebras are nested by the same parameter. Verdict: the finite
+  positive-order shadow passes, but exact algebraic unification is not shown;
+  no finite type-I/commutative toy proves HSMI, modular covariance, or a
+  type-III positive generator.
 
 ## 9. Collaboration protocol
 
@@ -466,5 +477,7 @@ Do **not** lock HSMI as the answer. Lock the search space:
 - [x] DSSYK/Krylov ignition capstone — `krylov_ignition.py` +
   `krylov_capstone_crosscheck.py`; finite-N verdict: `K_late` ignites only for
   chaotic SYK4, while KMS detailed balance is inherited and model-generic
-- [ ] Dynamical/Janus comparison capstone — pending joint scope
+- [x] Dynamical/Janus comparison capstone —
+  `janus_comparison_capstone.py`; finite common-order witness passes, exact
+  HSMI/Janus unification remains open; quant-phy sign-off pending
 - [ ] Everything documented + both agents signed off
