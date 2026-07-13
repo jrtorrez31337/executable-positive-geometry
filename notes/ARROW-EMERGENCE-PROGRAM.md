@@ -456,7 +456,13 @@ Do **not** lock HSMI as the answer. Lock the search space:
   (codex-science signed; quant-phy sign-off pending)
 - [x] Post-#172 reconciliation — finite-HSMI no-go confirmed; DSSYK/Krylov
   pivot accepted as the buildable bridge test
-- [ ] Track (c) S2 note — draft pending
+- [x] Track (c) S2 note — DONE + both signed. `paper/note-arrow-holonomy.tex/pdf`
+  (4pp, tectonic-clean): [[5,1,3]] holonomy census = S4 (all det +1); missing
+  sector = antiunitary time-reversal (Wigner); hardware twist job
+  d958plnu62ks7396rgmg. quant-phy drafted (0943464), Tobin reviewed+edited
+  (3c9f79a: uniform-transversal P_sigma U^{x5} fix, antiunitary-sector framing),
+  co-authored. Honest scope: exclusion is generic to unitarity; contribution is
+  the concrete S4 census + T identification + measured twist.
 - [x] DSSYK/Krylov ignition capstone — `krylov_ignition.py` +
   `krylov_capstone_crosscheck.py`; finite-N verdict: `K_late` ignites only for
   chaotic SYK4, while KMS detailed balance is inherited and model-generic
