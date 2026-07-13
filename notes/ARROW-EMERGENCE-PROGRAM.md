@@ -444,7 +444,12 @@ Do **not** lock HSMI as the answer. Lock the search space:
 ## 10. Status board
 
 - [x] Track (a) preview simulation — `modular_arrow_predict.py` (this commit)
-- [ ] Track (a) hardware run — GATED on Jon's go + quota
+- [x] Track (a) hardware run — DONE on ibm_kingston (job d9a6k2d2su3c739l7l30,
+  2026-07-13): arrow 0->0.969 monotone 7/7 (pred 0.973); modular plateaus flat
+  0.73-0.78 after the switch (drift 0.052 ~ noise floor); control <=0.056.
+  Arrow-modular gap at tick 7 = 0.186 bits: the modular clock holds a mixed
+  state's entropy stationary while the record-arrow keeps climbing — S4's
+  clock-vs-arrow split measured on transmons. Lab modular_arrow_hardware.py.
 - [x] Track (b) algebraic candidate pass + HSMI lock target — §3–§4
 - [x] Broad-spectrum mechanism map from Jon clarification #170 — §5–§7
 - [x] Equal-rigor origins scorecard — `notes/ARROW-ORIGINS-SCORECARD.md`
