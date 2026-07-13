@@ -1,6 +1,8 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
 
@@ -78,7 +80,7 @@ $\ast$ speculative).
 \begin{table}[h]
 \centering
 \small
-\begin{tabular}{p{3.1cm}p{6.4cm}p{4.0cm}}
+\begin{tabular}{L{3.1cm}L{6.4cm}L{4.0cm}}
 \hline
 \textbf{Family} & \textbf{Where direction can be smuggled in} & \textbf{Verdict}\\
 \hline
