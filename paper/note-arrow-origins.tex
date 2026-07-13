@@ -21,15 +21,16 @@ A uniform smuggled-direction test across origin mechanisms}
 Proposals for the origin of time's arrow are numerous and rarely held to one
 standard. We adopt a single organizing test --- \emph{where, if anywhere, does a
 mechanism covertly assume the temporal direction it claims to explain?} --- and
-apply it uniformly to six families: the thermodynamic Past Hypothesis, Penrose's
-Weyl curvature hypothesis, Barbour--Koslowski--Mercati Janus/shape-complexity
-dynamics, causal-set sequential growth, the second law of quantum complexity,
-observer/coarse-graining (decoherence, records, the generalized second law), and
-the algebraic positive generator of a half-sided modular inclusion. Under the
-test, four families either inherit the direction from a boundary condition or
-manufacture it from an embedded observer; only two --- Janus dynamics and the
-algebraic positive generator --- genuinely ignite an arrow from structure, and we
-argue they most plausibly meet on a spectral quantity. We support the analysis
+apply it uniformly to six family groups: inherited-boundary proposals
+(thermodynamic Past Hypothesis and Weyl curvature), Barbour--Koslowski--Mercati
+Janus/shape-complexity dynamics, causal-set sequential growth, the second law of
+quantum complexity, observer/coarse-graining (decoherence, records, the
+generalized second law), and the algebraic positive generator of a half-sided
+modular inclusion. Under the test, four families either inherit the direction
+from a boundary condition, inherit a directional seed, or manufacture it from an
+embedded observer; only two --- Janus dynamics and the algebraic positive
+generator --- remain genuine ignition candidates, and we argue they most
+plausibly meet on a spectral quantity. We support the analysis
 with small executable probes, each with stated scope: an exact finite
 modular-flow toy reproducing a clock/arrow/antiunitary triad; a Krylov-complexity
 computation in which an arrow ignites from the chaotic spectrum and is cleanly
@@ -105,8 +106,9 @@ curvature. Ordinary statistical mechanics then does the rest. But the special
 boundary is exactly the assumption; the direction is the selected low-order end
 itself. Recent work tries to make that end \emph{typical} rather than postulated
 --- spontaneous inflation~\cite{carrollchen}, reversible toy
-rewriting~\cite{arrighi}, or unconfined dynamics whose typical solutions already
-grow two-sidedly~\cite{lazarovici}, the last an explicit bridge toward the Janus
+rewriting~\cite{arrighi}, low-entanglement refinements~\cite{alkhalilichen}, or
+unconfined dynamics whose typical solutions already grow
+two-sidedly~\cite{lazarovici}, the last an explicit bridge toward the Janus
 family. Absent such a derivation, this family inherits and does not ignite. It
 remains the essential control: any purported ignition that secretly hides a Past
 Hypothesis here has failed.
@@ -153,32 +155,35 @@ Tomita--Takesaki theory assigns a state its modular flow~\cite{connesrovelli}; a
 half-sided modular inclusion generates a one-parameter group with a
 \emph{positive} generator $\Pgen\ge 0$ and the $ax{+}b$ relation
 (Borchers~1992, Wiesbrock~1993; see~\cite{borchersext}), and
-Ceyhan--Faulkner~\cite{ceyhan} tie the relevant positive generator to
-ANEC/QNEC in quantum field theory. Here the arrow is a \emph{spectrum condition}
-rather than a coarse-graining. The objection, applied to our own bet: the inputs
-may already carry the direction --- the vacuum/KMS state is not neutral, the
-spectrum condition $\Pgen\ge 0$ is usually an axiom, and choosing which side is
+Ceyhan--Faulkner~\cite{ceyhan} formulate the QNEC-from-ANEC argument in an
+operator-algebraic setting with half-sided modular inclusion hypotheses. Here
+the arrow is a \emph{spectrum condition} rather than a coarse-graining. The
+objection, applied to our own bet: the inputs may already carry the direction ---
+the vacuum/KMS state is not neutral, the spectrum condition $\Pgen\ge 0$ is
+usually an axiom or primitive~\cite{buchholz}, and choosing which side is
 half-sided is an orientation. The algebraic theorem may show the direction is
 \emph{rigid once these are granted}, not how it \emph{starts}. Candidate only if
 derived --- but the sharpest local candidate.
 
 \section{The two survivors and the spectral question}
 
-Only the Janus (Family~3) and algebraic (Family~6) candidates ignite without a
-boundary condition. Are they one mechanism? The most promising bridge is
-\emph{spectral}. Miyaji et al.~\cite{miyaji} show that the complexity arrow's
-linear-growth-then-saturation follows from random-matrix level repulsion --- the
-arrow is read off the \emph{spectrum} of the generator, not a thermodynamic
+Only the Janus and algebraic candidates survive as possible ignition mechanisms
+without a boundary condition. Are they one mechanism? The most promising bridge is
+\emph{spectral}. Miyaji et al.~\cite{miyaji} connect the complexity arrow's
+linear-growth-then-saturation regime to random-matrix spectral correlations ---
+the arrow is read off the \emph{spectrum} of the generator, not a thermodynamic
 gradient; and the algebraic positive generator is itself a spectrum condition.
-Leutheusser--Liu~\cite{leutheusser} exhibit an emergent half-sided modular
-inclusion in the large-$N$ thermofield double whose inclusion \emph{is} the
-emergence of a directed interior time, and Gesteau~\cite{gesteau} treats the
-appearance of such inclusions as an arrow-of-time diagnostic tied to
-ergodic-hierarchy strength. This suggests a testable identification:
+Leutheusser--Liu~\cite{leutheusser} construct boundary infalling time evolutions
+and identify, in the large-$N$ thermofield-double limit, an emergent
+type-III$_1$ algebra with an associated half-sided modular translation
+structure. Gesteau~\cite{gesteau} treats the appearance of type-III$_1$ algebras
+and half-sided modular inclusions as one proposed diagnostic of an emergent bulk
+arrow, in parallel with ergodic-hierarchy diagnostics. This suggests a testable
+identification:
 
 \begin{quote}
-Does the complexity/Krylov arrow (Family~5 observable) and a modular-positivity
-diagnostic (Family~6 origin) track the \emph{same spectral quantity} in a
+Does the complexity/Krylov arrow and a modular-positivity diagnostic track the
+\emph{same spectral quantity} in a
 computable model?
 \end{quote}
 
@@ -191,22 +196,23 @@ Consistent with the program's verification-first practice, each analytic claim
 above is anchored by a small computation; every number is a commit hash or an IBM
 job ID in the public repository.
 
-\paragraph{The clock/arrow/antiunitary triad (exact).} From one
+\paragraph{The modular triad (exact).} From one
 cyclic-separating state, Tomita--Takesaki theory yields three objects, all checked
 to $\sim10^{-15}$: a reversible modular \emph{clock} $\Delta^{it}$; an
 \emph{arrow} that appears only under restriction (relative-entropy monotonicity,
 the finite shadow of the generalized second law); and an \emph{antiunitary}
-modular conjugation $J$ with $J\Delta J=\Delta^{-1}$. The project's separately
-discovered clock, coarse-graining arrow, and antiunitary time-reversal are thus
-the three objects any von Neumann algebra with a state produces.
+modular conjugation $J$ with $J\Delta J=\Delta^{-1}$. The project's clock,
+coarse-graining arrow, and antiunitary time-reversal are thus the three objects
+any von Neumann algebra with a state produces.
 
 \paragraph{Ignition from the spectrum (simulation).} Tridiagonalizing the SYK
-Liouvillian into its Krylov chain, the complexity $K(t)$ is the position on a
-semi-infinite chain --- a positive operator whose growth is an arrow. In chaotic
-SYK$_4$ the chain opens and $K$ climbs (sustained complexity growing with system
-size); in free SYK$_2$ it localizes. The origin is spectral: level-spacing ratios
-are random-matrix-like for SYK$_4$ and Poisson-like for SYK$_2$. Crucially, the
-thermal (KMS) detailed-balance asymmetry holds to numerical precision in
+Liouvillian into its Krylov chain~\cite{parker}, the complexity $K(t)$ is the
+position on a semi-infinite chain --- a positive operator whose growth is an
+arrow. In chaotic SYK$_4$ the chain opens and $K$ climbs (sustained complexity
+growing with system size); in free SYK$_2$ it localizes. The origin is spectral:
+level-spacing ratios are random-matrix-like for SYK$_4$ and Poisson-like for
+SYK$_2$. Crucially, the thermal (KMS) detailed-balance asymmetry holds to
+numerical precision in
 \emph{both} models: the thermal/modular arrow is state-inherited, while the
 Krylov arrow is chaos-only. In one model we thus separate an \emph{ignited}
 arrow (spectral) from an \emph{inherited} one (thermal). We note the honest
@@ -229,18 +235,21 @@ are careful: all three are constructed as monotone functions of the same
 parameter, so the co-ordering is guaranteed by construction, not discovered. The
 witness establishes only ``no obstruction in a toy,'' a necessary condition of low
 positive weight. It carries a falsifier: a genuine Janus/field-theory branch with
-complexity and records but no extractable positive-order net would leave
-Families~3 and~6 distinct.
+complexity and records but no extractable positive-order net would leave the
+Janus and algebraic mechanisms distinct.
 
 \section{Why the exact ignition cannot be finite}
 
-The exact object at the heart of Family~6 --- a nontrivial positive generator
+The exact object at the heart of the algebraic family --- a nontrivial positive generator
 $\Pgen\ge 0$ intertwined with modular flow via $\Delta^{it}U(a)\Delta^{-it} =
 U(e^{-2\pi t}a)$ --- is a type-III$_1$ phenomenon. In finite dimension the algebra
-is type~I, modular flow is inner and periodic, and the trace obstruction
-$\mathrm{tr}[D,\Pgen]=0$ forbids an exact nonzero $[D,\Pgen]=i\Pgen$. A genuine
-finite/lattice half-sided modular inclusion with $\Pgen\ge 0$ does not exist, and
-this appears to be a real obstruction rather than a gap in the literature. Our
+is type~I and modular flow is inner. If finite matrices $D,\Pgen$ satisfied the
+exact infinitesimal $ax{+}b$ relation $[D,\Pgen]=i\Pgen$ with
+$\Pgen=\Pgen^\dagger\ge0$, then taking the ordinary trace gives
+$0=\mathrm{tr}[D,\Pgen]=i\,\mathrm{tr}\,\Pgen$; positivity forces
+$\Pgen=0$. Thus a nontrivial finite/lattice half-sided modular inclusion with a
+positive translation generator cannot be exact, which is a real obstruction
+rather than a gap in the literature. Our
 finite probes are therefore \emph{shadows} of the ignition, chosen precisely
 because they are computable; the large-$N$/type-III$_1$ statement they gesture at
 is where the exact unification would live (e.g.~in double-scaled SYK, whose
@@ -251,8 +260,9 @@ type-II$_1$ algebra we take as the natural computable arena~\cite{dssyk}).
 Run under one test, the field sorts cleanly. Two long-standing families ---
 Boltzmann/Penrose --- inherit the arrow from a boundary condition; the observer
 family, including our own hardware-measured record arrow, manufactures it. Only
-Janus dynamics and the algebraic positive generator ignite an arrow from
-structure, and the most credible bridge between them is spectral. We have shown,
+Janus dynamics and the algebraic positive generator remain candidates for
+ignition from structure, and the most credible bridge between them is spectral.
+We have shown,
 in an executed computation, that an arrow \emph{can} ignite from a system's own
 chaotic spectrum and be separated in one model from the state-inherited thermal
 arrow --- a concrete, if finite, demonstration. We have \emph{not} shown that the
@@ -274,6 +284,9 @@ assumed and where it might genuinely begin.
 \bibitem{arrighi} P.~Arrighi, G.~Dowek, A.~Durbec, \emph{Time arrow without past
   hypothesis: a toy model explanation},
   \href{https://arxiv.org/abs/2306.07121}{arXiv:2306.07121}.
+\bibitem{alkhalilichen} J.~Al-Khalili, E.~K.~Chen, \emph{The Decoherent Arrow of
+  Time and the Entanglement Past Hypothesis},
+  \href{https://arxiv.org/abs/2405.03418}{arXiv:2405.03418}.
 \bibitem{lazarovici} D.~Lazarovici, P.~Reichert, \emph{Arrow(s) of Time without a
   Past Hypothesis}, \href{https://arxiv.org/abs/1809.04646}{arXiv:1809.04646}.
 \bibitem{penrose} R.~Penrose, \emph{Singularities and Time-Asymmetry}, in
@@ -309,9 +322,14 @@ assumed and where it might genuinely begin.
   Phys. \textbf{157}, 83 (1993).
 \bibitem{ceyhan} F.~Ceyhan, T.~Faulkner, \emph{Recovering the QNEC from the
   ANEC}, \href{https://arxiv.org/abs/1812.04683}{arXiv:1812.04683}.
+\bibitem{buchholz} D.~Buchholz, K.~Fredenhagen, \emph{Arrow of time and quantum
+  physics}, \href{https://arxiv.org/abs/2305.11709}{arXiv:2305.11709}.
 \bibitem{miyaji} M.~Miyaji, S.~Ruan, S.~Shibuya, K.~Yano, \emph{Universal Time
   Evolution of Holographic and Quantum Complexity},
   \href{https://arxiv.org/abs/2507.23667}{arXiv:2507.23667}.
+\bibitem{parker} D.~E.~Parker, X.~Cao, A.~Avdoshkin, T.~Scaffidi,
+  E.~Altman, \emph{A Universal Operator Growth Hypothesis},
+  \href{https://arxiv.org/abs/1812.08657}{arXiv:1812.08657}.
 \bibitem{leutheusser} S.~Leutheusser, H.~Liu, \emph{Emergent times in holographic
   duality}, \href{https://arxiv.org/abs/2112.12156}{arXiv:2112.12156}.
 \bibitem{gesteau} E.~Gesteau, \emph{Emergent spacetime and the ergodic
