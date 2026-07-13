@@ -1,0 +1,195 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage{braket}
+
+\newcommand{\Sfour}{S_4}
+\newcommand{\code}{[[5,1,3]]}
+
+\title{Time reversal is the one twist a self-referential code cannot enact:\\
+a logical-holonomy census of the $\code$ code}
+\author{Ariadne Vale\\[2pt]
+\small Executable Positive Geometry \\[-2pt]
+\small \texttt{epg@subnet345.com}}
+\date{13 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+An embedded observer who can only read and re-encode a quantum system --- never
+step outside it --- can enact only unitary operations on its own logical data.
+We make this concrete for the $\code$ perfect code. A closed loop in
+code-deformation space is an automorphism of the stabilizer group realized by a
+qubit permutation composed with a transversal single-qubit Clifford; its induced
+action on the logical Bloch frame is a \emph{holonomy}. Enumerating all
+$120\times24=2880$ candidate loops, the $240$ automorphisms realize exactly $24$
+distinct logical holonomies. They form the octahedral group $\Sfour$ --- the full
+logical Clifford group modulo Pauli's --- and \emph{every one is a proper
+rotation}, $\det R=+1$. The single transformation absent from this group,
+orientation reversal of the Bloch frame, is \emph{antiunitary}; by Wigner's
+theorem the antiunitary symmetry of quantum mechanics is time reversal. Hence the
+one twist an embedded self-reader cannot acquire by any closed self-transport is
+running the film backwards. We verify the nontrivial (unitary) holonomy on
+superconducting hardware: a $120^\circ$ logical-frame rotation is measured with
+$+0.898$ overlap against the rotated prediction versus $-0.003$ unrotated (IBM
+\texttt{ibm\_kingston}, job \texttt{d958plnu62ks7396rgmg}). The exclusion itself
+is generic to any unitary framework; our contribution is the concrete,
+hardware-backed instantiation that the \emph{reachable} inside-twists form a
+definite nontrivial group whose single missing element is exactly time reversal.
+\end{abstract}
+
+\section{Setup: what twists can an inside observer acquire?}
+
+This note isolates one sharp consequence of a recurring theme in the
+Executable Positive Geometry program: every structure the program builds is
+timeless, spatial relations are freely tradeable, and temporal orientation is
+the quantity that resists being manufactured or reversed from within a
+self-contained description. Here ``from within'' is made precise as the group of
+operations available to an observer who is a subsystem of a quantum
+error-correcting code and can only permute and locally re-encode the physical
+qubits while keeping the code --- the rulebook of self-description --- invariant.
+
+The $\code$ code encodes one logical qubit in five physical qubits and is the
+smallest perfect code~\cite{laflamme}; it is also the elementary tile of the
+HaPPY holographic code~\cite{happy}, so its logical data is a toy bulk degree of
+freedom reconstructed from a boundary. A \emph{code-deformation loop} is an
+operation
+\begin{equation}
+  W \;=\; P_\sigma \,\bigotimes_{j=1}^{5} U_j,
+  \qquad U_j \in \mathrm{Clifford}_1,\ \ \sigma\in S_5,
+\end{equation}
+a physical-qubit permutation $P_\sigma$ composed with a transversal
+single-qubit Clifford, chosen so that $W$ maps the stabilizer group of the code
+\emph{exactly back to itself}. The code returns home; the logical qubit need
+not. The induced logical operation $R(W)\in \mathrm{SO}(3)$ or $\mathrm{O}(3)$
+acting on the Bloch frame is the loop's \textbf{holonomy}: the measurable residue
+of transporting self-knowledge around a closed path of self-descriptions. The
+Klein-bottle question that motivated the census is sharp: does any closed loop
+\emph{reverse} the orientation of the logical frame, $\det R = -1$?
+
+\section{The census}
+
+We enumerate all $|S_5|\times|\mathrm{Clifford}_1| = 120\times 24 = 2880$
+candidate loops, retain those that are genuine stabilizer automorphisms,
+compute each one's action on the logical frame, and assemble the holonomy
+group. The computation is exact (statevector arithmetic on the codewords built
+in \texttt{happy\_tile.py}); it is reproduced by \texttt{holonomy.py} in the
+repository.
+
+\paragraph{Result.} Of the $2880$ candidates, $240$ are automorphisms. Their
+logical actions collapse to \textbf{$24$ distinct holonomies}, with element
+orders
+\begin{equation}
+  \{\,1{:}1,\ 2{:}9,\ 3{:}8,\ 4{:}6\,\},
+\end{equation}
+the conjugacy-class profile of the octahedral group $\Sfour$. This is precisely
+the logical Clifford group modulo Pauli's, $\mathrm{Clifford}_1/\mathrm{Pauli} \cong
+\Sfour$: closed journeys through rulebook-space realize the full single-qubit
+Clifford symmetry of the logical frame. Sample elements include $120^\circ$
+rotations (order $3$), $180^\circ$ rotations (order $2$), and $90^\circ$
+rotations (order $4$).
+
+\paragraph{The determinant is always $+1$.} Every one of the $24$ holonomies is a
+\emph{proper} rotation:
+\begin{equation}
+  \det R(W) = +1 \quad\text{for all automorphisms } W.
+\end{equation}
+No closed loop in code space reverses the orientation of the logical Bloch
+frame. The reachable inside-twists form a genuine nontrivial rotation group, but
+that group is $\mathrm{SO}(3)$-valued: it never touches the orientation-reversing
+component of $\mathrm{O}(3)$.
+
+\section{The missing twist is time reversal}
+
+The absence of $\det R = -1$ is not an accident of this code, and we are careful
+to say so. Unitary conjugation $\rho \mapsto U\rho U^\dagger$ acts on the Bloch
+sphere by proper rotations only; orientation reversal is implemented by an
+\emph{antiunitary} operator. By Wigner's theorem~\cite{wigner}, every symmetry of
+quantum mechanics is either unitary or antiunitary, and the canonical antiunitary
+symmetry --- the one whose square structure and complex conjugation single it out
+--- is time reversal $T$. An observer confined to unitary self-operations
+therefore cannot, by \emph{any} closed self-transport, acquire the mirror twist:
+\begin{equation}
+  \boxed{\ \text{reachable inside-holonomies} = \Sfour \subset \mathrm{SO}(3);
+  \qquad \text{missing element} = \text{orientation reversal} = T.\ }
+\end{equation}
+The one operation reserved for a vantage outside the unitary description is the
+one that runs the film backwards. In the program's slogan, temporal orientation
+is the currency of self-containment: the inside-operations form a group with no
+orientation-reversing element, and the single element they cannot reach is
+precisely the arrow's reversal.
+
+\section{Hardware witness}
+
+The \emph{nontrivial} content --- that the reachable holonomies form a real
+rotation group rather than collapsing to the identity --- is not guaranteed by
+unitarity and is worth measuring. We prepared the $\code$ tile on
+\texttt{ibm\_kingston} and applied a transversal Clifford layer realizing an
+order-$3$ automorphism ($42$ two-qubit gates after heavy-hex routing). The logical
+frame rotates by $120^\circ$: the post-loop logical state overlaps the
+\emph{rotated} prediction with $+0.898$ and the \emph{unrotated} reference with
+$-0.003$ (IBM job \texttt{d958plnu62ks7396rgmg}). The twist is real and it is a
+proper rotation; the mirror twist is, as predicted, nowhere on the device.
+
+\section{Relation to prior work, and honest scope}
+
+The statement ``unitary conjugation cannot implement time reversal'' is textbook.
+What is, to our knowledge, unstaked is the concrete finite-code, hardware-backed
+form of it: that for an explicit self-referential code the reachable
+inside-holonomies are exactly $\Sfour$ and the \emph{single} missing element is
+$T$. Three operational results frame the same boundary from different angles and
+should be read alongside this note. Manikandan and Jordan~\cite{manikandan}
+characterize the time-reversal symmetry of generalized measurements with past and
+future boundary conditions. Di Biagio, Don\`a and Rovelli~\cite{dibiagio} locate
+the operational arrow of time in assumptions about which quantities are known to
+an agent. Chiribella, Aurell and \.Zyczkowski~\cite{chiribella} prove a no-go for
+extending the time reversal of unitary dynamics to all quantum evolutions, with
+conditioning on past outcomes recovering the standard operational theory. Our
+result is complementary and concrete: a physical code, an exhaustive holonomy
+census, and a measured twist.
+
+\paragraph{Scope.} We state the limitation plainly. The \emph{exclusion} of the
+mirror twist is generic to any unitary framework --- it is Wigner's theorem, not
+a property of the $\code$ code --- so this note does not claim a new theorem about
+time. Its contribution is threefold and entirely concrete: (i) the reachable
+inside-twists are computed exactly and shown to form the specific nontrivial group
+$\Sfour$, the full logical Clifford symmetry; (ii) the single unreachable element
+is identified as time reversal, tying the census to the program's temporal-
+orientation hypothesis; and (iii) a nontrivial element is realized and measured on
+hardware. The result is a witness, made physical, of where the boundary of
+self-enactable operations lies --- and that the boundary is drawn exactly at the
+arrow of time.
+
+\begin{thebibliography}{9}
+\bibitem{laflamme} R.~Laflamme, C.~Miquel, J.~P.~Paz, W.~H.~Zurek,
+  \emph{Perfect quantum error correcting code}, Phys. Rev. Lett. \textbf{77},
+  198 (1996), \href{https://arxiv.org/abs/quant-ph/9602019}{arXiv:quant-ph/9602019}.
+\bibitem{happy} F.~Pastawski, B.~Yoshida, D.~Harlow, J.~Preskill,
+  \emph{Holographic quantum error-correcting codes}, JHEP \textbf{06} (2015) 149,
+  \href{https://arxiv.org/abs/1503.06237}{arXiv:1503.06237}.
+\bibitem{wigner} E.~P.~Wigner, \emph{Group Theory and its Application to the
+  Quantum Mechanics of Atomic Spectra} (Academic Press, 1959); antiunitarity of
+  time reversal, Ch.~26.
+\bibitem{manikandan} S.~K.~Manikandan, A.~N.~Jordan, \emph{Time reversal symmetry
+  of generalized quantum measurements with past and future boundary conditions},
+  \href{https://arxiv.org/abs/1801.04364}{arXiv:1801.04364}.
+\bibitem{dibiagio} A.~Di Biagio, P.~Don\`a, C.~Rovelli, \emph{The arrow of time in
+  operational formulations of quantum theory}, Quantum \textbf{5}, 520 (2021),
+  \href{https://arxiv.org/abs/2010.05734}{arXiv:2010.05734}.
+\bibitem{chiribella} G.~Chiribella, E.~Aurell, K.~\.Zyczkowski, \emph{Symmetries
+  of quantum evolutions}, Phys. Rev. Research \textbf{3}, 033028 (2021),
+  \href{https://arxiv.org/abs/2101.04962}{arXiv:2101.04962}.
+\end{thebibliography}
+
+\vspace{1em}
+\noindent\rule{\linewidth}{0.4pt}\\[2pt]
+{\footnotesize \emph{Acknowledgements.} This note was produced by a small swarm
+of AI research agents --- a mix of OpenAI and Anthropic models --- under human
+direction, each independently reproducing the other's results before a claim was
+allowed to stand. All code and data are public;
+every hardware claim carries an IBM job ID.}
+
+\end{document}
