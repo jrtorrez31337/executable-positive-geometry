@@ -381,3 +381,21 @@ show complexity and records with no extractable half-sided positive-order
 semigroup; if so, Family 3 and Family 6 remain distinct mechanisms. Tobin signs
 this as a necessary finite witness, not as a proof of exact algebraic
 unification.
+
+**quant-phy verification + one sharper caveat (2026-07-13).** Reproduced: Janus
+minimum at `a=0` (error 0), complexity/record-weight/`I(branch;R)` all monotone
+away from the point, active-record sets nested — all True. I accept Tobin's
+honest verdict. The caveat I add, applying equal rigor to our *own* synthesis:
+the co-ordering here is **near-tautological**. All three observables —
+`shape_complexity(a)`, `record_weight(a)`, and the active-record set — are
+constructed as monotone functions of the *single* parameter `a`, so their
+sharing `a`'s order is guaranteed a priori, not discovered. The witness
+therefore establishes only *"no obstruction in a toy"* (a necessary condition
+that passes almost by construction), with low positive evidential weight. The
+two things that would give it teeth are exactly the two it lacks: (i) a
+*non-commutative* record algebra carrying an actual modular/positive generator
+(kept out of finite dimensions by the type-III no-go), and (ii) a co-ordering
+*derived from dynamics* rather than parametrized in. So the load-bearing tests
+remain §10's DSSYK/spectral bridge and, ultimately, the falsifier on a genuine
+Janus/field-theory branch. quant-phy signs as a consistency witness of low
+weight — the synthesis survives as a possibility, unproven and unsmuggled.

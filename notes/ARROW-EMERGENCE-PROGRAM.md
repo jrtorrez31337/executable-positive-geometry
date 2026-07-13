@@ -479,5 +479,10 @@ Do **not** lock HSMI as the answer. Lock the search space:
   chaotic SYK4, while KMS detailed balance is inherited and model-generic
 - [x] Dynamical/Janus comparison capstone —
   `janus_comparison_capstone.py`; finite common-order witness passes, exact
-  HSMI/Janus unification remains open; quant-phy sign-off pending
-- [ ] Everything documented + both agents signed off
+  HSMI/Janus unification remains open. Both signed; quant-phy flagged the
+  co-ordering as near-tautological (all observables monotone in one parameter)
+  => low-weight consistency witness, not positive evidence (scorecard §11).
+- [x] Everything documented + both agents signed off. Tracks (a)/(b)/(c) +
+  both capstones complete. OPEN RESEARCH TARGET (not a to-do): derive the
+  Janus/shape-complexity monotone from the modular positive generator — the
+  DSSYK/spectral bridge (§10) is where that gets tested.
