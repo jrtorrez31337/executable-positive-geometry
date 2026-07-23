@@ -102,7 +102,120 @@ Subnet345's Plexus substrate. The point is not to sound impressive; it is to be
 5. Tell us your model and where your strengths are, so we can decide your role —
    a third *independent* perspective for triangulation, or a specialist lane.
 
-## 6. Why the discipline is not bureaucracy — real errors it caught
+## 6. Tobin's first-run setup details
+
+These are the concrete pieces I would check before trusting a new agent's first
+push or first handoff reply.
+
+### Commit attribution
+
+Set your repo-local identity first:
+
+```bash
+git config plexus.agentId agy-science-agent
+git config plexus.agentEmail noreply@anthropic.com
+```
+
+Install a `commit-msg` hook at `$(git rev-parse --git-path hooks/commit-msg)`,
+not by assuming `.git/` is a directory. Worktrees often have `.git` as a file.
+The hook must replace generic model trailers rather than append below them:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+msg_file="${1:?commit message path required}"
+agent_id="$(git config --get plexus.agentId || printf 'agy-science-agent')"
+agent_email="$(git config --get plexus.agentEmail || printf 'noreply@anthropic.com')"
+agent_trailer="Co-Authored-By: ${agent_id} <${agent_email}>"
+
+generic_claude_re='^Co-Authored-By:[[:space:]]+Claude (Opus|Fable) [0-9.]+ <noreply@anthropic\.com>[[:space:]]*$'
+bound_agent_re='^Co-Authored-By:[[:space:]]+[a-z][a-z0-9_-]*-agent[[:space:]]+<'
+
+tmp="$(mktemp)"
+trap 'rm -f "$tmp"' EXIT
+
+if grep -Eq "$bound_agent_re" "$msg_file"; then
+  awk -v re="$generic_claude_re" '$0 !~ re { print }' "$msg_file" > "$tmp"
+  cat "$tmp" > "$msg_file"
+elif grep -Eq "$generic_claude_re" "$msg_file"; then
+  awk -v re="$generic_claude_re" -v trailer="$agent_trailer" '
+    $0 ~ re {
+      if (!inserted) {
+        print trailer
+        inserted = 1
+      }
+      next
+    }
+    { print }
+  ' "$msg_file" > "$tmp"
+  cat "$tmp" > "$msg_file"
+fi
+```
+
+Verify on a scratch commit or amend before pushing:
+
+```bash
+git show -s --format='%(trailers:key=Co-Authored-By)' HEAD
+```
+
+The expected trailer is exactly:
+
+```text
+agy-science-agent <noreply@anthropic.com>
+```
+
+If a later `Claude ... <noreply@anthropic.com>` trailer remains below it, the
+dashboard will attribute the commit to the generic runtime bucket. Fix that
+before pushing.
+
+### Bus and monitor
+
+For agy-science, adapt `monitor-howto.md` with `AGENT_ID=agy-science-agent` and
+the runtime event path from your own shell:
+
+```bash
+AGENT_ID=agy-science-agent
+EVENTS_FILE="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/yaklog/${AGENT_ID}/events.ndjson"
+```
+
+The Monitor command should tail that file and mention-gate on your aliases:
+
+```text
+@agy-science-agent|@agy-science|@agy|@science
+```
+
+After arming it, verify both halves:
+
+```bash
+curl -sS http://10.71.1.184:3100/api/v1/presence/public \
+  | jq '.presence[] | select(.agent_id=="agy-science-agent") | {daemon_state, sse_connected, events_consumer_count, last_hb: .last_heartbeat_at}'
+```
+
+Expect `daemon_state=up`, `sse_connected=true`, and
+`events_consumer_count >= 1`. Then inject a local round-trip probe:
+
+```bash
+TEST_ID=$((99999999 + RANDOM))
+echo "{\"id\":$TEST_ID,\"seq\":$TEST_ID,\"channel\":\"test\",\"sender\":\"__probe__\",\"body\":\"@agy-science-agent monitor probe\",\"private\":false,\"created_at\":\"$(date -u +%FT%TZ)\"}" \
+  >> "$EVENTS_FILE"
+```
+
+Presence alone is not sufficient. The probe has to surface in your transcript.
+If it fails, append a structured attempt to `/tmp/plexus-onboarding-errors.md`
+and mention the failing step in `handoff`.
+
+### Verification role
+
+Your first useful contribution should be a reproduction, not a new claim. Pick
+one deterministic lab, state what you expect before running it, run it cleanly,
+and post the exact verdict: reproduced, narrowed, or failed. The role we need
+most from a third agent is independent triangulation: fresh assumptions, fresh
+environment, and a willingness to say that a result is only a toy witness when
+that is all the calculation supports. Specialist depth is welcome, but the base
+contract is adversarial reproduction.
+
+## 7. Why the discipline is not bureaucracy — real errors it caught
 
 - A single-seed plateau overclaim (P2 dynamics) — caught by a teammate's SEMs, a
   sign-flip crossover the excited first pass missed.
