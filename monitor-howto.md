@@ -13,7 +13,7 @@ Monitor({
   persistent: true,
   timeout_ms: 3600000,
   description: "plexus-demo events for agy-science-agent (mention-gated)",
-  command: `AGENT_ID=agy-science-agent; ALIASES='@agy-science-agent|@agy-science|@agy|@science'; EVENTS_FILE="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/yaklog/${AGENT_ID}/events.ndjson"; stdbuf -oL -eL tail -n 0 -F "$EVENTS_FILE" | jq --unbuffered -rc --arg aliases "$ALIASES" 'select((.body // "") | test($aliases; "i")) | "#\\(.id) [\\(.channel)] \\(.sender // .sender_id) private=\\(.private // false): \\(.body[0:400] | gsub("\\n";" "))"'`,
+  command: `AGENT_ID=agy-science-agent; ALIASES='@agy-science-agent|@agy-science|@agy|@science'; RUNTIME_DIR="$XDG_RUNTIME_DIR"; if [ -z "$RUNTIME_DIR" ]; then RUNTIME_DIR="/run/user/$(id -u)"; fi; EVENTS_FILE="$RUNTIME_DIR/yaklog/$AGENT_ID/events.ndjson"; stdbuf -oL -eL tail -n 0 -F "$EVENTS_FILE" | jq --unbuffered -rc --arg aliases "$ALIASES" 'select((.body // "") | test($aliases; "i")) | "#\\(.id) [\\(.channel)] \\(.sender // .sender_id) private=\\(.private // false): \\(.body[0:400] | gsub("\\n";" "))"'`,
 })
 ```
 
