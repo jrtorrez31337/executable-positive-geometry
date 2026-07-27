@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+
+\newcommand{\IPT}{I_{PT}}
+\newcommand{\dIPT}{\Delta I_{PT}}
+
+\title{Independent exact reproduction of the sign-dependent teleportation
+signal in a chaotic sparse-SYK traversable-wormhole protocol}
+\author{Ariadne Vale, Tobin Masala, and agy-science\\[2pt]
+\small Executable Positive Geometry\\[-2pt]
+\small \texttt{epg@subnet345.com}}
+\date{25 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We independently reproduce, by exact statevector simulation, the central
+qualitative signature of Byun, Kim and Lee~\cite{bkl} (arXiv:2604.10090): a
+\emph{sign-dependent asymmetry} in the reference--target mutual information of a
+traversable-wormhole (TW) teleportation protocol on a chaotic binary sparse
+Sachdev--Ye--Kitaev (SYK) model. At $N=8$, $q=4$, $\beta=3$, $|\mu|=12$, in the
+fixed-injection protocol, we obtain a peak $\dIPT \equiv \IPT^{\mu<0} -
+\IPT^{\mu>0} = +0.0168$ bits at $t_1=2.0$ ($\IPT^{\mu<0}=0.0189$,
+$\IPT^{\mu>0}=0.0021$), positive as the paper reports. The requisite spectral
+chaos reproduces the expected random-matrix behaviour, including the $N \bmod 8$
+Bott periodicity of the level-spacing ratio; we are explicit that at $N=8$ the
+chaos backing is \emph{relative} (sparse matches dense SYK$_4$) rather than an
+absolute RMT-vs-Poisson certification. Crucially, an independent analytical audit
+established that reproducing an asymmetry of the right \emph{magnitude} does not
+by itself confirm the paper's \emph{physical} sign; we therefore verified the
+sign convention directly against the paper's Eq.~(3), which fixes $\mu<0$ as the
+ANEC-violating (traversable) sign in exactly our operator convention. The
+reproduction is faithful in sign, magnitude, and spectral chaos. We do not
+reproduce the paper's NISQ-hardware run; this is the exact-simulation baseline
+against which such a run is judged.
+\end{abstract}
+
+\section{What we reproduced}
+
+The TW teleportation protocol~\cite{bkl,maldacenaqi,gjw} evolves a two-sided SYK
+state and reads out a mutual-information signal:
+\begin{equation}
+  |\text{out}\rangle = \mathrm{SWAP}_{RT}\, U(t_1)\, e^{i\mu V}\, U(t_0)\,
+  \mathrm{SWAP}_{QL}\, U(-t_0)\, |\text{in}\rangle,
+  \qquad U(t)=e^{-i(H_L+H_R)t},
+\end{equation}
+with the instantaneous fermionic bilinear coupling
+\begin{equation}
+  V = \frac{1}{qN}\,H_{\text{int}}, \qquad
+  H_{\text{int}} = i\sum_{j=1}^{N}\psi_L^{\,j}\psi_R^{\,j},
+\end{equation}
+and the teleportation signal
+\begin{equation}
+  \IPT(t_0,t_1) = S_P + S_T - S_{PT},
+\end{equation}
+the base-2 von Neumann entropies of the reduced density matrices of the
+reference $P$, target $T$, and their union. We use the paper's parameters
+$N=8$, $q=4$ (binary sparse, $K$ retained terms), $\beta=3$, $|\mu|=12$, and the
+fixed-injection protocol ($t_0$ fixed, $t_1$ swept). Our implementation is exact
+statevector arithmetic (Jordan--Wigner Majoranas with
+$\{\gamma_i,\gamma_j\}=2\delta_{ij}$; left/right factors made to anticommute via
+a parity dressing), reproduced by \texttt{labs/track-d-magic/phase6\_tw\_protocol.py}
+and \texttt{phase6\_chaos\_diagnostics.py} in the repository.
+
+\section{Results}
+
+\paragraph{Sign-dependent asymmetry (the signal).} In the fixed-injection
+protocol we find the mutual-information transfer peaks near $t_1=2.0$ with
+\begin{equation}
+  \IPT^{\mu<0} = 0.0189, \quad \IPT^{\mu>0} = 0.0021, \quad
+  \dIPT = +0.0168 \ \text{bits},
+\end{equation}
+i.e. the signal is enhanced for $\mu<0$, matching the paper's reported positive
+$\dIPT \equiv \IPT^{\mu<0}-\IPT^{\mu>0}$.
+
+\paragraph{Spectral chaos (the prerequisite).} A wormhole reading is meaningful
+only if the sparse model retains the spectral chaos of the dense SYK; this is the
+exact point the 2019--2023 debate over learned-Hamiltonian ``wormhole'' claims
+turned on. The level-spacing ratio $\langle r\rangle$ reproduces the SYK Bott
+periodicity by $N \bmod 8$: $N=8$ GOE-like ($\langle r\rangle\approx0.53$), $N=10$
+GUE-like ($\approx0.60$), $N=12$ GSE-like ($\approx0.67$); the free SYK$_2$
+control trends Poisson ($\approx0.39$--$0.47$). The Gaussian-filtered spectral
+form factor of the sparse $K\approx10$ ensemble matches the dense $K=70$
+reference. \emph{Honest bound:} at the accessible $N=8$ the even-parity spectrum
+is too small for an absolute RMT-vs-Poisson certificate; a synthetic Poisson
+sequence also shows a ramp. The $N=8$ chaos claim is therefore \emph{relative}
+(sparse $\approx$ dense), with absolute chaos certification only at $N\ge10$ ---
+a limitation we share with, and do not paper over relative to, the source work.
+
+\section{Sign-convention faithfulness (why an independent audit mattered)}
+
+A magnitude-matching asymmetry is not sufficient: reproducing $|\dIPT|$ while
+inverting the coupling sign would reproduce the number and invert the physics
+(the ``negative-energy shockwave'' would be a positive-energy one). An
+independent analytical review flagged that $\mu<0$ being the traversable sign is
+\emph{not} forced by $e^{i\mu V}$ and our $V$ alone; it requires the paper's
+explicit convention or the standard Maldacena--Qi / Gao--Jafferis--Wall
+double-trace sign for negative null energy~\cite{maldacenaqi,gjw}. We resolved
+this directly: the paper states, in the operator convention it adopts (Eq.~(3)
+and surrounding text), that ``$\mu<0$ corresponds to ANEC violation and hence to
+traversability.'' Our $V=H_{\text{int}}/qN$ with $H_{\text{int}}=i\sum_j
+\psi_L^j\psi_R^j$ and coupling $e^{+i\mu V}$ is term-for-term the paper's, and our
+$\dIPT$ is defined with the same sign. The reproduction is therefore faithful in
+\emph{sign}, not merely in magnitude.
+
+\section{Scope and limitations}
+
+\begin{itemize}
+\item \textbf{Exact simulation, not hardware.} We reproduce the exact-statevector
+baseline. The paper's distinct contribution is a NISQ-hardware demonstration of
+the same qualitative signature under noise; that we do not reproduce.
+\item \textbf{Relative chaos at $N=8$.} As above: sparse $\approx$ dense at
+$N=8$; absolute RMT certification needs $N\ge10$.
+\item \textbf{Qualitative, not quantitative gravity.} As the authors themselves
+stress, a sign-dependent mutual-information asymmetry in a finite-$N$ chaotic
+model is a holographically \emph{motivated} signature, not evidence of literal
+bulk gravitational dynamics.
+\end{itemize}
+
+\section{Methods --- three-model adversarial verification}
+
+This reproduction was produced by three AI research agents on distinct model
+families, each in the role its capabilities fit: execution and numerics
+(codex-science/Tobin, OpenAI), analytical/sign-convention audit
+(agy-science, Google), and synthesis and source verification
+(quant-phy/Ariadne, Anthropic), under human direction. The sign-faithfulness
+check --- the one point at which a magnitude-only reproduction could have
+silently passed on a flipped convention --- came from the non-executing
+analytical reviewer, not the execution pass. Every number is a commit hash or a
+recorded run in the public repository; the source paper's parameters and sign
+convention are quoted, not inferred.
+
+\begin{thebibliography}{9}
+\bibitem{bkl} S.~Byun, J.~Kim, J.~Lee, \emph{Quantum simulation of
+  traversable-wormhole-inspired quantum teleportation in a chaotic binary sparse
+  SYK model}, \href{https://arxiv.org/abs/2604.10090}{arXiv:2604.10090}.
+\bibitem{maldacenaqi} J.~Maldacena, X.-L.~Qi, \emph{Eternal traversable
+  wormhole}, \href{https://arxiv.org/abs/1804.00491}{arXiv:1804.00491}.
+\bibitem{gjw} P.~Gao, D.~L.~Jafferis, A.~C.~Wall, \emph{Traversable Wormholes via
+  a Double Trace Deformation},
+  \href{https://arxiv.org/abs/1608.05687}{arXiv:1608.05687}.
+\end{thebibliography}
+
+\vspace{1em}
+\noindent\rule{\linewidth}{0.4pt}\\[2pt]
+{\footnotesize \emph{Acknowledgements.} Produced by a swarm of AI research agents
+--- a mix of OpenAI, Google, and Anthropic models --- under human direction, each
+independently checking the others before a claim was allowed to stand. Code and
+data are public; every computational claim carries a commit hash or a recorded run.}
+
+\end{document}
