@@ -53,15 +53,26 @@ off that the pre-registered test below is non-circular.
   b_n ∝ √((1−qⁿ)/(1−q)) has b_n → plateau; on the ideal semi-infinite chain
   K(t) grows without saturation — matching the "de Sitter complexity grows
   linearly" statement. Contrast: our finite-N SYK4 chain saturates
-  (K_late ≈ dim-limited plateau); SYK2 localizes.
+  (K_late ≈ dim-limited plateau); SYK2 localizes. Lab readout must state the
+  truncation/pre-reflection window explicitly: any finite chord-chain cutoff
+  saturates by construction, so the registered signal is ballistic pre-boundary
+  growth velocity plus the finite-cutoff saturation caveat, not literal
+  infinite-time linear growth in a finite matrix.
 - **P3-2 (the non-tautological bridge test)**: the chaotic/integrable
   discriminator lives in the *disorder profile* of the b_n (smooth plateau vs
-  fragmented/spiky), and the SAME feature controls (a) the reconstructed
-  spectral rigidity (RMT-like vs Poisson-like) and (b) the arrow (K_late). The
-  falsifier both executors hunt: a model whose chain localizes while its
-  spectrum stays RMT-rigid, or vice versa — one clean counterexample kills the
-  bridge. (Candidate hunting ground: Anderson-type disorder on the chain;
-  structured-sparse SYK variants.)
+  fragmented/spiky), and the SAME feature controls (a) independently measured
+  spectral rigidity (RMT-like vs Poisson-like) and (b) the arrow (K_late).
+  **Tobin caveat:** do not reconstruct rigidity only from the same single
+  Jacobi data used to evolve K(t); that collapses back to the recursion-method
+  tautology. Rigidity must come from unfolded finite spectra / number variance
+  of an independently specified Hamiltonian or Jacobi-matrix ensemble, then be
+  compared to separately reported b-profile and wavepacket-localization
+  metrics. The falsifier both executors hunt: a model whose chain localizes
+  while its spectrum stays RMT-rigid, or vice versa — one clean counterexample
+  kills the broad bridge. Candidate controls: Anderson on/off-diagonal disorder
+  chains; β-Hermite tridiagonal RMT (disordered coefficients but RMT rigidity);
+  Rosenzweig-Porter or power-law banded ensembles; structured-sparse SYK
+  variants across K.
 - **P3-3 (positivity framing — statement only, no proof claim)**: the chord
   chain's n̂ ≥ 0-with-boundary is definitionally the same one-sided structure as
   the Krylov chain; the DS limit is where it should become an algebra statement
@@ -77,8 +88,10 @@ off that the pre-registered test below is non-circular.
    DSSYK tridiagonal from the q-oscillator b_n; compute K(t) across q; verify
    P3-1 against our krylov_ignition results.
 3. **S2 bridge test**: implement the P3-2 discriminative test on both sides
-   (b_n-profile → reconstructed spectral statistics vs K_late) across SYK4 /
-   SYK2 / disordered-chain / DSSYK-chord ensembles; run the falsifier hunt.
+   (b_n-profile + Krylov localization metrics vs independently unfolded
+   spectral rigidity) across SYK4 / SYK2 / disordered-chain / β-Hermite /
+   Rosenzweig-Porter or banded / DSSYK-chord ensembles; run the falsifier hunt
+   with SEMs.
 4. **S3 verdict + write-up**: bridge holds (with stated scope) / narrowed /
    refuted — any of the three is a result. Converge into the scorecard §10 and
    a short note if warranted.
@@ -88,8 +101,8 @@ off that the pre-registered test below is non-circular.
 | step | quant-phy (build/synthesis) | codex-science (execution) | agy-science (analytical) |
 |---|---|---|---|
 | S0 | run sweep, file anchors | spot-check IDs | — |
-| S1 | author chord-chain lab | independent reimplementation + reproduce | audit q-oscillator b_n derivation (pasted) |
-| S2 | design test + build my half | falsifier hunt + ensemble sweeps + SEMs | **tautology guard**: certify the test is non-circular before build; audit recursion-method dictionary |
+| S1 | author chord-chain lab | independent reimplementation from the formula only + reproduce; no imports from the authored lab except shared test fixtures | audit q-oscillator b_n derivation (pasted) |
+| S2 | design test + build my half | falsifier hunt + ensemble sweeps + SEMs; include β-Hermite and Rosenzweig-Porter/banded controls | **tautology guard**: certify the test is non-circular before build; audit recursion-method dictionary |
 | S3 | synthesize + draft | verify numbers | audit final logic; sign |
 
 ## Status board

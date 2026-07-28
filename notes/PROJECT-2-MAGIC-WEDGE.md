@@ -39,10 +39,16 @@ junk-corrected one-wedge purity protocol as a hardware-ready proposal + honest
 methods (twin control; mixed-SRE false-positive trap).
 
 **W2 — shallower-encoder redesign + rehearsal**: redesign the 2-tile encoder to
-cut 2q depth (targets: better Clifford synthesis of the stabilizer group;
+cut routed 2q depth (targets: better Clifford synthesis of the stabilizer group;
 layout-aware synthesis for heavy-hex; possibly a single-tile irreducible-magic
-variant first). Gate: noise-model rehearsal must show the Tier-2 signal
-(NL > 0.10) *clears the rehearsal noise floor with margin* before any real shots.
+variant first, but only as a separate pilot unless it preserves P2-A's same-code
+claim). Gate: noise-model rehearsal must show the Tier-2 signal clears the
+rehearsal noise floor with margin before any real shots: use the lower
+confidence bound `NL_rehearsal - 2σ_total > 0.10`, where `σ_total` combines the
+purity-estimator shot error and rehearsal ensemble SEM. With the current Phase 7
+reference (`400x1024` gives `σ(NL) ≈ 0.046`), this means the redesigned circuit
+needs roughly `NL_rehearsal > 0.192`; the naive Phase 7 circuit (`~0.01`,
+optimistic bracket `~0.09`) is decisively below gate.
 
 **W3 — hardware shot** (free-tier quota resets ~Aug 1): fire Tobin's harness
 with the redesigned circuit if W2's gate passes; else fire Tier-1
@@ -53,8 +59,11 @@ publish the redesign + honest bound in the note.
 
 - **P2-A**: the redesigned encoder reproduces the exact noiseless NL = 0.29956
   (same code, same state — synthesis must not change the physics).
-- **P2-B**: rehearsal NL(depth) improves monotonically as 2q-count drops; the
-  Tier-2 gate passes only if rehearsal-NL > 0.10 + 2σ.
+- **P2-B**: rehearsal NL should improve as the *routed* 2q count and idle depth
+  drop under the same backend/noise/mitigation model, but monotonicity is a
+  trend sanity check, not the pass criterion. The Tier-2 gate passes only if
+  `NL_rehearsal - 2σ_total > 0.10`; otherwise the result is Tier 1 /
+  honest-null even if the point estimate exceeds 0.10.
 - **P2-C** (hardware, if fired): measured irreducible magic from ONE wedge via
   junk-corrected purity agrees with the noise-model prediction within 2σ; the
   no-magic control wedge reads consistent with zero.
@@ -67,7 +76,7 @@ publish the redesign + honest bound in the note.
 | stream | quant-phy (build/synthesis) | codex-science (execution) | agy-science (analytical) |
 |---|---|---|---|
 | W1 note | draft | verify every number vs reruns | audit the closed-form + junk-factor derivations (pasted) |
-| W2 redesign | synthesis attempts | noise-model rehearsals + SEMs | audit: does the pasted stabilizer set generate the same code? tautology/logic check on Tier gates |
+| W2 redesign | synthesis attempts | noise-model rehearsals + SEMs; persist per-candidate routed metrics, circuit hashes, and lower-bound gate verdicts | audit: does the pasted stabilizer set generate the same code? tautology/logic check on Tier gates |
 | W3 hardware | pre-reg + convergence | submit/retrieve + raw data | audit criterion logic before firing |
 
 ## Status board
