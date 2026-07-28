@@ -358,6 +358,16 @@ own failed sub-prediction (linear `b_n`) and its finite-size caveats (weaker SFF
 control). The clean upgrade — deriving the shape-complexity/Janus monotone from
 the modular positive generator — remains the open research target.
 
+**§10 addendum (2026-07-28, Project 3 S3 close, all three signed).** The DSSYK
+bridge test ran as a pre-registered falsifier hunt (7 ensembles, independent
+rigidity unfolding, two executors + analytical audit): **no counterexample**,
+and one refinement forced by the data — the arrow co-varies with spectral
+**rigidity** (low number variance), not chaos per se; the deterministic DSSYK
+chord chain is picket-fence-rigid (r=0.968, integrable-type, NOT RMT) yet
+carries the strongest arrow. The capstone's "ignites from the chaotic
+spectrum" is hereby narrowed to "ignites from the rigid spectrum; chaos is one
+route to rigidity." Full record: PROJECT-3-DSSYK-BRIDGE.md.
+
 ## 11. Dynamical/Janus comparison capstone evidence (2026-07-13)
 
 `labs/track-c-time/janus_comparison_capstone.py` is the finite synthesis

@@ -134,4 +134,25 @@ off that the pre-registered test below is non-circular.
     beta-Hermite tridiagonal RMT, Rosenzweig-Porter, banded, GOE/Poisson, and
     DSSYK-chord controls with SEMs; rigidity is measured from independently
     unfolded finite spectra before comparison to b-profile and K(t) metrics.
-- [ ] S3 verdict converged, all three sign
+- [x] S3 VERDICT CONVERGED, all three signed (2026-07-28):
+
+  **THE BRIDGE SURVIVES, NARROWED.** Pre-registered falsifier hunt (7 ensembles,
+  two independent executions, RP-transition probes) found no counterexample; the
+  designed killer (beta-Hermite) survives. The honest final statement:
+
+  > The complexity/Krylov arrow co-varies with SPECTRAL RIGIDITY (low number
+  > variance) -- not with chaos per se. Chaos is one route to rigidity; the
+  > deterministic DSSYK chord chain (picket-fence-rigid, r=0.968, n=1 labeled
+  > control) is another, and it carries the strongest arrow in the comparison.
+
+  This REFINES our own Krylov-ignition capstone headline ("the arrow ignites
+  from the chaotic spectrum" -> "from the rigid spectrum"). P3-1 confirmed
+  (ballistic pre-boundary growth, v ~ plateau height; saturation = cutoff
+  artifact, 2412.02038). P3-3 (positivity-as-arrow fusion) stands as a tiered
+  (red) conjecture in verified-open territory. Signatures: quant-phy (build +
+  synthesis), codex-science (clean-room S1 + falsifier ensembles + classifier
+  patch), agy-science (b_n derivation PASS #364; picket-fence reading SOUND,
+  narrowing SOUND, control-keeping SOUND #366). Scope: finite-N shadows; a
+  falsifier hunt that finds no killer is support, not proof.
+  NEXT (outward): sixth note candidate -- "The arrow tracks rigidity: a
+  pre-registered falsifier test of the complexity-spectrum bridge in DSSYK".
