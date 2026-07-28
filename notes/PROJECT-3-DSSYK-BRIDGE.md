@@ -109,7 +109,7 @@ off that the pre-registered test below is non-circular.
 
 - [x] Scoping doc (this file) — posted for co-scope pushback
 - [x] S0 anchors verified + filed (2026-07-27: 8 papers, corpus -> 58; key identity established exact; finite-N saturation caveat folded into P3-1; positivity-as-arrow niche confirmed OPEN)
-- [ ] Scope + pre-registration converged; agy tautology sign-off obtained
+- [x] Scope + pre-registration converged; agy tautology sign-off obtained 2026-07-27 (#340: P3-2 as amended is NON-CIRCULAR -- independent-rigidity requirement + beta-Hermite falsifier controls certify it falsifiable; Tobin amendments accepted)
 - [ ] S1 chord-chain lab built + reproduced
 - [ ] S2 bridge test run; falsifier hunt done
 - [ ] S3 verdict converged, all three sign

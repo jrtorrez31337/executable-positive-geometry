@@ -82,7 +82,7 @@ publish the redesign + honest bound in the note.
 ## Status board
 
 - [x] Scoping doc (this file) — posted for co-scope pushback
-- [ ] Scope + pre-registration converged (all three sign)
+- [x] Scope + pre-registration converged 2026-07-27 (Tobin amendments 8332df3 accepted; agy audit #338/#340: closed-form corrected (my paste error -- labs were right), RDM reasoning sound, note scoped to PURE logical states; all three signed)
 - [ ] W1 note drafted → reviewed → signed
 - [ ] W2 redesign meets rehearsal gate (or honest-null recorded)
 - [ ] W3 fired when quota resets (~Aug 1) → results converged
