@@ -84,6 +84,18 @@ publish the redesign + honest bound in the note.
 - [x] Scoping doc (this file) — posted for co-scope pushback
 - [x] Scope + pre-registration converged 2026-07-27 (Tobin amendments 8332df3 accepted; agy audit #338/#340: closed-form corrected (my paste error -- labs were right), RDM reasoning sound, note scoped to PURE logical states; all three signed)
 - [x] W1 note CLOSED three-signed 2026-07-27: Tobin verified all numbers + gate (#347, additive sigma redline applied b16ebb6); agy audits: closed-form (#340), pure-state scope, junk-factor soundness via state-independent factorization (#350). paper/note-wedge-magic.pdf is the fifth research note.
-- [~] W2 candidates built + P2-A-validated (phase7_encoder_redesign.py): resynthesis gains MARGINAL (best C1: routed 53 2q vs baseline 54) -- C1 handed to Tobin manifest for the gate verdict; honest-null likely unless rehearsal surprises. Bonus: any-3-of-5 wedge freedom found (submission-time qubit choice).
+- [x] W2 gate call complete: candidates built + P2-A-validated
+  (`phase7_encoder_redesign.py`); Tobin manifest rehearsal on FakeTorino routed
+  noise, 5 x (120 settings x 512 shots), fails Tier 2 for both C1 greedy
+  (`NL=0.1829`, additive `sigma_total=0.0998`, lower bound `-0.0167`) and
+  C0 baseline control (`NL=0.1653`, additive `sigma_total=0.0983`, lower bound
+  `-0.0312`). Both pass the Tier 1 floor, so the registered route is
+  honest-null / Tier-1 characterization, not a surviving hardware-magic claim.
+  Bonus: any-3-of-5 wedge freedom found and wired into the submission harness
+  for calibration-time qubit choice.
+  - Codex execution artifact added:
+    `labs/track-d-magic/phase7_rehearsal_manifest.py` persists per-candidate
+    routed metrics, circuit hashes, shot sigma, rehearsal SEM, and the
+    registered lower-bound verdict `NL_rehearsal - 2σ_total > 0.10`.
 - [ ] W3 fired when quota resets (~Aug 1) → results converged
 - [ ] Project closed: note final, both/all signed
