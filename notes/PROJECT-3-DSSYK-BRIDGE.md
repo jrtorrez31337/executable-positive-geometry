@@ -183,3 +183,12 @@ ensembles AND parameter sweeps. Feeds the sixth note as its spine.
 gap_r and chain_eigenvector_ipr recorded for diagnosis. Split: quant-phy
 authors sweep + smoke-run; Tobin paper-grade run + SEMs + verification; agy
 pre-run non-circularity audit + post-run reading audit (one ask per message).
+
+**SIXTH NOTE SHIPPED (2026-07-29, three-signed):** `paper/note-rigidity-arrow.pdf`
+-- "The complexity arrow tracks spectral rigidity -- as a trend, not a law."
+Q-1 trend confirmed (rho=-0.765, p=3.4e-5, paper-grade); Q-2 universality
+refuted per its pre-registered falsifier (15x family branching at matched
+Sigma^2); per agy's required qualifier, eigenvector delocalization is stated as
+the DOMINANT additional variable (not exhaustive). Signatures: Tobin (#372
+redlines applied 325a019, re-sign #374), agy (SOUND + qualifier #376),
+quant-phy (author). Items 1+2 of the fridge-closed work plan: COMPLETE.
