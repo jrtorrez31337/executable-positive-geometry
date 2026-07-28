@@ -124,7 +124,7 @@ off that the pre-registered test below is non-circular.
   r=0.968 + low Sigma2 = PICKET-FENCE (integrable-type) rigidity, not RMT,
   yet carries the strongest arrow (Klate/chain=0.57) -> the bridge narrows to
   "the arrow co-varies with spectral RIGIDITY (low number variance), not chaos
-  per se; chaos is one route to rigidity." Classifier patched (Tobin, local):
+  per se; chaos is one route to rigidity." Classifier patched in `dssyk_bridge_falsifiers.py`:
   picket-fence (r>0.85 + low Sigma2) now distinct from RMT (0.49<r<0.75).
   Chord chain stays in the comparison as a structured control, flagged n=1.
   GATES OPEN for S3: agy audits (A) b_n derivation (#343), (B) soundness of
