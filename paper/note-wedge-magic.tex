@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage{braket}
+
+\newcommand{\code}{[[5,1,3]]}
+\newcommand{\Mtwo}{M_2}
+\newcommand{\NL}{\Mtwo^{\mathrm{NL}}}
+
+\title{Wedge geography of erasable and irreducible magic\\ in holographic codes}
+\author{Ariadne Vale, Tobin Masala, and agy-science\\[2pt]
+\small Executable Positive Geometry\\[-2pt]
+\small \texttt{epg@subnet345.com}}
+\date{27 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Magic (non-stabilizerness) has been proposed as the microscopic resource behind
+gravitational back-reaction, but where magic \emph{lives} across the
+entanglement wedges of an explicit holographic code has not been mapped; the
+only hardware demonstration of non-local magic to date used two bare qubits. We
+map it, exactly, in the \code{} tile and a six-tile, 20-qubit HaPPY network.
+Three results. (1)~Magic follows \emph{wedge geometry, not region size}: a
+12-qubit majority arc that misses the wedge of a magic bulk qubit carries
+exactly zero magic, while the wedge reads the full injected value
+$\log_2(4/3)$. (2)~For a two-qubit logical state the magic splits exactly into
+two species --- \emph{erasable} (removable by local logical unitaries; isolated
+operationally by a stabilizer-twin control) and \emph{irreducible} (the
+non-local magic $\NL=-\log_2(4P^2-6P+3)$ of the reduction purity $P$, vanishing
+at Bell and product states and maximal, $\log_2(4/3)$, at $P=3/4$) --- and the
+decomposition $\Mtwo=\text{erasable}+\NL$ holds exactly across a full sweep.
+(3)~The two species have \emph{complementary wedge geography}: the erasable
+component is invisible to every single wedge and appears only in their union,
+while the irreducible component is readable from \emph{any single wedge} ---
+even a three-qubit sub-wedge --- through a junk-corrected boundary purity, with
+constant correction factors ($0.5$, $0.25$) calibrated once on a stabilizer
+state. In slogan form: \emph{what local operations can remove, single wedges
+cannot see; what they cannot remove, single wedges cannot miss.} The one-wedge
+purity readout is a hardware-ready protocol; we include the honest noise
+analysis showing the current encoder is noise-dominated on present devices,
+with a pre-registered lower-bound gate that any redesigned circuit must clear
+before quota is spent. All results are exact statevector computations for
+\emph{pure} logical states, cross-checked by three independent agents.
+\end{abstract}
+
+\section{Setup}
+
+The \code{} code encodes one logical qubit in five physical qubits and tiles
+the HaPPY holographic code~\cite{happy}; our network is the six-tile, 20-qubit
+``flower'' (one central tile, five petals) used in our earlier wedge and
+hardware studies. Entanglement-wedge reconstruction in these codes is
+quantized: a boundary region either contains a bulk qubit's wedge (and can
+reconstruct it fully) or it does not (and knows nothing).
+
+As the magic measure we use the stabilizer R\'enyi entropy at
+$\alpha=2$~\cite{leone}: for a $k$-qubit density matrix $\rho$,
+\begin{equation}
+  \Mtwo(\rho) = -\log_2\!\left[\frac{\sum_P \operatorname{Tr}(\rho P)^4}
+  {\sum_P \operatorname{Tr}(\rho P)^2}\right],
+\end{equation}
+the sum over all $4^k$ Pauli strings, computed exactly via fast
+Walsh--Hadamard transforms of the state's Pauli spectrum (engine self-tested
+against direct enumeration). $\Mtwo$ vanishes on stabilizer states, pure or
+mixed. \emph{Stated caveat:} for mixed reductions $\Mtwo$ is a computable magic
+diagnostic, not a proven monotone; the twin-control construction below exists
+precisely because mixed-state $\Mtwo$ alone false-positives on classical
+mixtures of stabilizer states.
+
+\section{Magic follows the wedge, not the region}
+
+Injecting a $T$-state ($\ket{T}\propto\ket{0}+e^{i\pi/4}\ket{1}$) into a bulk
+slot and sweeping boundary regions:
+a region containing the bulk qubit's wedge reads the full injected magic
+$\log_2(4/3)\approx0.415$; a \textbf{12-qubit majority arc that misses the
+wedge reads exactly zero}. Control injections (stabilizer bulk states) read
+zero everywhere. Magic does not leak, dilute, or spread with region size --- it
+is wedge-quantized, exactly as reconstructable information is. This was a
+pre-registered prediction (the wedge reduction inherits the logical Pauli
+spectrum intact), confirmed by the sweep.
+
+\section{Two species of magic, exactly decomposed}
+
+For a two-qubit logical state $\ket{\psi_L}$ shared between two tiles, the
+literature's non-local magic~\cite{nlexp} is the minimum SRE over local
+unitaries, with closed form
+\begin{equation}
+  \NL(P) = -\log_2\!\left(4P^2 - 6P + 3\right),
+  \qquad P = \operatorname{Tr}\rho_1^2,
+  \label{eq:closedform}
+\end{equation}
+where $\rho_1$ is the one-logical-qubit reduction. $\NL$ vanishes at $P=1/2$
+(Bell) and $P=1$ (product) and attains its maximum $\log_2(4/3)$ at $P=3/4$; it
+is \emph{not} monotone in $P$.\footnote{This behavior --- zeros at both ends,
+peak at $P=3/4$ --- was independently re-derived from
+Eq.~\eqref{eq:closedform} by the analytical reviewer during this project's
+audit round, catching a mis-statement in an internal communication; the labs'
+recorded results were unaffected.} We define the \emph{erasable} component as
+the remainder $\Mtwo-\NL$, and isolate it operationally with the
+\emph{stabilizer-twin control}: a phase-stripped twin state with identical
+mixedness whose subtraction removes amplitude-magic common to both.
+
+Sweeping the logical family $\ket{\psi_L(t)}=\cos t\ket{00}+e^{i\pi/4}\sin
+t\ket{11}$ (exact, on the code):
+
+\begin{center}
+\small
+\begin{tabular}{cccccc}
+\hline
+$t/\pi$ & $\Mtwo$ (total) & $\NL(P)$ & direct min-SRE & erasable $=\Mtwo-\NL$ & twin-$\Delta$\\
+\hline
+0.083 & 0.3276 & 0.2996 & 0.2996 & 0.0280 & 0.0280\\
+0.125 & 0.5406 & 0.4150 & 0.4150 & 0.1255 & 0.1255\\
+0.167 & 0.5737 & 0.2996 & 0.2996 & 0.2742 & 0.2742\\
+0.250 & 0.4150 & 0.0000 & 0.0000 & 0.4150 & 0.4150\\
+0.333 & 0.5737 & 0.2996 & 0.2996 & 0.2742 & 0.2742\\
+\hline
+\end{tabular}
+\end{center}
+
+Both identities hold to machine precision across the sweep: the closed form
+equals direct numerical minimization over local unitaries (validating
+Eq.~\eqref{eq:closedform} on the code), and the erasable remainder equals the
+twin-control extraction. At $t=\pi/4$ (Bell) \emph{all} magic is erasable; at
+$t=\pi/8$ the irreducible component is maximal.
+
+\section{Complementary wedge geography}
+
+Where does each species live on the 20-qubit network? The erasable component is
+invisible to every single wedge and appears only in the union of both wedges
+(established in our Phase-1 sweep: single-wedge twin-$\Delta$ reads zero across
+the family). The irreducible component is the opposite: because purity carries
+the Schmidt spectrum, and any wedge reconstructs its logical qubit's reduction
+up to a \emph{constant} junk factor, $\NL$ is readable from any single wedge by
+junk-corrected purity:
+\begin{equation}
+  P \;=\; \operatorname{Tr}\rho_{W}^2 \,/\, c_W,
+\end{equation}
+with $c_W$ calibrated once on a stabilizer (product) logical state:
+$c_{W}=0.5$ for a 4-qubit wedge, $c_{W}=0.25$ for a 3-qubit sub-wedge. Exactly,
+across the sweep:
+
+\begin{center}
+\small
+\begin{tabular}{ccccc}
+\hline
+$t/\pi$ & $\NL$ true & from 4q wedge & from 3q sub-wedge & erasable in one wedge\\
+\hline
+0.083 & 0.2996 & 0.2996 & 0.2996 & 0.0000\\
+0.125 & 0.4150 & 0.4150 & 0.4150 & 0.0000\\
+0.167 & 0.2996 & 0.2996 & 0.2996 & 0.0000\\
+0.250 & 0.0000 & 0.0000 & 0.0000 & 0.0000\\
+0.333 & 0.2996 & 0.2996 & 0.2996 & 0.0000\\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent In slogan form: \textbf{what local operations can remove, single
+wedges cannot see; what they cannot remove, single wedges cannot miss.} The
+mechanism is elementary once seen --- reductions carry Schmidt data
+(irreducible), relative phases do not (erasable) --- but the code instantiation
+is, to our knowledge, the first wedge-resolved map of the two species, and it
+converts directly into a measurement protocol.
+
+\section{The one-wedge hardware protocol, and an honest noise analysis}
+
+Because $\NL$ needs only a \emph{purity}, it is measurable from a single wedge
+by randomized measurements --- no tomography, no magic witness on the full
+state. We constructed the exact two-tile encoder (a GF(2) symplectic completion
+of the stabilizer group); noiseless extraction through the full circuit
+reproduces $\NL=0.29956$ exactly at the test point.
+
+We report the negative result with the same care: on a current-generation
+(Heron) noise model at the encoder's present routed depth, the extracted $\NL$
+collapses from $0.2996$ to $\sim0.01$ --- and the failure is structural, not
+mitigable, because decoherence mixes the wedge in exactly the channel the
+signal uses ($P\!\to\!1/2$). Any hardware attempt is therefore pre-registered
+against a lower-bound gate: with $\sigma_{\mathrm{total}}$ combining the purity
+estimator's shot error and the rehearsal ensemble spread, a redesigned circuit
+must achieve ${\NL}\!\left(\text{rehearsal}\right) - 2\sigma_{\mathrm{total}} > 0.10$
+(point estimate $\gtrsim 0.19$ at practical shot budgets) before device quota
+is spent; otherwise the deliverable is a quantified noise bound, not a forced
+signal. The redesign campaign and its outcome will be reported against this
+gate as registered.
+
+\section{Relation to prior work, and honest scope}
+
+Non-local magic and its closed form Eq.~\eqref{eq:closedform} come from the
+two-qubit experiment of~\cite{nlexp}; the motivation that non-trivial area
+operators \emph{require} non-local magic, and that back-reaction is magical, is
+from~\cite{cao,magicgrav}; state-dependent geometry from magic-enriched codes
+is~\cite{sdg}. Our contribution is the \emph{wedge-resolved} map in explicit
+holographic codes --- the geography, the exact two-species decomposition on a
+code, the twin control, and the junk-corrected one-wedge readout as a
+hardware-ready protocol.
+
+\textbf{Scope.} All results are exact statevector computations for \emph{pure}
+two-qubit logical states (the analytical reviewer's audit fixed this scoping:
+the erasable/irreducible split via reduction purity is defined here for pure
+logical states; the mixed-logical-state extension requires a consistent
+definition of irreducible magic and is left open). Mixed-state $\Mtwo$ is used
+only as a diagnostic, backed by the twin control. No hardware measurement of
+wedge magic is claimed --- the protocol is ready, the current circuit fails the
+registered gate, and the redesign is in progress.
+
+\section*{Methods --- three-agent adversarial verification}
+
+Built and verified by three AI research agents on distinct runtimes under human
+direction: exact construction and synthesis (quant-phy/Ariadne, Anthropic),
+independent execution and noise rehearsal (codex-science/Tobin, OpenAI), and
+analytical audit (agy-science) --- whose review corrected a mis-stated property
+of Eq.~\eqref{eq:closedform} in internal communication and fixed the
+pure-state scoping above. Every number is reproducible from the public
+repository (\texttt{labs/track-d-magic/}, Phases 0--1b and
+\texttt{species\_hardware.py}); the noise-gate criterion is pre-registered in
+the repository before any device run.
+
+\begin{thebibliography}{9}
+\bibitem{happy} F.~Pastawski, B.~Yoshida, D.~Harlow, J.~Preskill,
+  \emph{Holographic quantum error-correcting codes}, JHEP \textbf{06} (2015)
+  149, \href{https://arxiv.org/abs/1503.06237}{arXiv:1503.06237}.
+\bibitem{leone} L.~Leone, S.~F.~E.~Oliviero, A.~Hamma, \emph{Stabilizer
+  R\'enyi Entropy}, Phys. Rev. Lett. \textbf{128}, 050402 (2022),
+  \href{https://arxiv.org/abs/2106.12587}{arXiv:2106.12587}.
+\bibitem{nlexp} \emph{Experimental demonstration of non-local magic in a
+  superconducting quantum processor},
+  \href{https://arxiv.org/abs/2511.15576}{arXiv:2511.15576}.
+\bibitem{cao} C.~Cao et al., \emph{Non-trivial Area Operators Require
+  Non-local Magic}, JHEP \textbf{11} (2024) 105,
+  \href{https://arxiv.org/abs/2306.14996}{arXiv:2306.14996}.
+\bibitem{magicgrav} \emph{Gravitational back-reaction is magical},
+  \href{https://arxiv.org/abs/2403.07056}{arXiv:2403.07056}.
+\bibitem{sdg} C.~Cao, W.~Cheng, S.~Karthikeyan, Y.~Li, J.~Preskill,
+  \emph{State-dependent geometries from magic-enriched quantum codes},
+  \href{https://arxiv.org/abs/2603.13475}{arXiv:2603.13475}.
+\end{thebibliography}
+
+\vspace{1em}
+\noindent\rule{\linewidth}{0.4pt}\\[2pt]
+{\footnotesize \emph{Acknowledgements.} Produced by a swarm of AI research
+agents --- OpenAI, Anthropic, and a third analytical-reviewer agent --- under
+human direction, each independently checking the others before a claim was
+allowed to stand. Code and data public; every number carries a commit hash.}
+
+\end{document}
