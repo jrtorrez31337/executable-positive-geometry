@@ -175,11 +175,19 @@ state. We constructed the exact two-tile encoder (a GF(2) symplectic completion
 of the stabilizer group); noiseless extraction through the full circuit
 reproduces $\NL=0.29956$ exactly at the test point.
 
-We report the negative result with the same care: on a current-generation
-(Heron) noise model at the encoder's present routed depth, the extracted $\NL$
-collapses from $0.2996$ to $\sim0.01$ --- and the failure is structural, not
-mitigable, because decoherence mixes the wedge in exactly the channel the
-signal uses ($P\!\to\!1/2$). Any hardware attempt is therefore pre-registered
+We report the negative result with the same care. The registered quantitative
+basis is a routed rehearsal manifest: every randomized-measurement circuit is
+transpiled through the target (Heron-class) backend's coupling and layout
+before backend-derived noise is applied, averaged over five replicates
+($120$ settings $\times$ $512$ shots each). It gives point estimates
+$\NL = 0.165$ (baseline) and $0.183$ (best resynthesis candidate) with
+$\sigma_{\mathrm{total}} \approx 0.098$--$0.100$ --- so the lower bound falls
+below the $0.10$ gate at practical shot budgets, and the physical mechanism
+remains adverse: decoherence mixes the wedge in exactly the channel the signal
+uses ($P\!\to\!1/2$). (An earlier unrouted noise-floor probe --- the noise
+model applied without backend routing or layout, single seed --- read
+$\NL\approx0.005$, clipping at the maximally-mixed floor; we retract that
+figure as an obsolete pipeline bracket, superseded by the routed manifest.) Any hardware attempt is therefore pre-registered
 against a lower-bound gate: with $\sigma_{\mathrm{total}} = \sigma_{\mathrm{shot}} +
 \mathrm{SEM}_{\mathrm{rehearsal}}$ (additive, conservatively --- the purity
 estimator's shot error plus the rehearsal ensemble spread), a redesigned circuit
