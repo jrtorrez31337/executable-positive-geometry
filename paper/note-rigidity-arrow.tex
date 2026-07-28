@@ -1,0 +1,208 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+
+\newcommand{\Klate}{K_{\mathrm{late}}}
+\newcommand{\Svar}{\Sigma^2}
+
+\title{The complexity arrow tracks spectral rigidity --- as a trend, not a law:\\
+a pre-registered falsifier test on Krylov chains,\\ random-matrix ensembles, and the DSSYK chord basis}
+\author{Ariadne Vale, Tobin Masala, and agy-science\\[2pt]
+\small Executable Positive Geometry\\[-2pt]
+\small \texttt{epg@subnet345.com}}
+\date{29 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Krylov (spread) complexity grows on a semi-infinite chain whose position
+operator is positive with a boundary at zero --- a structure that in
+double-scaled SYK (DSSYK) is not an analogy but an identity: the thermofield
+double's Krylov basis \emph{is} the chord-number basis, so complexity equals
+the expected chord number~\cite{rsss}. We ask what property of a Hamiltonian's
+\emph{spectrum} controls this complexity arrow, and we ask it as a
+pre-registered falsifier test. Across seven ensemble families --- GOE, Poisson,
+Anderson chains, $\beta$-Hermite tridiagonal, Rosenzweig--Porter, banded, and
+the deterministic DSSYK chord chain --- with spectral rigidity measured from
+independently unfolded finite spectra (never from the Jacobi data driving the
+complexity), we find: (1)~no counterexample to rigidity--arrow co-variation,
+including the ensemble designed to break it; (2)~a forced refinement --- the
+DSSYK chord chain is \emph{picket-fence} rigid (gap ratio $r=0.968$,
+integrable-type, not random-matrix) yet carries the strongest arrow, so the
+arrow tracks \emph{rigidity}, not chaos; chaos is one route to rigidity;
+(3)~quantitatively, the trend is real (Spearman $\rho=-0.765$,
+$p=3.4\times10^{-5}$, pre-registered) but \emph{universality fails exactly as
+its pre-registered falsifier anticipated}: at matched rigidity, ensemble
+families branch by an order of magnitude in complexity, and the branch
+variable is eigenvector localization (inverse participation ratio). The honest
+conclusion: \emph{spectral rigidity predicts the complexity arrow as a trend
+but is not sufficient; eigenvector delocalization completes the relation.}
+Every claim was pre-registered with its falsifier before running; one of our
+own prior headline claims (``the arrow ignites from the chaotic spectrum'')
+is narrowed by these results, and we say so.
+\end{abstract}
+
+\section{Setup: the arrow lives on a one-sided chain}
+
+The Lanczos recursion maps any Hamiltonian and seed state to a semi-infinite
+tridiagonal chain; spread complexity $K(t)=\langle \hat n\rangle$ is the
+wavepacket's mean position, a manifestly positive operator with a boundary at
+$n=0$. In DSSYK this chain is physical: the chord
+basis~\cite{lin,berkooz} makes the Hamiltonian tridiagonal with hopping
+$b_n=\sqrt{(1-q^n)/(1-q)}$, and the thermofield double's Krylov basis
+coincides with the chord-number basis exactly, at any $q$~\cite{rsss} ---
+complexity \emph{is} chord number, and (in the triple-scaling limit) bulk
+wormhole length; at finite $N$ the chord basis is an extrapolation and
+complexity saturates~\cite{bmnw}. Our exact chain lab confirms the registered
+expectations: $K(t)=b_1^2t^2$ at small $t$ (to $<2\times10^{-5}$); ballistic
+pre-boundary transport at every $q$ with velocity set by the hopping plateau
+$b_\infty=1/\sqrt{1-q}$; a super-ballistic ($K\!\sim\!t^2$) contrast in the
+$q\to1$ oscillator limit; all readouts strictly inside the pre-reflection
+window, so no finite-cutoff artifact is claimed as physics.
+
+\section{The falsifier design}
+
+The Lanczos coefficients determine both the spectral density and $K(t)$, so
+``complexity relates to the spectrum'' is trivially true. To make the question
+falsifiable we required: (i)~spectral rigidity measured from
+\emph{independently unfolded finite spectra} --- gap ratios $r$ and number
+variance $\Svar(L)$ --- never reconstructed from the same Jacobi data that
+evolves $K(t)$; (ii)~ensembles chosen to break the hypothesis if it can be
+broken, in particular $\beta$-Hermite tridiagonal matrices (disordered Lanczos
+coefficients with exactly random-matrix spectra) and Rosenzweig--Porter
+interpolation through its transition; (iii)~verdicts pre-registered before
+each run, with the falsifier stated. An independent analytical reviewer
+certified the design non-circular before any code ran.
+
+\section{Stage one: no counterexample, one refinement}
+
+Across GOE, Poisson, Anderson, $\beta$-Hermite, Rosenzweig--Porter, banded,
+and DSSYK-chord ensembles (two independent executions; dimensions 64--128, up
+to 64 disorder samples), no clean bridge-killer appeared: rigid spectra came
+with delocalized chains and strong late complexity, Poisson-like spectra with
+localized chains and weak complexity, intermediate ensembles intermediate on
+both axes. The designed killer survived: $\beta$-Hermite's coefficient
+disorder is relatively weak and both its columns stay random-matrix-like.
+
+The refinement came from our own arena. The DSSYK chord chain's spectrum has
+$r=0.968$ with low number variance: near-equally-spaced levels ---
+\emph{picket-fence} rigidity, characteristic of integrable spectra like the
+oscillator, categorically distinct from random-matrix level repulsion
+($r\approx0.53$--$0.60$) --- yet it carries the strongest arrow in the
+comparison. The classifier was patched to separate picket-fence from
+random-matrix rigidity, and the bridge statement was narrowed accordingly:
+\begin{quote}
+\emph{The complexity arrow co-varies with spectral rigidity (low number
+variance), not with chaos per se. Chaos is one route to rigidity; the
+deterministic chord chain is another.}
+\end{quote}
+This narrows our own earlier claim (``the arrow ignites from the chaotic
+spectrum''): chaotic should have been \emph{rigid}. The chord chain, being a
+single deterministic instance, is kept in all comparisons as a labeled $n=1$
+structured control, not as an ensemble member.
+
+\section{Stage two: the trend is real; universality fails, informatively}
+
+We then pre-registered a quantitative test over 23 configurations spanning the
+seven families (parameter sweeps in disorder strength, $\beta$, coupling,
+bandwidth, and $q$), with all measurement code identical to stage one:
+
+\textbf{Q-1 (trend) --- confirmed.} Normalized late complexity
+$\Klate/\mathrm{chain}$ versus $\Svar(L{=}4)$ is monotone-decreasing across
+the ensemble scatter: Spearman $\rho=-0.765$, $p=3.4\times10^{-5}$ at
+dimension 128 with 32 samples per point (independent smoke run at lower power:
+$\rho=-0.743$).
+
+\textbf{Q-2 (universality) --- refuted, exactly as pre-registered.} If
+rigidity \emph{sufficed}, points from different families at matched $\Svar$
+would agree. They do not, in any populated rigidity bin: e.g.\ at
+$\Svar\approx3.5$--$4.0$, an Anderson chain ($W{=}5$) gives
+$\Klate/\mathrm{chain}=0.032$ while Rosenzweig--Porter ($c{=}0.5$) gives
+$0.481$ --- a factor $\sim$15 at matched rigidity, far beyond combined
+uncertainties. The pre-registered fallback identified the branch variable in
+advance: eigenvector localization. The recorded inverse participation ratios
+at that matched point are $0.328$ (localized) versus $0.067$ (delocalized).
+
+\textbf{Q-3 (control) --- consistent.} The deterministic chord points sit at
+the rigid end of the scatter with strong complexity ($q=0.9$ is the most
+rigid configuration in the entire dataset, $\Svar=0.40$).
+
+\section{Conclusion, stated honestly}
+
+\begin{quote}
+\emph{Spectral rigidity predicts the complexity arrow as a trend
+($\rho\approx-0.77$) but is not sufficient: there is no universal
+$\Klate(\Svar)$ curve. Eigenvector delocalization is the additional variable
+that completes the relation.}
+\end{quote}
+
+Three scope statements. First, these are finite-dimensional numerical results
+(shadows of the type-III$_1$/large-$N$ statements they gesture at); a
+falsifier hunt that finds no counterexample is support, not proof. Second, the
+DSSYK chord chain enters as a deterministic labeled control; its picket-fence
+rigidity is an observation about one physically central instance, not an
+ensemble statement. Third, the underlying conjecture that motivated this study
+--- that the one-sided chord chain's positivity ($\hat n\ge0$ with a boundary)
+is the finite shadow of a half-sided modular/arrow-of-time structure in DSSYK
+--- remains exactly that, a conjecture; our literature verification found the
+positivity-as-arrow fusion unoccupied (positivity is used thermodynamically
+in~\cite{bmp}, modular structure algebraically in~\cite{xu}), and nothing here
+proves it.
+
+\section*{Methods --- pre-registration and three-agent verification}
+
+Every stage followed the same discipline: predictions and falsifiers
+registered in the public repository before running; measurement code frozen
+across stages (the quantitative stage calls the stage-one measurement function
+verbatim, sweeping only parameters); spectra unfolded independently of the
+chain data; two independent executions (author and clean-room, the latter from
+the formulas alone) for every load-bearing number; and an analytical
+reviewer's audit at each gate (non-circularity of the design; the
+$b_n$ symmetrization; the picket-fence reading; the final conclusion's
+wording). Two claims of ours died in the process --- the universality of
+$\Klate(\Svar)$, and the ``chaotic spectrum'' phrasing of our own earlier
+capstone --- and both deaths are reported as results. Produced by three AI
+research agents on distinct runtimes (Anthropic, OpenAI, and a third
+analytical reviewer) under human direction; every number carries a commit
+hash and a persisted run manifest.
+
+\begin{thebibliography}{9}
+\bibitem{rsss} E.~Rabinovici, A.~S\'anchez-Garrido, R.~Shir, J.~Sonner,
+  \emph{A bulk manifestation of Krylov complexity}, JHEP \textbf{08} (2023)
+  213, \href{https://arxiv.org/abs/2305.04355}{arXiv:2305.04355}; see also
+  \href{https://arxiv.org/abs/2412.15318}{arXiv:2412.15318}.
+\bibitem{lin} H.~W.~Lin, \emph{The bulk Hilbert space of double scaled SYK},
+  \href{https://arxiv.org/abs/2208.07032}{arXiv:2208.07032}.
+\bibitem{berkooz} M.~Berkooz, M.~Isachenkov, V.~Narovlansky, G.~Torrents,
+  \emph{Towards a full solution of the large N double-scaled SYK model},
+  \href{https://arxiv.org/abs/1811.02584}{arXiv:1811.02584}.
+\bibitem{bmnw} V.~Balasubramanian, J.~M.~Magan, P.~Nandi, Q.~Wu,
+  \emph{Spread complexity and the saturation of wormhole size},
+  \href{https://arxiv.org/abs/2412.02038}{arXiv:2412.02038}.
+\bibitem{parker} D.~E.~Parker, X.~Cao, A.~Avdoshkin, T.~Scaffidi, E.~Altman,
+  \emph{A Universal Operator Growth Hypothesis},
+  \href{https://arxiv.org/abs/1812.08657}{arXiv:1812.08657}.
+\bibitem{bmp} A.~Blommaert, T.~G.~Mertens, J.~Papalini, \emph{The dilaton
+  gravity hologram of double-scaled SYK},
+  \href{https://arxiv.org/abs/2404.03535}{arXiv:2404.03535}.
+\bibitem{xu} J.~Xu, \emph{Von Neumann Algebras in Double-Scaled SYK},
+  \href{https://arxiv.org/abs/2403.09021}{arXiv:2403.09021}.
+\bibitem{heller} M.~P.~Heller, F.~Ori, J.~Papalini, T.~Schuhmann,
+  M.-T.~Wang, \emph{De Sitter holographic complexity from Krylov complexity
+  in DSSYK}, \href{https://arxiv.org/abs/2510.13986}{arXiv:2510.13986}.
+\end{thebibliography}
+
+\vspace{1em}
+\noindent\rule{\linewidth}{0.4pt}\\[2pt]
+{\footnotesize \emph{Acknowledgements.} Produced by a swarm of AI research
+agents --- OpenAI, Anthropic, and a third analytical-reviewer agent --- under
+human direction, each independently checking the others before a claim was
+allowed to stand. Code, run manifests, and the pre-registration records are
+public; refuted predictions are reported beside confirmations.}
+
+\end{document}
