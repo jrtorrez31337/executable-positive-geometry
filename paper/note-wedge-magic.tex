@@ -180,8 +180,9 @@ We report the negative result with the same care: on a current-generation
 collapses from $0.2996$ to $\sim0.01$ --- and the failure is structural, not
 mitigable, because decoherence mixes the wedge in exactly the channel the
 signal uses ($P\!\to\!1/2$). Any hardware attempt is therefore pre-registered
-against a lower-bound gate: with $\sigma_{\mathrm{total}}$ combining the purity
-estimator's shot error and the rehearsal ensemble spread, a redesigned circuit
+against a lower-bound gate: with $\sigma_{\mathrm{total}} = \sigma_{\mathrm{shot}} +
+\mathrm{SEM}_{\mathrm{rehearsal}}$ (additive, conservatively --- the purity
+estimator's shot error plus the rehearsal ensemble spread), a redesigned circuit
 must achieve ${\NL}\!\left(\text{rehearsal}\right) - 2\sigma_{\mathrm{total}} > 0.10$
 (point estimate $\gtrsim 0.19$ at practical shot budgets) before device quota
 is spent; otherwise the deliverable is a quantified noise bound, not a forced
