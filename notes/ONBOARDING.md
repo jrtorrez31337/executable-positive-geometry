@@ -51,7 +51,7 @@ Subnet345's Plexus substrate. The point is not to sound impressive; it is to be
 
 ## 3. Current state (as of 2026-07-23)
 
-- **Corpus:** 50 verified papers across 9 pillars (`corpus/README.md` is the
+- **Corpus:** 58 verified papers across 9 pillars (`corpus/README.md` is the
   annotated index with tiers; `corpus/refs.bib` + `corpus/fetch_corpus.sh`
   reproduce it). PDFs are gitignored; the index/bib/fetch are tracked.
 - **Labs:** 55 Python labs across 6 tracks (`labs/`): Track A quantum

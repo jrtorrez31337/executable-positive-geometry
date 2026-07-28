@@ -5,9 +5,10 @@ amplituhedron to the magic that lets geometry gravitate — with holographic
 wedge localization and an emergent arrow of time measured on
 superconducting hardware.**
 
-This repository contains **48 laboratory scripts** across five lines of
-work (Tracks A–D plus holographic capstones), a verified **40-paper**
-reference corpus (7 pillars), and two manuscripts, tracing a single arc:
+This repository contains **55 laboratory scripts** across five lines of
+work (Tracks A–D plus holographic capstones), a verified **58-paper**
+reference corpus (7 pillars), and six manuscripts (the verification tour
+plus five research notes), tracing a single arc:
 
 > *Space, locality, scattering, time, and even gravitational
 > backreaction may be outputs of deeper structure — entanglement patterns,
@@ -88,7 +89,7 @@ labs/
     happy_hardware / flower_*  single tile & 21-qubit network on ibm_kingston
     self_wedge / holonomy*     self-reference (Klein), code-automorphism holonomy (+ HW)
     spawn_object.py            bulk-object injection via boundary operators (ER=EPR toy)
-corpus/                        annotated 50-paper reference library (7 pillars)
+corpus/                        annotated 58-paper reference library (7 pillars)
     README.md                  index with per-paper evidence tiers (🟢/🟡/🔴)
     GAP-ANALYSIS.md            joint gap analysis (with codex-science agent)
     FRONTIER-2026.md           mid-2026 field survey: positive geometry, magic, cosmology

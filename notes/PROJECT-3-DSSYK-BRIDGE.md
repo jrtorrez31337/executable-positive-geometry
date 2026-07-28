@@ -14,10 +14,26 @@ arrow-of-time program (`ARROW-ORIGINS-SCORECARD.md` §10):
   one-sided chain with n̂ ≥ 0 as the finite shadow of the positive generator).
 - DSSYK has an exactly solvable **chord basis** in which the Hamiltonian is
   tridiagonal — i.e. DSSYK *is natively a one-sided chain* (chord number n ≥ 0),
-  with hopping b_n from a q-deformed oscillator. Literature (verification sweep
-  in flight — IDs to be confirmed before anything load-bears) reportedly makes
-  "Krylov complexity = chord number = bulk length" precise in the DS limit, and
-  Xu 2403.09021 gives DSSYK the Type II₁ algebra with finite max entropy.
+  with hopping b_n from a q-deformed oscillator (Lin `2208.07032`; Berkooz et
+  al. `1811.02584`). **S0 VERIFIED (2026-07-27, all IDs checked against abs
+  pages + PDF titles; 8 anchors filed, corpus → 58):**
+  - **The key identity is established, and exact:** the TFD's Krylov basis
+    *coincides with* the chord-number basis (any q), so spread complexity
+    = ⟨n̂⟩ — Rabinovici–Sánchez-Garrido–Shir–Sonner `2305.04355`; extended to
+    operator K-complexity (= total chord length) in `2412.15318`. The "= bulk
+    length" reading is exact only in the triple-scaling/JT limit.
+  - **The honest caveat (fold into P3-1):** at finite N the chord basis is an
+    *extrapolation* of the true Krylov basis and complexity **saturates** at
+    late times (`2412.02038`) — so ideal-chain linear growth is the
+    semiclassical statement, saturation the finite-N one.
+  - **Our niche is OPEN:** nobody frames chord-number positivity / the
+    one-sided chain as an *arrow-of-time* statement. The ingredients exist
+    separately — positivity as a thermodynamic constraint (`2404.03535`),
+    modular structure of the chord algebra (`2403.09021`, whose zero-chord
+    state is cyclic-separating), entropy↔complexity (`2511.03779`) — but no
+    one has fused them. Position our P3-3 as that fusion (🔴, conjecture).
+  - dS side: `2510.13986` (dS complexity = Krylov, linear rate set by dS
+    entropy/temperature) + `2403.13186` support P3-1's dS reading.
 - So the bridge question becomes concrete: the chord chain carries BOTH the
   complexity arrow (K(t) = ⟨n̂⟩ growth) and the positivity structure (n̂ ≥ 0,
   boundary at n=0) in one object.
@@ -79,7 +95,7 @@ off that the pre-registered test below is non-circular.
 ## Status board
 
 - [x] Scoping doc (this file) — posted for co-scope pushback
-- [ ] S0 anchors verified + filed
+- [x] S0 anchors verified + filed (2026-07-27: 8 papers, corpus -> 58; key identity established exact; finite-N saturation caveat folded into P3-1; positivity-as-arrow niche confirmed OPEN)
 - [ ] Scope + pre-registration converged; agy tautology sign-off obtained
 - [ ] S1 chord-chain lab built + reproduced
 - [ ] S2 bridge test run; falsifier hunt done

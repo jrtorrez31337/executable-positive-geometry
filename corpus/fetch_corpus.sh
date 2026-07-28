@@ -78,4 +78,15 @@ fetch 2403.09021 "2-holography-emergence/2026-vn-algebras-double-scaled-syk.pdf"
 fetch gr-qc/9406019 "2-holography-emergence/1994-connes-rovelli-thermal-time-von-neumann.pdf"
 fetch 2206.10780    "2-holography-emergence/2022-chandrasekaran-longo-penington-witten-desitter-algebra.pdf"
 
-echo "corpus complete: $(find . -name '*.pdf' | wc -l)/50 papers"
+
+# Project 3 (DSSYK spectral bridge): Krylov = chord = bulk length anchors
+fetch 2305.04355 "2-holography-emergence/2023-rabinovici-etal-bulk-manifestation-krylov-complexity.pdf"
+fetch 2412.15318 "2-holography-emergence/2024-ambrosini-etal-operator-k-complexity-dssyk-bulk-length.pdf"
+fetch 2412.02038 "2-holography-emergence/2024-balasubramanian-etal-spread-complexity-wormhole-saturation.pdf"
+fetch 2208.07032 "2-holography-emergence/2022-lin-bulk-hilbert-space-dssyk.pdf"
+fetch 2404.03535 "2-holography-emergence/2024-blommaert-mertens-papalini-dilaton-gravity-hologram-dssyk.pdf"
+fetch 2510.13986 "2-holography-emergence/2025-heller-etal-desitter-complexity-krylov-dssyk.pdf"
+fetch 2511.03779 "2-holography-emergence/2025-aguilar-gutierrez-cosmological-entropy-vn-algebra-krylov.pdf"
+fetch 1811.02584 "2-holography-emergence/2018-berkooz-etal-towards-full-solution-dssyk.pdf"
+
+echo "corpus complete: $(find . -name '*.pdf' | wc -l)/58 papers"

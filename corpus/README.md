@@ -61,6 +61,23 @@ Project-2 (de Sitter / DSSYK) directly. Every ID verified by title against the P
 | Chen & Xu, **An algebra for covariant observers in de Sitter space** (2026) | [2511.00622](https://arxiv.org/abs/2511.00622) | 🔴 | The de Sitter case: a Type II₁ algebra for covariant observers, where the *maximal* entropy is the cosmological-horizon area. Direct Project-2 tie. |
 | Sahu, van der Heijden, Van Raamsdonk & Zibakhsh, **Algebras for generalized entanglement wedges** (2026) | [2511.21852](https://arxiv.org/abs/2511.21852) | 🔴 | Assigns von Neumann algebras to generalized entanglement wedges, reconnecting the crossed-product program to entanglement-wedge reconstruction. Very recent. |
 | Xu, **Von Neumann Algebras in Double-Scaled SYK** (2024–26) | [2403.09021](https://arxiv.org/abs/2403.09021) | 🔴 | The computable bridge: DSSYK carries a Type II₁ algebra with a finite maximal entropy matching a dS horizon — the many-body handle for Project-2 (DSSYK ↔ de Sitter). |
+
+### Project 3 (DSSYK spectral bridge): Krylov = chord number = bulk length
+
+*Added 2026-07-27 (S0 sweep, every ID verified against its abs page + PDF title).
+The anchor stack for `notes/PROJECT-3-DSSYK-BRIDGE.md`: DSSYK's chord basis is
+natively a one-sided chain, and Krylov complexity IS the chord-number operator.*
+
+| Paper | arXiv | Tier | What it validates |
+|---|---|---|---|
+| Berkooz, Isachenkov, Narovlansky & Torrents, **Towards a full solution of the large N double-scaled SYK model** (2018) | [1811.02584](https://arxiv.org/abs/1811.02584) | 🟢 | The canonical chord-diagram / transfer-matrix technology (exact correlators via q-deformed SL(2)). |
+| Lin, **The bulk Hilbert space of double scaled SYK** (2022) | [2208.07032](https://arxiv.org/abs/2208.07032) | 🟡 | The chord basis: chord number = discretized bulk length; the Hamiltonian is tridiagonal (q-deformed oscillator) — DSSYK *is* a one-sided chain. |
+| Rabinovici, Sánchez-Garrido, Shir & Sonner, **A bulk manifestation of Krylov complexity** (2023) | [2305.04355](https://arxiv.org/abs/2305.04355) | 🟡 | **The key identity:** the TFD's Krylov basis = the chord-number basis (exact, any q) ⇒ spread complexity = ⟨n̂⟩; = bulk length in the triple-scaling/JT limit. |
+| Ambrosini et al., **Operator K-complexity in DSSYK: Krylov complexity equals bulk length** (2024) | [2412.15318](https://arxiv.org/abs/2412.15318) | 🔴 | Extends the identity to operator K-complexity (= total chord length), exact in triple-scaling. |
+| Balasubramanian, Magan, Nandi & Wu, **Spread complexity and the saturation of wormhole size** (2024) | [2412.02038](https://arxiv.org/abs/2412.02038) | 🔴 | **The honest caveat:** the chord basis extrapolates the finite-N Krylov basis; complexity saturates at late times — "= bulk length" is semiclassical, not non-perturbative. |
+| Blommaert, Mertens & Papalini, **The dilaton gravity hologram of double-scaled SYK** (2024) | [2404.03535](https://arxiv.org/abs/2404.03535) | 🔴 | Chord-number **positivity** as a physical constraint (thermodynamics / fake temperature) — the nearest occupied territory to the positivity-as-arrow angle; no arrow framing. |
+| Heller, Ori, Papalini, Schuhmann & Wang, **De Sitter holographic complexity from Krylov complexity in DSSYK** (2025) | [2510.13986](https://arxiv.org/abs/2510.13986) | 🔴 | dS geodesic lengths = Krylov spread complexity; linear growth set by dS entropy + temperature. |
+| Aguilar-Gutierrez, **Cosmological Entanglement Entropy from the vN Algebra of DSSYK & Its Connection with Krylov Complexity** (2025) | [2511.03779](https://arxiv.org/abs/2511.03779) | 🔴 | Type II₁ algebraic entropy depends on Krylov spread complexity — adjacent prior art (entropy↔complexity), *not* the positivity-as-arrow framing. |
 | Connes & Rovelli, **Von Neumann Algebra Automorphisms and Time–Thermodynamics Relation** (1994) | [gr-qc/9406019](https://arxiv.org/abs/gr-qc/9406019) | 🟡 | The **thermal time hypothesis**: a state on an algebra *manufactures its own time* via Tomita–Takesaki modular flow, no external clock. Track C's out-of-ancestry (operator-algebra) sighting — "self-containment makes time." Modular theorem rigorous; identification with physical time is a hypothesis. |
 | Chandrasekaran, Longo, Penington & Witten, **An Algebra of Observables for de Sitter Space** (2022) | [2206.10780](https://arxiv.org/abs/2206.10780) | 🔴 | Closing dS on one static-patch observer forces a Type II₁ crossed product and a modular time — the operator-algebra cousin of the dS/ℤ₂ non-time-orientability sighting, same phenomenon in an independent formalism. |
 
