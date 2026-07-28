@@ -156,3 +156,30 @@ off that the pre-registered test below is non-circular.
   falsifier hunt that finds no killer is support, not proof.
   NEXT (outward): sixth note candidate -- "The arrow tracks rigidity: a
   pre-registered falsifier test of the complexity-spectrum bridge in DSSYK".
+
+---
+
+## Post-close extension (2026-07-29, Jon-directed): the QUANTITATIVE rigidity-arrow relation
+
+S3 established co-classification (rigid <-> strong arrow, categorical). This
+extension asks whether it is a *relation*: K vs Sigma^2 as a scatter across
+ensembles AND parameter sweeps. Feeds the sixth note as its spine.
+
+**Pre-registered (before the paper-grade run):**
+- **Q-1 (trend):** across all ensemble families and parameter values,
+  normalized late complexity (K_spread_late) vs number variance Sigma^2(L=4)
+  is monotone-decreasing overall (Spearman rho < 0, significant).
+- **Q-2 (universality -- the strong, killable claim):** at matched Sigma^2,
+  points from DIFFERENT families agree within combined SEMs -- one curve
+  K(Sigma^2). FALSIFIER: distinct family branches at matched Sigma^2 (e.g.
+  banded vs Anderson), in which case the honest conclusion is "rigidity
+  necessary-not-sufficient; the relation is categorical, and eigenvector
+  structure (IPR) carries the remainder." Both outcomes are results.
+- **Q-3 (control):** the deterministic chord-chain points (n=1, labeled) land
+  at the rigid end consistent with the ensemble trend.
+
+**Method lock:** measurement code = Tobin's `sample_model` called VERBATIM
+(only parameters swept); statistics = K_spread_late, number_variance_L4, with
+gap_r and chain_eigenvector_ipr recorded for diagnosis. Split: quant-phy
+authors sweep + smoke-run; Tobin paper-grade run + SEMs + verification; agy
+pre-run non-circularity audit + post-run reading audit (one ask per message).
