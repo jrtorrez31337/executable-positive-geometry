@@ -9,7 +9,7 @@ therefore reports three separately computed columns for each ensemble:
   3. unfolded spectral rigidity from finite Hamiltonian spectra.
 
 A clean bridge-killer is either
-  - RMT-rigid spectrum with localized/weak K(t), or
+  - spectrally rigid finite levels with localized/weak K(t), or
   - Poisson-like spectrum with delocalized/strong K(t).
 
 The defaults are small enough for a fast local falsifier hunt; increase
@@ -30,6 +30,7 @@ import numpy as np
 RUN_ROOT = pathlib.Path(__file__).with_name("dssyk_bridge_runs")
 POISSON_R = 0.3863
 GOE_R = 0.5307
+PICKET_FENCE_R = 0.85
 
 
 def utc_stamp() -> str:
@@ -255,25 +256,31 @@ def summarize_model(model: str, rows: list[dict]) -> dict:
         out[f"{field}_mean"] = mean
         out[f"{field}_sem"] = sem
 
-    rigid = (
-        float(out["gap_r_mean"]) > 0.49
-        and float(out["number_variance_L4_mean"]) < 3.0
-    )
-    poisson_like = float(out["gap_r_mean"]) < 0.43
+    gap_r = float(out["gap_r_mean"])
+    number_var = float(out["number_variance_L4_mean"])
+    picket_fence = gap_r > PICKET_FENCE_R and number_var < 3.0
+    rmt_like = 0.49 < gap_r < 0.75 and number_var < 3.0
+    rigid = rmt_like or picket_fence
+    poisson_like = gap_r < 0.43
     localized = (
         float(out["K_spread_late_mean"]) < 0.22
         or float(out["chain_eigenvector_ipr_mean"]) > 0.18
     )
     delocalized = float(out["K_spread_late_mean"]) > 0.35
-    out["spectral_rigidity_class"] = (
-        "rigid/RMT-like" if rigid else "Poisson-like" if poisson_like else "intermediate"
-    )
+    if picket_fence:
+        out["spectral_rigidity_class"] = "picket-fence/integrable-rigid"
+    elif rmt_like:
+        out["spectral_rigidity_class"] = "RMT-like"
+    elif poisson_like:
+        out["spectral_rigidity_class"] = "Poisson-like"
+    else:
+        out["spectral_rigidity_class"] = "intermediate"
     out["krylov_arrow_class"] = (
         "localized/weak" if localized else "delocalized/strong" if delocalized else "intermediate"
     )
     out["candidate_bridge_killer"] = bool((rigid and localized) or (poisson_like and delocalized))
     if rigid and localized:
-        out["bridge_killer_reason"] = "rigid/RMT-like finite spectrum but localized/weak K(t)"
+        out["bridge_killer_reason"] = "rigid finite spectrum but localized/weak K(t)"
     elif poisson_like and delocalized:
         out["bridge_killer_reason"] = "Poisson-like finite spectrum but delocalized/strong K(t)"
     else:
@@ -354,7 +361,8 @@ def main() -> int:
             "q_deform": args.q_deform,
         },
         "classification_thresholds": {
-            "rmt_like": "gap_r > 0.49 and number_variance_L4 < 3.0",
+            "picket_fence": "gap_r > 0.85 and number_variance_L4 < 3.0",
+            "rmt_like": "0.49 < gap_r < 0.75 and number_variance_L4 < 3.0",
             "poisson_like": "gap_r < 0.43",
             "localized_weak": "K_spread_late < 0.22 or chain_eigenvector_ipr > 0.18",
             "delocalized_strong": "K_spread_late > 0.35",
