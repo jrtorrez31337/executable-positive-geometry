@@ -13,12 +13,17 @@ Quota-free rehearsal uses the same persisted format:
 
     python phase7_submit.py --backend aer --settings 12 --shots 128
     python phase7_retrieve.py labs/track-d-magic/phase7_runs/<run-dir>
+
+Submission-time wedge choice can be rehearsed locally without IBM credentials:
+
+    python phase7_submit.py --backend fake_torino --dry-run --auto-wedge
 """
 
 from __future__ import annotations
 
 import argparse
 import hashlib
+import itertools
 import json
 import pathlib
 import sys
@@ -38,6 +43,8 @@ EXACT_NL_TARGET = 0.2996
 MAX_MIXED_WEDGE_FLOOR = 0.125
 TIER1_SIGMA_MULTIPLE = 2.0
 TIER2_NL_THRESHOLD = 0.10
+TILE_A = tuple(range(5))
+TILE_B = tuple(range(5, 10))
 
 
 def phase7_success_criterion(*, n_settings: int, shots: int) -> dict:
@@ -102,6 +109,109 @@ def utc_stamp() -> str:
 
 def twoq_count(circuit) -> int:
     return sum(1 for inst in circuit.data if len(inst.qubits) == 2)
+
+
+def parse_wedge(text: str) -> tuple[int, ...]:
+    try:
+        wedge = tuple(int(part.strip()) for part in text.split(",") if part.strip())
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"invalid wedge {text!r}") from exc
+    if len(wedge) != 3 or len(set(wedge)) != 3 or any(q < 0 or q >= 10 for q in wedge):
+        raise argparse.ArgumentTypeError("wedge must be three distinct qubits in 0..9")
+    return wedge
+
+
+def wedge_candidates(mode: str) -> list[tuple[int, ...]]:
+    key = mode.lower().replace("_", "-")
+    if key == "registered":
+        return [tuple(WEDGE)]
+    if key == "tile-a":
+        return list(itertools.combinations(TILE_A, 3))
+    if key == "tile-b":
+        return list(itertools.combinations(TILE_B, 3))
+    if key == "both-tiles":
+        return list(itertools.combinations(TILE_A, 3)) + list(itertools.combinations(TILE_B, 3))
+    raise argparse.ArgumentTypeError(
+        "wedge candidate mode must be registered, tile-a, tile-b, or both-tiles"
+    )
+
+
+def virtual_to_physical_map(source_circuit, transpiled_circuit) -> dict[int, int]:
+    layout = getattr(transpiled_circuit, "layout", None)
+    initial_layout = getattr(layout, "initial_layout", layout)
+    if initial_layout is None or not hasattr(initial_layout, "get_virtual_bits"):
+        return {}
+
+    mapping = {}
+    for virtual_bit, physical in initial_layout.get_virtual_bits().items():
+        try:
+            virtual_index = source_circuit.find_bit(virtual_bit).index
+        except Exception:
+            continue
+        mapping[int(virtual_index)] = int(physical)
+    return mapping
+
+
+def qubit_calibration_error(backend, physical_qubit: int) -> float | None:
+    try:
+        props = backend.properties()
+    except Exception:
+        props = None
+    if props is not None:
+        errors = []
+        try:
+            errors.append(float(props.readout_error(physical_qubit)))
+        except Exception:
+            pass
+        for gate in ("sx", "x"):
+            try:
+                errors.append(float(props.gate_error(gate, physical_qubit)))
+            except Exception:
+                pass
+        if errors:
+            return float(sum(errors))
+    return None
+
+
+def choose_calibrated_wedge(
+    backend,
+    source_circuit,
+    transpiled_circuit,
+    candidates: list[tuple[int, ...]],
+) -> dict:
+    v2p = virtual_to_physical_map(source_circuit, transpiled_circuit)
+    scored = []
+    for wedge in candidates:
+        physical = [v2p.get(q) for q in wedge]
+        if any(q is None for q in physical):
+            continue
+        errors = [qubit_calibration_error(backend, int(q)) for q in physical]
+        if any(err is None for err in errors):
+            continue
+        scored.append({
+            "wedge": list(wedge),
+            "physical_qubits": [int(q) for q in physical],
+            "score": float(sum(float(err) for err in errors)),
+            "per_qubit_error": [float(err) for err in errors],
+        })
+    if not scored:
+        return {
+            "selected_wedge": list(WEDGE),
+            "status": "fallback_registered_wedge",
+            "reason": "layout or calibration data unavailable",
+            "candidate_count": len(candidates),
+        }
+    scored.sort(key=lambda row: row["score"])
+    best = scored[0]
+    return {
+        "selected_wedge": best["wedge"],
+        "status": "selected_from_calibration",
+        "candidate_count": len(candidates),
+        "scored_count": len(scored),
+        "physical_qubits": best["physical_qubits"],
+        "score": best["score"],
+        "per_qubit_error": best["per_qubit_error"],
+    }
 
 
 def write_json(path: pathlib.Path, payload: dict) -> None:
@@ -222,6 +332,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out", type=pathlib.Path, default=None,
                         help="output run directory")
     parser.add_argument("--optimization-level", type=int, default=2)
+    parser.add_argument("--wedge", type=parse_wedge, default=tuple(WEDGE),
+                        help="virtual wedge qubits, e.g. 0,1,2")
+    parser.add_argument("--auto-wedge", action="store_true",
+                        help="choose the best calibrated equivalent 3-of-5 wedge after hardware transpilation")
+    parser.add_argument("--wedge-candidates", default="tile-a",
+                        help="registered, tile-a, tile-b, or both-tiles")
     parser.add_argument("--min-quota-seconds", type=int, default=150,
                         help="minimum remaining quota before submitting hardware")
     parser.add_argument("--skip-quota-check", action="store_true")
@@ -258,7 +374,16 @@ def main() -> int:
         "theta": float(THETA),
         "magic_state_only": True,
         "exact_nl_target": EXACT_NL_TARGET,
-        "wedge": list(WEDGE),
+        "wedge": list(args.wedge),
+        "wedge_selection": {
+            "status": "fixed_cli_wedge",
+            "selected_wedge": list(args.wedge),
+            "note": (
+                "The [[5,1,3]] perfect-tensor symmetry makes any 3-of-5 tile "
+                "subset an equivalent purity wedge; --auto-wedge can choose "
+                "among equivalent subsets from backend calibration at submit time."
+            ),
+        },
         "n_qubits": int(base.num_qubits),
         "n_settings": int(args.settings),
         "shots": int(args.shots),
@@ -285,8 +410,21 @@ def main() -> int:
         print(f"settings={args.settings}, shots={args.shots}, exact_NL={EXACT_NL_TARGET}")
         return 0
 
-    service = get_service()
-    usage = None if args.skip_quota_check or args.dry_run else quota_remaining(service)
+    backend_key = backend_name.lower().replace("_", "-")
+    fake_backend = backend_key in {"fake-torino", "torino", "fake-heron"}
+    if fake_backend:
+        from qiskit_ibm_runtime.fake_provider import FakeTorino
+
+        backend = FakeTorino()
+        metadata["backend_kind"] = "fake_provider"
+    else:
+        service = get_service()
+        backend = service.backend(backend_name)
+        metadata["backend_kind"] = "ibm_runtime"
+
+    usage = None
+    if not fake_backend and not args.skip_quota_check and not args.dry_run:
+        usage = quota_remaining(service)
     if usage:
         metadata["quota"] = usage
         remaining = usage.get("usage_remaining_seconds")
@@ -298,14 +436,31 @@ def main() -> int:
                 f"insufficient quota ({remaining}s); prepared settings at {run_dir}"
             )
 
-    backend = service.backend(backend_name)
     isa_circuits = transpile_for_backend(
         circuits,
         backend,
         optimization_level=args.optimization_level,
     )
+    if args.auto_wedge:
+        selection = choose_calibrated_wedge(
+            backend,
+            circuits[0],
+            isa_circuits[0],
+            wedge_candidates(args.wedge_candidates),
+        )
+        metadata["wedge_selection"] = selection
+        metadata["wedge"] = list(selection["selected_wedge"])
     metadata["transpiled_metrics"] = metric_summary(isa_circuits)
+    print(f"selected wedge: {metadata['wedge']} ({metadata['wedge_selection']['status']})")
     print(f"{backend_name} transpiled metrics: {metadata['transpiled_metrics']}")
+
+    if fake_backend and not args.dry_run:
+        metadata["status"] = "fake_backend_transpiled"
+        write_json(run_dir / "run.json", metadata)
+        raise SystemExit(
+            "fake provider backend is for local dry-runs only; pass --dry-run "
+            "or choose a real IBM backend for submission"
+        )
 
     if args.dry_run:
         metadata["status"] = "dry_run_transpiled"
