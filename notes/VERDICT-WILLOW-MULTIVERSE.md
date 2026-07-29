@@ -50,9 +50,14 @@ claim is weaker than its coverage.
 
 > Willow demonstrates scalable coherent quantum dynamics and below-threshold
 > error correction — a genuine engineering landmark. It does not, and in
-> principle cannot, discriminate between interpretations of quantum
-> mechanics; the multiverse line is explanatory preference in a blog post,
-> amplified by headlines into a claim no paper makes.
+> principle cannot, discriminate among the empirically equivalent
+> interpretations of standard quantum mechanics (many-worlds, Copenhagen,
+> Bohmian, ...); the multiverse line is explanatory preference in a blog
+> post, amplified by headlines into a claim no paper makes. (Distinct
+> objective-collapse/modified-QM theories DO make different predictions and
+> are testable in principle — Willow was not framed as such a test, though
+> ever-larger coherent computations do incidentally pressure some collapse
+> models.)
 
 Signatures: quant-phy (synthesis + sources) / codex-science (#388) /
 agy-science (#391).
