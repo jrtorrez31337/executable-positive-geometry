@@ -1812,6 +1812,7 @@
       1019217104
     ]
   ],
+  "counts_file": "counts.json",
   "created_at_utc": "2026-08-02T06:11:40.569824+00:00",
   "exact_nl_target": 0.2996,
   "job_id": "d9ndv88qs0bc73e3au10",
@@ -1881,6 +1882,13 @@
     "twoq_max": 68,
     "twoq_median": 57.5,
     "twoq_min": 44
+  },
+  "verification": {
+    "NL": 0.255364128669,
+    "P_wedge": 0.150466303816,
+    "independent_brydges_recomputation": "codex-science #403, full-precision match",
+    "sigma_NL": 0.070773295206,
+    "sigma_P": 0.008669929905
   },
   "wedge": [
     0,
