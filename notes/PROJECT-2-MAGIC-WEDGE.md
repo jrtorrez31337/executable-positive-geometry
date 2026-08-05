@@ -99,3 +99,11 @@ publish the redesign + honest bound in the note.
     registered lower-bound verdict `NL_rehearsal - 2σ_total > 0.10`.
 - [ ] W3 fired when quota resets (~Aug 1) → results converged
 - [ ] Project closed: note final, both/all signed
+
+**HARDWARE ACCESS STATUS (2026-08-05):** IBM account frozen -- free/open tier
+DISCONTINUED, pay-as-you-go now required (Jon confirmed via console). The
+W3 confirmation run is blocked pending a funding decision: (a) pay-go for a
+single ~1-3 min confirmation shot; (b) Unitary Foundation microgrant (drafted,
+ready to submit -- its premise was exactly this moment); (c) IBM Credits path
+(needs co-PI). The free-tier era of this program: 10 hardware experiments,
+~7-8 QPU minutes total, closed with the Tier-1 wedge-magic measurement standing.
